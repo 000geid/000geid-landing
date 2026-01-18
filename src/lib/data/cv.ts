@@ -1,7 +1,7 @@
 export interface CVExperience {
   role: { en: string; es: string }
   company: string
-  dates: string
+  dates: { en: string; es: string }
   summary: { en: string; es: string }
   responsibilities: { en: string[]; es: string[] }
 }
@@ -14,7 +14,7 @@ export interface CVEducation {
 export interface CVSkills {
   programming: string[]
   technologies: string[]
-  languages: { label: string; level: string }[]
+  languages: { label: { en: string; es: string }; level: { en: string; es: string } }[]
 }
 
 export interface CVProfile {
@@ -50,7 +50,7 @@ export const cvData: CVData = {
         es: 'Lead Software Developer'
       },
       company: 'Alt 94',
-      dates: '01/2025 - Present',
+      dates: { en: '01/2025 - Present', es: '01/2025 - Actualidad' },
       summary: {
         en: 'Lead the design and development of AI-first products in production, from architecture definition through deployment and operations, aligning technical decisions with business objectives.',
         es: 'Lidero el diseño y desarrollo de productos AI-first en producción, desde la definición de arquitectura hasta el despliegue y la operación, alineando decisiones técnicas con objetivos de negocio.'
@@ -78,7 +78,7 @@ export const cvData: CVData = {
         es: 'Desarrollador freelance'
       },
       company: 'Independent',
-      dates: '01/2024 - 12/2024',
+      dates: { en: '01/2024 - 12/2024', es: '01/2024 - 12/2024' },
       summary: {
         en: 'Designed and developed bespoke software solutions for more than 10 clients, covering the full product lifecycle from problem definition to production deployment.',
         es: 'Diseñé y desarrollé soluciones de software a medida para más de 10 clientes, cubriendo el ciclo completo del producto: desde la definición del problema hasta el despliegue en producción.'
@@ -104,7 +104,7 @@ export const cvData: CVData = {
         es: 'Desarrollador Fullstack'
       },
       company: 'Applied AI in Healthcare – Universidad Austral',
-      dates: '03/2023 - 12/2023',
+      dates: { en: '03/2023 - 12/2023', es: '03/2023 - 12/2023' },
       summary: {
         en: 'Contributed to an anomaly detection system for chest X-rays used as clinical decision support.',
         es: 'Participé en el desarrollo de un sistema de detección de anomalías en radiografías de tórax utilizado como soporte en la toma de decisiones médicas.'
@@ -129,9 +129,9 @@ export const cvData: CVData = {
     programming: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell Script'],
     technologies: ['LLMs', 'LangChain', 'RAG', 'Backend APIs', 'PostgreSQL', 'Docker', 'AWS', 'CI/CD'],
     languages: [
-      { label: 'Spanish', level: 'Native' },
-      { label: 'English', level: 'Proficient' },
-      { label: 'French', level: 'Intermediate' }
+      { label: { en: 'Spanish', es: 'Español' }, level: { en: 'Native', es: 'Nativo' } },
+      { label: { en: 'English', es: 'Inglés' }, level: { en: 'Proficient', es: 'Competente' } },
+      { label: { en: 'French', es: 'Francés' }, level: { en: 'Intermediate', es: 'Intermedio' } }
     ]
   },
   education: [

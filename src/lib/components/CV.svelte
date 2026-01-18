@@ -96,7 +96,7 @@
                     <Card.Title className="text-xl"
                       >{role.role[lang]}</Card.Title
                     >
-                    <Badge variant="outline">{role.dates}</Badge>
+                    <Badge variant="outline">{role.dates[lang]}</Badge>
                   </div>
                   <Card.Description>{role.summary[lang]}</Card.Description>
                 </Card.Header>
@@ -193,8 +193,10 @@
                 >
                   {#each cvData.skills.languages as langItem}
                     <li class="flex justify-between">
-                      <span>{langItem.label}</span>
-                      <span class="text-neutral-400">{langItem.level}</span>
+                      <span>{langItem.label[lang]}</span>
+                      <span class="text-neutral-400"
+                        >{langItem.level[lang]}</span
+                      >
                     </li>
                   {/each}
                 </ul>

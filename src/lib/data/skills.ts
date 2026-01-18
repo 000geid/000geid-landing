@@ -6,10 +6,9 @@ export interface SkillCategory {
 export const skillsData: SkillCategory[] = [
   {
     name: 'languages',
-    skills: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell Script']
+    skills: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell Scripting']
   },
   {
-    name: 'technologies',
-    skills: ['LLMs', 'LangChain', 'RAG', 'Backend APIs', 'PostgreSQL', 'Docker', 'AWS', 'CI/CD']
+    skills: ['LLMs', 'LangChain', 'RAG', 'APIs Backend', 'PostgreSQL', 'Docker', 'AWS', 'CI/CD']
   }
 ]

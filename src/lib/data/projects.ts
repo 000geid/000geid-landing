@@ -68,8 +68,8 @@ export const projectsData: ProjectEntry[] = [
         title: 'Filo',
         summary:
           'En la caótica hora del almuerzo en Lima, cada minuto es valioso. La idea de Filo surgió de una observación personal: ver a mi padre almorzando siempre en el mismo lugar, no por preferencia, sino por la imposibilidad de explorar otras opciones sin perder su hora de descanso. Esa limitación fue el catalizador para crear una solución que digitalizara los menús del barrio, permitiendo que la elección de qué comer pase de ser una apuesta ciega a una decisión informada en segundos.',
-        role: 'Founder • Full-stack end-to-end (UI/UX, backend, deployment)',
-        timeline: '2023 - Presente',
+        role: 'Founder • Full-stack integral (UI/UX, backend, despliegue)',
+        timeline: '2023 - Actualidad',
         problem: [
           'La decisión del almuerzo suele ser frustrante: con poco tiempo y hambre, terminamos eligiendo lo mismo de siempre por falta de información.',
           'Mientras tanto, los restaurantes locales tienen una oferta increíble que cambia todos los días, pero que muere escrita en una pizarra invisible para el mundo digital.',
@@ -133,8 +133,8 @@ export const projectsData: ProjectEntry[] = [
         title: 'Plandeck',
         summary:
           'Plandeck nació de una frustración cotidiana: intentar organizar mis tareas desde el celular y sentir que luchaba contra la interfaz. La mayoría de las herramientas Kanban están diseñadas para mouse y teclado, haciendo que el "drag-and-drop" en pantallas táctiles sea una experiencia torpe. Mi objetivo fue crear lo opuesto: un tablero que se sintiera nativo en móvil, rápido, intuitivo y sincronizado en tiempo real, eliminando el dolor de planificar "on-the-go".',
-        role: 'Founder • Full-stack end-to-end (UI/UX, backend, deployment)',
-        timeline: '2025 - Presente',
+        role: 'Founder • Full-stack integral (UI/UX, backend, despliegue)',
+        timeline: '2025 - Actualidad',
         problem: [
           'Las herramientas de gestión de proyectos suelen ignorar la experiencia móvil: botones pequeños, gestos que se confunden con el scroll y una interfaz sobrecargada que hace imposible mover una tarjeta sin frustración.',
           'Además, la falta de sincronización instantánea real convierte el cambio entre dispositivos en un riesgo de conflictos de versiones, rompiendo el flujo de trabajo.',

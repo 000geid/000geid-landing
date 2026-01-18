@@ -9,7 +9,7 @@
 </script>
 
 <button
-	onclick={() => language.toggle()}
+	on:click={() => language.toggle()}
 	class="p-3 rounded-full bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center gap-2"
 	aria-label={$t('toggler.toggleLanguage')}
 >

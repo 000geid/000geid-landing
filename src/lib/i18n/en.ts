@@ -2,16 +2,20 @@ export const en = {
 	hero: {
 		name: 'Diego Alvarado',
 		subtitle: 'Software Engineer • AI-First Products',
+		description: 'I build AI-first products end-to-end: from frontend and architecture to LLM integration, automation, and production deployment.',
 		toggleDarkMode: 'Toggle dark mode'
 	},
 	about: {
 		title: 'About',
-		description: 'Software engineer with experience leading and building AI-first products end-to-end: from frontend, architecture and backend to LLM integration, automation and production deployment. Focused on real impact, scalability and technical decisions with business criteria.'
+		description: 'Software engineer with experience leading and building AI-first products end-to-end: from frontend, architecture and backend to LLM integration, automation and production deployment. Focused on real impact, scalability and technical decisions with business criteria.',
+		highlights: ['Builder mindset', 'LLM integrations', 'Product-first engineering']
 	},
 	careerPath: {
 		title: 'Career Path',
 		expandButton: 'Read more',
-		collapseButton: 'Read less'
+		expandButton: 'Read more',
+		collapseButton: 'Read less',
+		present: 'Present'
 	},
 	skills: {
 		title: 'Skills',
@@ -25,10 +29,24 @@ export const en = {
 	},
 	projects: {
 		title: 'Projects',
+		story: {
+			label: 'Project Story',
+			back: 'Back to home',
+			role: 'Role',
+			timeline: 'Timeline',
+			problem: 'The problem',
+			solution: 'How we solved it',
+			impact: 'Impact',
+			technologies: 'Technologies',
+			notFoundTitle: 'Project not found',
+			notFoundBody: 'This story is not available yet.'
+		},
 		project1: {
-			title: 'Project One',
-			description: 'A brief description of your first project.',
-			tags: ['Svelte', 'TypeScript']
+			title: 'Filo',
+			description:
+				'Digitalizing neighborhood gastronomy: interactive QR menus, analytics, and customer reviews for local eateries.',
+			tags: ['SvelteKit', 'Cloudflare', 'D1', 'Hono'],
+			cta: 'Visit Filo'
 		},
 		project2: {
 			title: 'Project Two',
@@ -42,6 +60,7 @@ export const en = {
 		}
 	},
 	contact: {
+		title: 'Contact',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Email',
@@ -49,6 +68,7 @@ export const en = {
 		location: 'Location'
 	},
 	nav: {
+		home: 'Home',
 		sections: 'Sections'
 	},
 	cv: {

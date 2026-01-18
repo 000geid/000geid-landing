@@ -21,7 +21,6 @@ export interface CVProfile {
   name: string
   title: string
   location: string
-  phone: string
   email: string
   introduction: { en: string; es: string }
 }
@@ -38,7 +37,6 @@ export const cvData: CVData = {
     name: 'Diego Alvarado',
     title: 'Software Engineer',
     location: 'Buenos Aires, Argentina',
-    phone: '+54 9 11 2556-6277',
     email: 'dmalvaradog26@gmail.com',
     introduction: {
       en: 'Software engineer with experience leading and building AI-first products end-to-end: from frontend, architecture, and backend to LLM integration, automation, and production deployment. Focused on real-world impact, scalability, and technical decisions grounded in business needs.',

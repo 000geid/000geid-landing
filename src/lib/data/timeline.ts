@@ -3,7 +3,8 @@ export interface WorkExperience {
   title_es: string
   title_en: string
   company: string
-  dates: string
+  startDate: string
+  endDate: string | null
   description_es: string
   description_en: string
   responsibilities_es: string[]
@@ -17,7 +18,8 @@ export const timelineData: WorkExperience[] = [
     title_es: 'Lead Software Developer',
     title_en: 'Lead Software Developer',
     company: 'Alt 94',
-    dates: '01/2025 - Present',
+    startDate: '2025-01-01',
+    endDate: null, // Present
     description_es: 'Lidero el diseño y desarrollo de productos AI-first en producción, desde la definición de arquitectura hasta el despliegue y la operación, alineando decisiones técnicas con objetivos de negocio.',
     description_en: 'Lead the design and development of AI-first products in production, from architecture definition to deployment and operations, aligning technical decisions with business objectives.',
     responsibilities_es: [
@@ -41,7 +43,8 @@ export const timelineData: WorkExperience[] = [
     title_es: 'Desarrollador Freelance',
     title_en: 'Freelance Developer',
     company: 'Independiente',
-    dates: '01/2024 - 12/2024',
+    startDate: '2024-01-01',
+    endDate: '2024-12-31',
     description_es: 'Diseñé y desarrollé soluciones de software a medida para más de 10 clientes, cubriendo el ciclo completo del producto: desde la definición del problema hasta el despliegue en producción.',
     description_en: 'Designed and developed custom software solutions for over 10 clients, covering the complete product lifecycle: from problem definition to production deployment.',
     responsibilities_es: [
@@ -63,7 +66,8 @@ export const timelineData: WorkExperience[] = [
     title_es: 'Desarrollador Fullstack',
     title_en: 'Fullstack Developer',
     company: 'Proyecto de IA aplicada a Salud – Universidad Austral',
-    dates: '03/2023 - 12/2023',
+    startDate: '2023-03-01',
+    endDate: '2023-12-31',
     description_es: 'Participé en el desarrollo de un sistema de detección de anomalías en radiografías de tórax, utilizado como soporte en la toma de decisiones médicas.',
     description_en: 'Participated in the development of a chest X-ray anomaly detection system, used as support in medical decision-making.',
     responsibilities_es: [

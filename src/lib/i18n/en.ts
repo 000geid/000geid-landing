@@ -13,7 +13,7 @@ export const en = {
 	careerPath: {
 		title: 'Career Path',
 		expandButton: 'Read more',
-		expandButton: 'Read more',
+
 		collapseButton: 'Read less',
 		present: 'Present'
 	},

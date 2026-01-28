@@ -34,7 +34,7 @@ export const es = {
 			role: 'Rol',
 			timeline: 'Cronología',
 			problem: 'El problema',
-			solution: 'Como lo resolvimos',
+			solution: 'Cómo lo resolví',
 			impact: 'Impacto',
 			technologies: 'Tecnologias',
 			notFoundTitle: 'Proyecto no encontrado',

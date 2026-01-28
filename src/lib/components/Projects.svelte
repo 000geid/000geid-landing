@@ -22,7 +22,7 @@
 				>
 					<a
 						href={`/projects/${project.id}`}
-						class="absolute inset-0"
+						class="absolute inset-0 z-20"
 						aria-label={project.title}
 					></a>
 					<Card.Header className="relative z-10">
@@ -41,7 +41,7 @@
 								<Badge variant="outline">{tag}</Badge>
 							{/each}
 						</div>
-						<Card.Footer className="relative z-10 px-0 pt-4">
+						<Card.Footer className="relative z-30 px-0 pt-4">
 							<Button
 								variant="link"
 								href={`/projects/${project.id}`}

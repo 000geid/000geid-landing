@@ -76,14 +76,14 @@ export const projectsData: ProjectEntry[] = [
           'Existe una brecha enorme: negocios con gran comida pero sin alcance, y comensales buscando variedad sin saber dónde encontrarla.'
         ],
         solution: [
-          'Filo nace para conectar estos dos mundos: una plataforma donde el menú del día se publica y descubre al instante.',
-          'Simplificamos la digitalización al extremo: permitiendo que los dueños publiquen su oferta diaria en segundos, manteniendo la información siempre fresca.',
-          'Entregamos a los usuarios el poder de elegir: comparar precios, platos y cercanía desde el celular, rompiendo la inercia de "ir al sitio de siempre".'
+          'Filo nace para conectar estos dos mundos: concibí una plataforma donde el menú del día se publica y descubre al instante.',
+          'Simplifiqué la digitalización al extremo: permitiendo que los dueños publiquen su oferta diaria en segundos, manteniendo la información siempre fresca.',
+          'Entregué a los usuarios el poder de elegir: comparar precios, platos y cercanía desde el celular, rompiendo la inercia de "ir al sitio de siempre".'
         ],
         impact: [
-          'Convertimos la búsqueda del almuerzo en una experiencia de descubrimiento, ahorrando tiempo y mejorando la satisfacción diaria.',
-          'Empoderamos a los pequeños restaurantes con visibilidad digital real, permitiéndoles competir por calidad y no solo por ubicación.',
-          'Redefinimos la gastronomía de barrio, creando un ecosistema local más dinámico, transparente y conectado.'
+          'Transformé la búsqueda del almuerzo en una experiencia de descubrimiento, ahorrando tiempo y mejorando la satisfacción diaria.',
+          'Empoderé a los pequeños restaurantes con visibilidad digital real, permitiéndoles competir por calidad y no solo por ubicación.',
+          'Redefiní la gastronomía de barrio, ayudando a crear un ecosistema local más dinámico, transparente y conectado.'
         ],
         technologies: ['SvelteKit', 'Cloudflare Workers', 'D1', 'R2', 'Hono'],
         link: {
@@ -146,14 +146,79 @@ export const projectsData: ProjectEntry[] = [
           'Una arquitectura minimalista que permite crear múltiples tableros y gestionar estados con la menor cantidad de clics posible.'
         ],
         impact: [
-          'Transformamos la planificación móvil de una tarea tediosa a una experiencia ágil y predecible, donde mover una tarjeta se siente natural.',
-          'Logramos una consistencia absoluta entre dispositivos, permitiendo empezar una tarea en el celular y terminarla en la laptop sin perder contexto.',
-          'Creamos una base sólida y reutilizable para aplicaciones de gestión rápida, demostrando el poder de las arquitecturas serverless modernas.'
+          'Transformé la planificación móvil de una tarea tediosa a una experiencia ágil y predecible, donde mover una tarjeta se siente natural.',
+          'Logré una consistencia absoluta entre dispositivos, permitiendo empezar una tarea en el celular y terminarla en la laptop sin perder contexto.',
+          'Creé una base sólida y reutilizable para aplicaciones de gestión rápida, demostrando el poder de las arquitecturas serverless modernas.'
         ],
         technologies: ['React', 'TypeScript', 'Vite', 'Convex (self-hosted)', 'Cloudflare Workers', 'dnd-kit'],
         link: {
           label: 'Visitar Plandeck',
           href: 'https://plandeck.ogeid.xyz'
+        }
+      }
+    }
+  },
+  {
+    id: 'cuecast',
+    title: 'Cuecast',
+    description: {
+      en: 'A virtual desktop soundboard for streamers, enabling audio triggering and routing to virtual devices.',
+      es: 'Soundboard virtual de escritorio para streamers, permitiendo disparar audio y rutearlo a dispositivos virtuales.'
+    },
+    tags: ['Electron', 'React', 'TypeScript', 'Vite'],
+    story: {
+      en: {
+        title: 'Cuecast',
+        summary:
+          'Cuecast is a virtual soundboard designed to replace expensive hardware for streamers. It runs on your desktop, allowing you to trigger sounds via clicks or global hotkeys and route them directly to virtual audio devices for seamless OBS integration.',
+        role: 'Creator • Full-stack end-to-end (Electron, React, Audio routing)',
+        timeline: '2024 - Present',
+        problem: [
+          'Hardware soundboards like Elgato Stream Deck are prohibitively expensive for new streamers.',
+          'Existing software solutions often lack reliable audio routing capabilities, making it hard to separate sound effects from other system audio in OBS.',
+          'Generic soundboard apps often lack global hotkey support, requiring the window to be focused to work.'
+        ],
+        solution: [
+          'Built a cross-platform Electron app that mimics the functionality of a physical deck directly on screen.',
+          'Implemented global hotkey registration in the main process to trigger sounds even when the app is in the background.',
+          'Integrated virtual audio device routing to ensure sound effects are captured cleanly on their own audio track.'
+        ],
+        impact: [
+          'Provides a free, open-source professional audio tool for content creators, lowering the barrier to entry.',
+          'Eliminates the hardware cost for high-quality stream production, allowing investment in other areas.',
+          'Offers a customizable and extensible platform that can grow with the streamer\'s needs.'
+        ],
+        technologies: ['Electron', 'React', 'TypeScript', 'Vite'],
+        link: {
+          label: 'Visit Cuecast',
+          href: 'https://github.com/000geid/cuecast'
+        }
+      },
+      es: {
+        title: 'Cuecast',
+        summary:
+          'Cuecast es una soundboard virtual diseñada para reemplazar hardware costoso para streamers. Funciona en tu escritorio, permitiendo disparar sonidos mediante clics o atajos globales y rutearlos directamente a dispositivos de audio virtuales para una integración fluida con OBS.',
+        role: 'Creador • Full-stack integral (Electron, React, Ruteo de audio)',
+        timeline: '2024 - Actualidad',
+        problem: [
+          'Las soundboards de hardware como Elgato Stream Deck son prohibitivamente costosas para streamers que recién empiezan.',
+          'Las soluciones de software existentes a menudo carecen de capacidades confiables de enrutamiento de audio, dificultando la separación de efectos de sonido en OBS.',
+          'Las aplicaciones genéricas de soundboard a menudo carecen de soporte para atajos globales, requiriendo que la ventana esté enfocada para funcionar.'
+        ],
+        solution: [
+          'Construí una aplicación Electron multiplataforma que imita la funcionalidad de un deck físico directamente en pantalla.',
+          'Implementé registro de atajos globales en el proceso principal para disparar sonidos incluso con la app en segundo plano.',
+          'Integré enrutamiento a dispositivos de audio virtuales para asegurar que los efectos se capturen limpiamente en su propia pista de audio.'
+        ],
+        impact: [
+          'Proporciona una herramienta de audio profesional, gratuita y de código abierto para creadores de contenido.',
+          'Elimina la barrera de costo hardware para una producción de stream de alta calidad.',
+          'Ofrece una plataforma personalizable y extensible que puede crecer con las necesidades del streamer.'
+        ],
+        technologies: ['Electron', 'React', 'TypeScript', 'Vite'],
+        link: {
+          label: 'Ver en GitHub',
+          href: 'https://github.com/000geid/cuecast'
         }
       }
     }

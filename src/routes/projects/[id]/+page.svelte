@@ -110,10 +110,10 @@
 								</p>
 								<div class="flex flex-wrap gap-2">
 									{#each story.technologies as tech}
-										<Badge
-											variant="secondary"
-											className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
-										>
+											<Badge
+												variant="outline"
+												className="px-3 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
+											>
 											{tech}
 										</Badge>
 									{/each}
@@ -291,9 +291,9 @@
 			<p class="text-neutral-600 dark:text-neutral-400">
 				{$t("projects.story.notFoundBody")}
 			</p>
-			<Button href="/#projects" variant="outline" class="mt-6"
-				>{$t("projects.story.back")}</Button
-			>
+				<Button href="/#projects" variant="outline" className="mt-6"
+					>{$t("projects.story.back")}</Button
+				>
 		</div>
 	{/if}
 </section>

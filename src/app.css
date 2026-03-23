@@ -2,10 +2,25 @@
 @import "tw-animate-css";
 
 @theme {
-	--font-sans: "Google Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	--font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+	--font-body: "IBM Plex Mono", ui-monospace, monospace;
+	--font-sans: var(--font-display);
+
+	/* Neo-brutalist color palette */
+	--color-primary: #FF3B00;
+	--color-secondary: #0066FF;
+	--color-accent: #FFD700;
+	--color-surface: #FAFAFA;
+	--color-surface-alt: #F0F0F0;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Dark mode overrides */
+.dark {
+	--color-surface: #0A0A0A;
+	--color-surface-alt: #141414;
+}
 
 html {
 	scroll-behavior: smooth;
@@ -21,14 +36,76 @@ html {
 	display: none;
 }
 
+/* Neo-brutalist base styles */
+* {
+	font-feature-settings: "ss01" on;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* Selection styling */
+::selection {
+	background-color: var(--color-primary);
+	color: white;
+}
+
+/* Sophisticated animations */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
-		transform: translateY(20px);
+		transform: translateY(30px);
 	}
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes scaleIn {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
 
@@ -43,11 +120,106 @@ html {
 	}
 }
 
+/* Staggered animation delays */
+@keyframes staggerReveal {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 .animate-fade-in-up {
 	opacity: 0;
-	animation: fadeInUp 0.3s ease-out forwards;
+	animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-down {
+	opacity: 0;
+	animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-left {
+	opacity: 0;
+	animation: fadeInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-right {
+	opacity: 0;
+	animation: fadeInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+	opacity: 0;
+	animation: scaleIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-expand {
-	animation: expandHeight 0.3s ease-out forwards;
+	animation: expandHeight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Delay utilities */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+/* Scroll-triggered reveal classes */
+.reveal {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+	            transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Neo-brutalist utility classes */
+.brutalist-shadow {
+	box-shadow: 4px 4px 0px 0px var(--color-primary);
+}
+
+.brutalist-shadow-hover {
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.brutalist-shadow-hover:hover {
+	box-shadow: 6px 6px 0px 0px var(--color-primary);
+	transform: translate(-2px, -2px);
+}
+
+/* Sharp corners override */
+.no-rounded {
+	border-radius: 0 !important;
+}
+
+/* Grid pattern background */
+.grid-pattern {
+	background-image:
+		linear-gradient(var(--color-surface-alt) 1px, transparent 1px),
+		linear-gradient(90deg, var(--color-surface-alt) 1px, transparent 1px);
+	background-size: 50px 50px;
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+	opacity: 0.03;
+	pointer-events: none;
 }

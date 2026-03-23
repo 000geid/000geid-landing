@@ -9,6 +9,7 @@ export const skillsData: SkillCategory[] = [
     skills: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell Scripting']
   },
   {
+    name: 'technologies',
     skills: ['LLMs', 'LangChain', 'RAG', 'APIs Backend', 'PostgreSQL', 'Docker', 'AWS', 'CI/CD']
   }
 ]

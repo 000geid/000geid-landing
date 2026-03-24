@@ -16,10 +16,40 @@ export interface ProjectStory {
 export interface ProjectEntry {
   id: string
   title: string
+  mode?: 'case-study' | 'freelance-gallery'
   description: {
     en: string
     es: string
   }
+  company?: {
+    name: string
+    logo: string
+    website?: string
+  }
+  screenshots?: Array<{
+    src: string
+    alt: {
+      en: string
+      es: string
+    }
+  }>
+  freelanceClients?: Array<{
+    id: string
+    name: string
+    logo: string
+    website?: string
+    summary: {
+      en: string
+      es: string
+    }
+    screenshots: Array<{
+      src: string
+      alt: {
+        en: string
+        es: string
+      }
+    }>
+  }>
   tags: string[]
   story: {
     en: ProjectStory
@@ -220,6 +250,132 @@ export const projectsData: ProjectEntry[] = [
           label: 'Ver en GitHub',
           href: 'https://github.com/000geid/cuecast'
         }
+      }
+    }
+  },
+  {
+    id: 'client-work-2024',
+    title: 'Client Work 2024',
+    mode: 'freelance-gallery',
+    description: {
+      en: 'Freelance frontend delivery for two client accounts in 2024, presented as a visual gallery.',
+      es: 'Entrega frontend freelance para dos cuentas cliente en 2024, presentada como galería visual.'
+    },
+    tags: ['Freelance', 'Frontend', 'Client Delivery', 'Gallery'],
+    freelanceClients: [
+      {
+        id: 'laroche-possay',
+        name: 'La Roche-Posay',
+        logo: '/images/laroche-possay/logo.png',
+        summary: {
+          en: 'Frontend implementation across branded campaign and commerce touchpoints.',
+          es: 'Implementación frontend en touchpoints de campaña y comercio.'
+        },
+        screenshots: [
+          {
+            src: '/images/laroche-possay/screen-01.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 1',
+              es: 'Captura del proyecto La Roche-Posay 1'
+            }
+          },
+          {
+            src: '/images/laroche-possay/screen-02.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 2',
+              es: 'Captura del proyecto La Roche-Posay 2'
+            }
+          },
+          {
+            src: '/images/laroche-possay/screen-03.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 3',
+              es: 'Captura del proyecto La Roche-Posay 3'
+            }
+          },
+          {
+            src: '/images/laroche-possay/screen-04.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 4',
+              es: 'Captura del proyecto La Roche-Posay 4'
+            }
+          },
+          {
+            src: '/images/laroche-possay/screen-05.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 5',
+              es: 'Captura del proyecto La Roche-Posay 5'
+            }
+          },
+          {
+            src: '/images/laroche-possay/screen-06.webp',
+            alt: {
+              en: 'La Roche-Posay project screenshot 6',
+              es: 'Captura del proyecto La Roche-Posay 6'
+            }
+          }
+        ]
+      },
+      {
+        id: 'ricadonna',
+        name: 'Ricadonna',
+        logo: '/images/ricadonna/logo.png',
+        summary: {
+          en: 'Frontend execution for visual-heavy customer pages with mobile-first priorities.',
+          es: 'Ejecución frontend para páginas de alto peso visual con prioridad mobile-first.'
+        },
+        screenshots: [
+          {
+            src: '/images/ricadonna/screen-01.webp',
+            alt: {
+              en: 'Ricadonna project screenshot 1',
+              es: 'Captura del proyecto Ricadonna 1'
+            }
+          },
+          {
+            src: '/images/ricadonna/screen-02.webp',
+            alt: {
+              en: 'Ricadonna project screenshot 2',
+              es: 'Captura del proyecto Ricadonna 2'
+            }
+          },
+          {
+            src: '/images/ricadonna/screen-03.webp',
+            alt: {
+              en: 'Ricadonna project screenshot 3',
+              es: 'Captura del proyecto Ricadonna 3'
+            }
+          },
+          {
+            src: '/images/ricadonna/screen-04.webp',
+            alt: {
+              en: 'Ricadonna project screenshot 4',
+              es: 'Captura del proyecto Ricadonna 4'
+            }
+          }
+        ]
+      }
+    ],
+    story: {
+      en: {
+        title: 'Client Work 2024',
+        summary: 'A visual gallery of freelance frontend work delivered for client accounts during 2024.',
+        role: 'Freelance Frontend Developer',
+        timeline: '2024',
+        problem: [],
+        solution: [],
+        impact: [],
+        technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design']
+      },
+      es: {
+        title: 'Client Work 2024',
+        summary: 'Galería visual de trabajo frontend freelance entregado para cuentas cliente durante 2024.',
+        role: 'Desarrollador Frontend Freelance',
+        timeline: '2024',
+        problem: [],
+        solution: [],
+        impact: [],
+        technologies: ['HTML', 'CSS', 'JavaScript', 'Diseño Responsive']
       }
     }
   }

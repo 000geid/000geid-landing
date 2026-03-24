@@ -1,133 +1,60 @@
 <script lang="ts">
-	import About from '$lib/components/About.svelte';
-	import Projects from '$lib/components/Projects.svelte';
-	import Skills from '$lib/components/Skills.svelte';
-	import Timeline from '$lib/components/Timeline.svelte';
-	import Education from '$lib/components/Education.svelte';
-	import Contact from '$lib/components/Contact.svelte';
-	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
-	import { Separator } from '$lib/components/ui/separator';
-	import { Button } from '$lib/components/ui/button';
-	import { darkMode } from '$lib/stores/darkMode';
-	import { t } from '$lib/stores/i18n';
+	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-
-	const sections = [
-		{ id: 'about', labelKey: 'about.title' },
-		{ id: 'projects', labelKey: 'projects.title' },
-		{ id: 'skills', labelKey: 'skills.title' },
-		{ id: 'career', labelKey: 'careerPath.title' },
-		{ id: 'education', labelKey: 'education.title' },
-		{ id: 'contact', labelKey: 'contact.title' }
-	] as const;
-
-	type SectionId = (typeof sections)[number]['id'];
-	let activeSection: SectionId = 'about';
+	import SiteShell from '$lib/components/SiteShell.svelte';
+	import { legacyHashRedirects, sectionDefinitions } from '$lib/data/sections';
+	import { t } from '$lib/stores/i18n';
 
 	onMount(() => {
-		darkMode.init();
+		const hash = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
+		const targetPath = hash ? legacyHashRedirects[hash] : null;
 
-		const elements = sections
-			.map((section) => document.getElementById(section.id))
-			.filter((element): element is HTMLElement => Boolean(element));
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries
-					.filter((entry) => entry.isIntersecting)
-					.sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
-
-				if (visible[0]?.target instanceof HTMLElement) {
-					activeSection = visible[0].target.id as SectionId;
-				}
-			},
-			{
-				root: null,
-				threshold: [0.1, 0.25, 0.4, 0.6],
-				rootMargin: '-25% 0px -65% 0px'
-			}
-		);
-
-		elements.forEach((element) => observer.observe(element));
-		return () => observer.disconnect();
+		if (targetPath) {
+			void goto(targetPath, { replaceState: true, noScroll: true });
+		}
 	});
 </script>
 
-<div class="min-h-screen bg-[var(--color-surface)] dark:bg-[var(--color-surface)] transition-colors noise-overlay relative">
-	<a
-		href="#home"
-		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white"
-	>
-		Skip to content
-	</a>
+<svelte:head>
+	<title>{$t('hero.name')} | {$t('hero.subtitle')}</title>
+	<meta name="description" content={$t('hero.description')} />
+</svelte:head>
 
-	<header class="sticky top-0 z-30 border-b-2 border-black dark:border-white bg-[var(--color-surface)] dark:bg-[var(--color-surface)]">
-		<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 px-4 md:px-6 py-4">
-			<a
-				href="#home"
-				class="font-display font-bold text-lg md:text-xl tracking-tight text-black dark:text-white truncate uppercase"
-				aria-label={$t('hero.name')}
-			>
-				DA
-			</a>
+<SiteShell>
+	<main id="main-content" class="border-t-2 border-black dark:border-white">
+		<section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
+			<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-4">
+				Portfolio Index
+			</p>
+			<h1 class="font-display font-bold text-5xl md:text-7xl tracking-tighter text-black dark:text-white leading-[0.9] mb-6 uppercase">
+				{$t('hero.name')}
+			</h1>
+			<p class="font-body text-base md:text-lg text-black/70 dark:text-white/70 max-w-3xl leading-relaxed mb-12">
+				{$t('hero.description')}
+			</p>
 
-			<div class="flex items-center gap-3 shrink-0">
-				<LanguageToggler />
-				<button
-					on:click={() => darkMode.toggle()}
-					class="w-10 h-10 border-2 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
-					aria-label={$t('hero.toggleDarkMode')}
-				>
-					<svg class="w-5 h-5 text-black dark:text-white dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-						/>
-					</svg>
-					<svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-						/>
-					</svg>
-				</button>
-			</div>
-		</div>
-
-		<nav aria-label={$t('nav.sections')} class="no-scrollbar overflow-x-auto border-t border-black/10 dark:border-white/10">
-			<div class="max-w-7xl mx-auto px-4 md:px-6 py-3">
-				<div class="flex items-center gap-1 w-max">
-					{#each sections as section (section.id)}
-						<a
-							href={`#${section.id}`}
-							class="px-3 py-1.5 text-sm font-body uppercase tracking-wider transition-all duration-200 no-rounded
-								{activeSection === section.id
-									? 'bg-black dark:bg-white text-white dark:text-black font-medium'
-									: 'text-black/60 dark:text-white/60 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'}"
-						>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+				{#each sectionDefinitions as section (section.slug)}
+					<a
+						href={section.path}
+						class="group block border-2 border-black dark:border-white bg-white dark:bg-black p-6 md:p-7
+							hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:text-white
+							transition-all duration-300 brutalist-shadow brutalist-shadow-hover"
+					>
+						<div class="flex items-center justify-between mb-6">
+							<p class="font-body text-xs uppercase tracking-[0.22em] text-black/45 dark:text-white/45 group-hover:text-white/60 transition-colors">
+								{section.path}
+							</p>
+							<svg class="w-4 h-4 text-black/60 dark:text-white/60 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+							</svg>
+						</div>
+						<h2 class="font-display font-bold text-2xl md:text-3xl tracking-tight text-black dark:text-white group-hover:text-white transition-colors">
 							{$t(section.labelKey)}
-						</a>
-					{/each}
-				</div>
+						</h2>
+					</a>
+				{/each}
 			</div>
-		</nav>
-	</header>
-
-	<main id="home" class="border-t-2 border-black dark:border-white">
-		<About />
-		<div class="max-w-7xl mx-auto px-4 md:px-6 border-t border-black/10 dark:border-white/10"></div>
-		<Projects />
-		<div class="max-w-7xl mx-auto px-4 md:px-6 border-t border-black/10 dark:border-white/10"></div>
-		<Skills />
-		<div class="max-w-7xl mx-auto px-4 md:px-6 border-t border-black/10 dark:border-white/10"></div>
-		<Timeline />
-		<div class="max-w-7xl mx-auto px-4 md:px-6 border-t border-black/10 dark:border-white/10"></div>
-		<Education />
-		<div class="max-w-7xl mx-auto px-4 md:px-6 border-t border-black/10 dark:border-white/10"></div>
-		<Contact />
+		</section>
 	</main>
-</div>
+</SiteShell>

@@ -368,7 +368,7 @@ export const projectsData: ProjectEntry[] = [
         technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design']
       },
       es: {
-        title: 'Client Work 2024',
+        title: 'Trabajo con Clientes 2024',
         summary: 'Galería visual de trabajo frontend freelance entregado para cuentas cliente durante 2024.',
         role: 'Desarrollador Frontend Freelance',
         timeline: '2024',

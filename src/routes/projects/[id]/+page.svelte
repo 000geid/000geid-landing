@@ -266,7 +266,7 @@
 					<section class="border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8 mb-10 md:mb-12">
 						<div class="flex items-center justify-between mb-5">
 							<p class="font-body text-xs uppercase tracking-[0.24em] text-black/50 dark:text-white/50">
-								{$language === 'es' ? 'Galería de clientes' : 'Client gallery'}
+								{$t('projects.story.clientGallery')}
 							</p>
 							<div class="w-8 h-[2px] bg-[var(--color-primary)]"></div>
 						</div>
@@ -367,7 +367,7 @@
 								{/if}
 
 								<p class="mt-3 font-body text-[11px] uppercase tracking-[0.2em] text-black/50 dark:text-white/50">
-									{$language === 'es' ? 'Click para abrir visor y zoom' : 'Click to open viewer and zoom'}
+									{$t('projects.story.viewerHint')}
 								</p>
 							</div>
 						{/if}
@@ -459,7 +459,7 @@
 			<div class="relative z-10 w-full max-w-3xl border border-white/20 bg-black text-white">
 				<div class="flex items-center justify-between px-4 py-3 border-b border-white/20">
 					<p class="font-body text-xs uppercase tracking-[0.22em] text-white/70">
-						{$language === 'es' ? 'Visor de imágenes' : 'Image viewer'}
+						{$t('projects.story.imageViewer')}
 					</p>
 					<div class="flex items-center gap-3">
 						<span class="font-body text-xs text-white/70">
@@ -536,7 +536,7 @@
 						onclick={resetZoom}
 						class="px-3 py-2 border border-white/30 text-xs uppercase tracking-[0.2em] font-body text-white/80 hover:bg-white hover:text-black transition-all duration-200"
 					>
-						{$language === 'es' ? 'Reset zoom' : 'Reset zoom'}
+						{$t('projects.story.resetZoom')}
 					</button>
 				</div>
 			</div>

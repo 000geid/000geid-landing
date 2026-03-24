@@ -7,8 +7,18 @@ export const es = {
 	},
 	about: {
 		title: 'Sobre mí',
-		description: 'Ingeniero de software con experiencia liderando y construyendo productos AI-first de punta a punta: desde frontend, arquitectura y backend hasta integración con LLMs, automatización y despliegue en producción. Enfocado en impacto real, escalabilidad y decisiones técnicas con criterio de negocio.',
-		highlights: ['Mentalidad de Constructor', 'Integración de LLMs', 'Ingeniería Orientada a Producto']
+		kicker: 'Perfil',
+		coreExpertise: 'Especialidad central',
+		headline: 'Lead AI Product Engineer',
+		valueProp:
+			'Lidero y entrego productos AI-first de punta a punta, construyendo sistemas en producción que sirven a cientos de usuarios diarios con impacto medible de negocio.',
+		proofPoints: [
+			'Mejoré el throughput del pipeline de IA en 30% al migrar la orquestación a LangGraph en una plataforma SaaS en producción.',
+			'Reduje costos de infraestructura entre 10% y 25% rediseñando la estrategia de load balancing en producción.',
+			'Entregué software end-to-end para 12 clientes en belleza y gastronomía, y aporté en IA aplicada a salud procesando ~200 radiografías de tórax por día (~6.000/mes, 70% AUROC).'
+		],
+		highlights: ['Sistemas de IA en Producción', 'Integración LLM + RAG', 'Arquitectura Orientada a Producto'],
+		ctaEmail: 'Email para Roles'
 	},
 	careerPath: {
 		title: 'Trayectoria',
@@ -28,6 +38,7 @@ export const es = {
 	},
 	projects: {
 		title: 'Proyectos',
+		kicker: 'Trabajo seleccionado',
 		story: {
 			label: 'Historia del proyecto',
 			back: 'Volver al inicio',
@@ -37,6 +48,10 @@ export const es = {
 			solution: 'Cómo lo resolví',
 			impact: 'Impacto',
 			technologies: 'Tecnologias',
+			clientGallery: 'Galería de clientes',
+			viewerHint: 'Click para abrir visor y zoom',
+			imageViewer: 'Visor de imágenes',
+			resetZoom: 'Restablecer zoom',
 			notFoundTitle: 'Proyecto no encontrado',
 			notFoundBody: 'Esta historia aun no esta disponible.'
 		},
@@ -60,6 +75,8 @@ export const es = {
 	},
 	contact: {
 		title: 'Contacto',
+		kicker: 'Conecta',
+		description: 'Construyamos algo excepcional juntos.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Correo',
@@ -69,6 +86,9 @@ export const es = {
 	nav: {
 		home: 'Inicio',
 		sections: 'Secciones'
+	},
+	home: {
+		indexLabel: 'Índice del portafolio'
 	},
 	cv: {
 		title: 'Currículum Vitae',

@@ -24,7 +24,7 @@
 	<main id="main-content" class="border-t-2 border-black dark:border-white">
 		<section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
 			<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-4">
-				Portfolio Index
+				{$t('home.indexLabel')}
 			</p>
 			<h1 class="font-display font-bold text-5xl md:text-7xl tracking-tighter text-black dark:text-white leading-[0.9] mb-6 uppercase">
 				{$t('hero.name')}

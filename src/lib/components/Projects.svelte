@@ -9,7 +9,7 @@
 	<div class="flex items-end justify-between mb-12 md:mb-16">
 		<div>
 			<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-3">
-				Selected Work
+				{$t('projects.kicker')}
 			</p>
 			<h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-black dark:text-white leading-none">
 				{$t('projects.title')}
@@ -43,7 +43,7 @@
 					</div>
 
 					<h3 class="font-display font-bold text-2xl md:text-3xl tracking-tight text-black dark:text-white group-hover:text-white transition-colors mb-3">
-						{project.title}
+						{$language === 'es' ? project.story.es.title : project.story.en.title}
 					</h3>
 
 					<p class="font-body text-base text-black/70 dark:text-white/70 group-hover:text-white/80 transition-colors leading-relaxed mb-6">

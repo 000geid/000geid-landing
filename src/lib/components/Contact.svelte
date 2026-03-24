@@ -27,7 +27,7 @@
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
 			<div class="lg:col-span-5">
 				<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-3">
-					Connect
+					{$t('contact.kicker')}
 				</p>
 				<h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-black dark:text-white leading-none">
 					{$t('contact.title')}
@@ -41,7 +41,7 @@
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
 			<div class="lg:col-span-5">
 				<p class="font-body text-base text-black/70 dark:text-white/70 leading-relaxed">
-					{$t('contact.description') || 'Let\'s build something exceptional together.'}
+					{$t('contact.description')}
 				</p>
 			</div>
 

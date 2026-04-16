@@ -2,8 +2,20 @@ export const es = {
 	hero: {
 		name: 'Diego Alvarado',
 		subtitle: 'Ingeniero de Software • Productos AI-First',
-		description: 'Construyo productos AI-first de punta a punta: desde frontend y arquitectura hasta integración con LLMs, automatización y despliegue en producción.',
+		description:
+			'Lidero productos AI-first en producción y construyo software full-stack: desde LLMs y diseño de sistemas hasta productos publicados y entregas para clientes.',
 		toggleDarkMode: 'Cambiar modo oscuro'
+	},
+	meta: {
+		about:
+			'Perfil: liderazgo AI-first—LLMs, full-stack, clientes y CI/CD—y trabajo en proyectos.',
+		projects:
+			'Trabajo seleccionado: productos publicados, herramientas open source y entregas frontend para clientes—agrupadas por tipo.',
+		skills:
+			'Stack agrupado por rol: lenguajes, IA/LLM, backend y datos, y cloud/entrega.',
+		career: 'Línea de tiempo laboral y freelance: roles, alcance, clientes e IA aplicada a salud, con métricas.',
+		education: 'Formación académica y credenciales.',
+		contact: 'Formas de contacto para roles u oportunidades.'
 	},
 	about: {
 		title: 'Sobre mí',
@@ -11,34 +23,86 @@ export const es = {
 		coreExpertise: 'Especialidad central',
 		headline: 'Lead AI Product Engineer',
 		valueProp:
-			'Lidero y entrego productos AI-first de punta a punta, construyendo sistemas en producción que sirven a cientos de usuarios diarios con impacto medible de negocio.',
-		proofPoints: [
-			'Mejoré el throughput del pipeline de IA en 30% al migrar la orquestación a LangGraph en una plataforma SaaS en producción.',
-			'Reduje costos de infraestructura entre 10% y 25% rediseñando la estrategia de load balancing en producción.',
-			'Entregué software end-to-end para 12 clientes en belleza y gastronomía, y aporté en IA aplicada a salud procesando ~200 radiografías de tórax por día (~6.000/mes, 70% AUROC).'
-		],
-		highlights: ['Sistemas de IA en Producción', 'Integración LLM + RAG', 'Arquitectura Orientada a Producto'],
+			'Trabajo en sistemas de IA, entrega full-stack, producto con clientes y operación en producción. Abajo, el desglose por área.',
+		sectorsIntro: 'Por área de foco',
+		sectors: {
+			llm: {
+				title: 'LLMs y machine learning',
+				points: [
+					'Pipelines de IA en producción: integración de LLMs, RAG, flujos tipo LangChain y orquestación para tráfico real, no demos aisladas.',
+					'ML aplicado previo en salud (imágenes médicas); métricas y evaluación son parte del trabajo, no un apéndice.'
+				]
+			},
+			fullstack: {
+				title: 'Full-stack y despliegue',
+				points: [
+					'Responsabilidad de punta a punta: arquitectura, APIs, datos y publicación de productos web, edge y escritorio en producción.',
+					'Entornos productivos, infraestructura cloud, enrutamiento y carga—con el mismo rigor que APIs y producto.'
+				]
+			},
+			clients: {
+				title: 'Clientes y usuarios',
+				points: [
+					'Freelance y producto con varias cuentas cliente en distintas industrias: requisitos, UX y entregas que usan usuarios finales.',
+					'Hay piezas públicas en el portafolio; el alcance y la duración cambian según cuenta y tipo de encargo.'
+				]
+			},
+			cicd: {
+				title: 'CI/CD y confiabilidad',
+				points: [
+					'CI/CD, disciplina de releases y prácticas de despliegue para publicar seguido sin romper producción.',
+					'Observabilidad, rollouts seguros y hábitos que mantienen producción predecible.'
+				]
+			}
+		},
+		highlights: ['LLM y RAG', 'Full-stack', 'Entrega a clientes', 'CI/CD'],
 		ctaEmail: 'Email para Roles'
 	},
 	careerPath: {
 		title: 'Trayectoria',
+		kicker: 'Cronología',
+		intro:
+			'Experiencia en roles permanentes y freelance: responsabilidades, alcance e impacto en producto, IA aplicada y entrega a clientes.',
 		expandButton: 'Leer más',
 		collapseButton: 'Leer menos',
-		present: 'Actualidad'
+		present: 'Actualidad',
+		responsibilitiesHeading: 'Responsabilidades clave'
 	},
 	skills: {
 		title: 'Habilidades',
+		kicker: 'Especialidades',
+		intro:
+			'Cómo suelo encajar en equipos: desarrollo políglota, sistemas con LLMs aplicados, servicios y persistencia, y entrega segura a producción.',
 		languages: 'Lenguajes',
-		technologies: 'Tecnologías'
+		technologies: 'Tecnologías',
+		aiLlm: 'IA y LLMs',
+		backendData: 'Backend y datos',
+		cloudDevOps: 'Cloud y entrega',
+		blurbs: {
+			languages: 'Lenguajes centrales para servicios, tooling y código de producto.',
+			aiLlm: 'Patrones de producción alrededor de modelos, orquestación y recuperación.',
+			backendData: 'APIs, datos relacionales y modelado de información.',
+			cloudDevOps: 'Contenedores, cloud y releases repetibles.'
+		},
+		practiceLabel: 'En la práctica'
 	},
 	education: {
 		title: 'Educación',
+		kicker: 'Académico',
+		intro: 'Credenciales formales junto con aprendizaje continuo guiado por proyectos.',
 		current: 'En curso',
 		completed: 'Completado'
 	},
 	projects: {
 		title: 'Proyectos',
 		kicker: 'Trabajo seleccionado',
+		intro:
+			'El trabajo está agrupado por intención: productos que publico, herramientas open source y entregas representativas para clientes. Cada tarjeta enlaza a la historia o galería.',
+		groups: {
+			products: 'Productos publicados',
+			oss: 'Open source y herramientas',
+			client: 'Entregas para clientes'
+		},
 		story: {
 			label: 'Historia del proyecto',
 			back: 'Volver al inicio',
@@ -54,23 +118,6 @@ export const es = {
 			resetZoom: 'Restablecer zoom',
 			notFoundTitle: 'Proyecto no encontrado',
 			notFoundBody: 'Esta historia aun no esta disponible.'
-		},
-		project1: {
-			title: 'Filo',
-			description:
-				'Plataforma de digitalización para restaurantes: menús interactivos, acceso QR y analítica de consumo.',
-			tags: ['SvelteKit', 'Cloudflare', 'D1', 'Hono'],
-			cta: 'Visitar Filo'
-		},
-		project2: {
-			title: 'Proyecto Dos',
-			description: 'Una breve descripción de tu segundo proyecto.',
-			tags: ['React', 'Node.js']
-		},
-		project3: {
-			title: 'Proyecto Tres',
-			description: 'Una breve descripción de tu tercer proyecto.',
-			tags: ['Python', 'FastAPI']
 		}
 	},
 	contact: {
@@ -88,7 +135,23 @@ export const es = {
 		sections: 'Secciones'
 	},
 	home: {
-		indexLabel: 'Índice del portafolio'
+		indexLabel: 'Empezá acá',
+		flowHint:
+			'Flujo sugerido: primero perfil y antecedentes, después trabajo y habilidades, y al final contacto. Usá la lista o el menú superior—mismos destinos.',
+		groups: {
+			profile: 'Perfil, carrera y formación',
+			work: 'Trabajo y habilidades',
+			connect: 'Contacto'
+		},
+		blurbs: {
+			about: 'Quién soy—por área: LLMs, full-stack, clientes, CI/CD.',
+			career: 'Línea de tiempo, roles, clientes y métricas.',
+			education: 'Títulos y formación formal.',
+			projects: 'Productos, open source y entregas para clientes.',
+			skills: 'Lenguajes, stack IA/LLM, backend y datos, cloud y entrega.',
+			contact: 'Email, redes y ubicación.'
+		},
+		flowListLabel: 'Secciones'
 	},
 	cv: {
 		title: 'Currículum Vitae',

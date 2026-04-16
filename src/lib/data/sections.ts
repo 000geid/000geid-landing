@@ -18,37 +18,37 @@ export const sectionDefinitions: SectionDefinition[] = [
 		slug: 'about',
 		path: '/about',
 		labelKey: 'about.title',
-		descriptionKey: 'about.description'
+		descriptionKey: 'meta.about'
 	},
 	{
 		slug: 'projects',
 		path: '/projects',
 		labelKey: 'projects.title',
-		descriptionKey: 'hero.description'
+		descriptionKey: 'meta.projects'
 	},
 	{
 		slug: 'skills',
 		path: '/skills',
 		labelKey: 'skills.title',
-		descriptionKey: 'hero.description'
+		descriptionKey: 'meta.skills'
 	},
 	{
 		slug: 'career',
 		path: '/career',
 		labelKey: 'careerPath.title',
-		descriptionKey: 'hero.description'
+		descriptionKey: 'meta.career'
 	},
 	{
 		slug: 'education',
 		path: '/education',
 		labelKey: 'education.title',
-		descriptionKey: 'hero.description'
+		descriptionKey: 'meta.education'
 	},
 	{
 		slug: 'contact',
 		path: '/contact',
 		labelKey: 'contact.title',
-		descriptionKey: 'hero.description'
+		descriptionKey: 'meta.contact'
 	}
 ];
 

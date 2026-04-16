@@ -1,5 +1,4 @@
 <script lang="ts">
-	import SiteShell from '$lib/components/SiteShell.svelte';
 	import { projectsData } from '$lib/data/projects';
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/stores/i18n';
@@ -168,8 +167,7 @@
 	<meta name="description" content={story?.summary ?? $t('projects.story.notFoundBody')} />
 </svelte:head>
 
-<SiteShell>
-	<main id="main-content" class="border-t-2 border-black dark:border-white">
+<main id="main-content" class="border-t-2 border-black dark:border-white">
 		{#if story}
 			<section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
 				<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12 md:mb-16">
@@ -542,6 +540,5 @@
 			</div>
 		</div>
 	{/if}
-</SiteShell>
 
 <svelte:window onkeydown={handleViewerKeydown} />

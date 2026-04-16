@@ -2,6 +2,7 @@
 	import { t } from '$lib/stores/i18n';
 	import { language } from '$lib/stores/language';
 	import { reveal } from '$lib/actions/reveal';
+	import { ABOUT_SECTOR_IDS } from '$lib/data/aboutSectors';
 
 	const recruiterEmail = 'dmalvaradog26@gmail.com';
 
@@ -10,12 +11,12 @@
 	$: recruiterHref = `mailto:${recruiterEmail}`;
 </script>
 
-<section id="about" class="scroll-mt-32 pt-16 md:pt-24 pb-16 md:pb-24 px-4 md:px-6 max-w-7xl mx-auto">
+<section id="about" class="scroll-mt-32 py-14 md:py-20 px-4 md:px-6 max-w-7xl mx-auto">
 	<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
 		<!-- Left side: Name and Location -->
 		<div class="lg:col-span-7">
 			<div class="reveal" use:reveal>
-				<p class="font-body text-xs md:text-sm uppercase tracking-[0.3em] text-black/60 dark:text-white/60 mb-4">
+				<p class="font-body text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--color-primary)] mb-4">
 					{$t('about.kicker')}
 				</p>
 
@@ -34,18 +35,31 @@
 					{$t('about.headline')}
 				</p>
 
-				<p class="font-body text-base md:text-lg text-black/80 dark:text-white/80 leading-relaxed max-w-2xl mb-6">
+				<p class="font-body text-base md:text-lg text-black/80 dark:text-white/80 leading-relaxed max-w-2xl mb-8">
 					{$t('about.valueProp')}
 				</p>
 
-				<ul class="space-y-3 max-w-2xl">
-					{#each $t('about.proofPoints') as point}
-						<li class="font-body text-sm md:text-base text-black/75 dark:text-white/75 leading-relaxed pl-5 relative">
-							<span class="absolute left-0 top-[0.52rem] w-2 h-2 bg-[var(--color-primary)]"></span>
-							{point}
-						</li>
+				<p class="font-body text-[11px] uppercase tracking-[0.28em] text-black/45 dark:text-white/45 mb-5">
+					{$t('about.sectorsIntro')}
+				</p>
+
+				<div class="space-y-8 max-w-2xl">
+					{#each ABOUT_SECTOR_IDS as sectorId}
+						<div class="border-l-2 border-[var(--color-primary)] pl-4 md:pl-5">
+							<h3 class="font-display font-bold text-base md:text-lg uppercase tracking-wide text-black dark:text-white mb-3">
+								{$t(`about.sectors.${sectorId}.title`)}
+							</h3>
+							<ul class="space-y-2.5">
+								{#each $t(`about.sectors.${sectorId}.points`) as point}
+									<li class="font-body text-sm md:text-base text-black/75 dark:text-white/75 leading-relaxed pl-4 relative">
+										<span class="absolute left-0 top-[0.52rem] w-1.5 h-1.5 bg-black/35 dark:bg-white/35"></span>
+										{point}
+									</li>
+								{/each}
+							</ul>
+						</div>
 					{/each}
-				</ul>
+				</div>
 			</div>
 		</div>
 
@@ -74,7 +88,7 @@
 						</a>
 
 						<a
-							href="#projects"
+							href="/projects"
 							class="group px-6 py-4 bg-transparent text-black dark:text-white font-display font-semibold text-lg tracking-wide uppercase text-center border-2 border-black dark:border-white hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-200"
 						>
 							{$t('projects.title')}

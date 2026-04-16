@@ -3,6 +3,7 @@
 	import { language } from '$lib/stores/language';
 	import { timelineData } from '$lib/data/timeline';
 	import { reveal } from '$lib/actions/reveal';
+	import SectionPageHeader from '$lib/components/SectionPageHeader.svelte';
 
 	let expandedId = $state<string | null>(null);
 
@@ -43,22 +44,18 @@
 	}
 </script>
 
-<section id="career" class="scroll-mt-32 py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
-	<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12 md:mb-16">
-		<div class="lg:col-span-5">
-			<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-3">
-				{$language === 'es' ? 'Trayectoria' : 'Journey'}
+<section id="career" class="scroll-mt-32 py-14 md:py-20 px-4 md:px-6 max-w-7xl mx-auto">
+	<SectionPageHeader kicker={$t('careerPath.kicker')} title={$t('careerPath.title')}>
+		<svelte:fragment slot="aside">
+			<p
+				class="font-body text-sm md:text-base text-black/70 dark:text-white/70 leading-relaxed pl-4 border-l-2 border-[var(--color-primary)]"
+			>
+				{$t('careerPath.intro')}
 			</p>
-			<h2 class="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tighter text-black dark:text-white leading-none">
-				{$t('careerPath.title')}
-			</h2>
-		</div>
-		<div class="lg:col-span-7 flex items-end">
-			<div class="w-full h-px bg-black/20 dark:bg-white/20"></div>
-		</div>
-	</div>
+		</svelte:fragment>
+	</SectionPageHeader>
 
-	<div class="space-y-6">
+	<div class="space-y-6 mt-2 md:mt-4">
 		{#each timelineData as item, index}
 			<div
 				class="reveal group relative border-l-2 border-black/10 dark:border-white/10 pl-6 md:pl-8
@@ -124,7 +121,7 @@
 					{#if expandedId === item.id}
 						<div class="pt-4 border-t border-black/10 dark:border-white/10">
 							<p class="font-body text-xs uppercase tracking-wider text-black/50 dark:text-white/50 mb-3">
-								{$language === 'es' ? 'Responsabilidades clave' : 'Key responsibilities'}
+								{$t('careerPath.responsibilitiesHeading')}
 							</p>
 							<ul class="space-y-2">
 								{#each $language === 'es' ? item.responsibilities_es : item.responsibilities_en as resp}

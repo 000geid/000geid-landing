@@ -1,3 +1,6 @@
+/** Display grouping on /projects — keeps products, OSS, and client work visually distinct. */
+export type PortfolioGroup = 'products' | 'oss' | 'client'
+
 export interface ProjectStory {
   title: string
   summary: string
@@ -16,6 +19,8 @@ export interface ProjectStory {
 export interface ProjectEntry {
   id: string
   title: string
+  /** Section heading on the projects page (products vs OSS vs client delivery). */
+  portfolioGroup: PortfolioGroup
   mode?: 'case-study' | 'freelance-gallery'
   description: {
     en: string
@@ -61,6 +66,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'filo',
     title: 'Filo',
+    portfolioGroup: 'products',
     description: {
       en: 'Digitalizing neighborhood gastronomy: interactive QR menus, analytics, and customer reviews.',
       es: 'Digitalizando la gastronomía de barrio: cartas QR interactivas, analíticas y reseñas de clientes.'
@@ -126,6 +132,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'plandeck',
     title: 'Plandeck',
+    portfolioGroup: 'products',
     description: {
       en: 'Mobile-first kanban board with real-time sync, built for touch-friendly planning on any device.',
       es: 'Tablero kanban mobile-first con sincronización en tiempo real, diseñado para planificación táctil en cualquier dispositivo.'
@@ -191,6 +198,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'cuecast',
     title: 'Cuecast',
+    portfolioGroup: 'oss',
     description: {
       en: 'A virtual desktop soundboard for streamers, enabling audio triggering and routing to virtual devices.',
       es: 'Soundboard virtual de escritorio para streamers, permitiendo disparar audio y rutearlo a dispositivos virtuales.'
@@ -256,6 +264,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'client-work-2024',
     title: 'Client Work 2024',
+    portfolioGroup: 'client',
     mode: 'freelance-gallery',
     description: {
       en: 'Freelance frontend delivery for two client accounts in 2024, presented as a visual gallery.',

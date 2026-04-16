@@ -25,6 +25,8 @@ export const timelineData: WorkExperience[] = [
     responsibilities_es: [
       'Diseño y ejecuto arquitecturas backend escalables para productos basados en IA, priorizando mantenibilidad, observabilidad y performance.',
       'Integro LLMs y pipelines de IA (LangChain, RAG, automatizaciones) en casos de uso reales, con foco en confiabilidad y control del costo.',
+      'Migré la orquestación a LangGraph, aumentando el throughput del pipeline de IA ~30%.',
+      'Reduje costos de infraestructura ~10–25% mediante mejoras en load balancing y enrutamiento.',
       'Defino el stack tecnológico completo en proyectos productivos: backend, bases de datos, orquestación y despliegue en infraestructura cloud.',
       'Tomo decisiones técnicas clave y establezco buenas prácticas de desarrollo, CI/CD y deployment.',
       'Coordino el desarrollo técnico y actúo como referente en la toma de decisiones de arquitectura.'
@@ -32,6 +34,8 @@ export const timelineData: WorkExperience[] = [
     responsibilities_en: [
       'Design and execute scalable backend architectures for AI-based products, prioritizing maintainability, observability and performance.',
       'Integrate LLMs and AI pipelines (LangChain, RAG, automations) in real use cases, focusing on reliability and cost control.',
+      'Migrated orchestration to LangGraph, increasing AI pipeline throughput ~30%.',
+      'Reduced infrastructure costs ~10–25% through load balancing and routing improvements.',
       'Define the complete tech stack in production projects: backend, databases, orchestration and deployment in cloud infrastructure.',
       'Make key technical decisions and establish development best practices, CI/CD and deployment.',
       'Coordinate technical development and act as a reference in architecture decision-making.'

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import favicon from "$lib/assets/favicon.svg";
 	import "../app.css";
+	import SiteShell from "$lib/components/SiteShell.svelte";
 	import { language } from "$lib/stores/language";
 	import { darkMode } from "$lib/stores/darkMode";
 	import { t } from "$lib/stores/i18n";
@@ -48,4 +49,6 @@
 	/>
 </svelte:head>
 
-{@render children()}
+<SiteShell>
+	{@render children()}
+</SiteShell>

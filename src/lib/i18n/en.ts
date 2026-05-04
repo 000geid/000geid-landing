@@ -3,60 +3,63 @@ export const en = {
 		name: 'Diego Alvarado',
 		subtitle: 'Software Engineer • AI-First Products',
 		description:
-			'I lead AI-first products in production and ship full-stack software—from LLMs and system design to shipped apps and client delivery.',
+			'I lead AI-first products in production and ship full-stack software—from LLMs and system design to live apps and client delivery.',
 		toggleDarkMode: 'Toggle dark mode'
 	},
 	meta: {
 		about:
-			'Profile: AI-first lead—LLMs, full-stack deployment, client delivery, and CI/CD—plus selected work.',
+			'Profile: Claude Code, Cursor, TypeScript, Python, PostgreSQL, Docker, AWS, CI/CD.',
 		projects:
 			'Selected work: shipped products, open-source tools, and client frontend delivery—grouped by type.',
 		skills:
 			'Stack grouped by role: languages, AI/LLM work, backend and data, then cloud and delivery.',
 		career: 'Employment and freelance timeline: roles, scope, clients, and applied ML in healthcare—with metrics.',
-		education: 'Formal education and credentials.',
+		education: 'Formal degrees, diplomas and certificates.',
 		contact: 'Ways to reach me for roles or opportunities.'
 	},
 	about: {
 		title: 'About',
 		kicker: 'Profile',
-		coreExpertise: 'Core expertise',
-		headline: 'Lead AI Product Engineer',
+		coreExpertise: 'Current stack',
+		headline: 'AI Product Engineer',
 		valueProp:
-			'I work across AI systems, full-stack delivery, client-facing product, and production operations. Below is how that reads by area.',
+			'I own AI products end-to-end—architecture, model integration, and production delivery. Work breaks down like this:',
 		sectorsIntro: 'By focus area',
 		sectors: {
 			llm: {
-				title: 'LLMs & machine learning',
+				title: 'AI & applied intelligence',
 				points: [
-					'Production AI pipelines: LLM integration, RAG, LangChain-style workflows, and orchestration for real traffic—not one-off demos.',
-					'Earlier applied ML in healthcare (medical imaging); evaluation and impact are part of the work, not an afterthought.'
+					'Production AI pipelines: LLM integration, RAG, agentic workflows, and orchestration for real traffic—not one-off demos.',
+					'Applied AI in healthcare before the LLM wave (medical imaging, clinical workflows); evaluation and production constraints are baked into how I work.'
 				]
 			},
 			fullstack: {
-				title: 'Full-stack & deployment',
+				title: 'Full-stack & delivery',
 				points: [
-					'End-to-end ownership: architecture, APIs, data stores, and shipping web, edge, and desktop products to production.',
-					'Production environments, cloud infra, and routing/load—tuned with the same rigor as APIs and product code.'
+					'End-to-end ownership: architecture, APIs, data stores, and shipping web and desktop products to production.',
+					'CI/CD, release discipline, and deployment practices so teams can ship often without breaking production.'
 				]
 			},
 			clients: {
-				title: 'Clients & users',
+				title: 'Client & product work',
 				points: [
-					'Freelance and product work with multiple client accounts across industries—requirements, UX, and delivery that end users actually touch.',
-					'Public portfolio pieces illustrate the work; scope and duration vary by account and engagement.'
-				]
-			},
-			cicd: {
-				title: 'CI/CD & reliability',
-				points: [
-					'CI/CD, release discipline, and deployment practices so teams can ship often without breaking production.',
-					'Observability, safe rollouts, and habits that keep production predictable.'
+					'Freelance and product work across industries—requirements, UX, and delivery that end users actually touch.',
+					'Engagements span fintech, healthtech, and SaaS; representative work is shown in Projects.'
 				]
 			}
 		},
-		highlights: ['LLM & RAG', 'Full-stack', 'Client delivery', 'CI/CD'],
-		ctaEmail: 'Email for Roles'
+		highlights: [
+			'Claude Code',
+			'Cursor',
+			'TypeScript',
+			'Python',
+			'PostgreSQL',
+			'Docker',
+			'AWS',
+			'CI/CD'
+		],
+		ctaEmail: 'Email me',
+		ctaProjects: 'View projects'
 	},
 	careerPath: {
 		title: 'Career Path',
@@ -73,37 +76,34 @@ export const en = {
 		title: 'Skills',
 		kicker: 'Expertise',
 		intro:
-			'How I\'m usually scoped on teams: polyglot development, applied LLM systems, services and persistence, and shipping safely to production.',
-		languages: 'Languages',
-		technologies: 'Technologies',
+			'What I bring to a team: production AI systems, full-stack engineering end to end, and continuous delivery habits.',
 		aiLlm: 'AI & LLMs',
-		backendData: 'Backend & data',
+		fullStack: 'Full-stack engineering',
 		cloudDevOps: 'Cloud & delivery',
 		blurbs: {
-			languages: 'Core languages for services, tooling, and product code.',
 			aiLlm: 'Production patterns around models, orchestration, and retrieval.',
-			backendData: 'APIs, relational data, and how information is modeled.',
+			fullStack: 'Languages, APIs, and data—end-to-end product code.',
 			cloudDevOps: 'Containers, cloud primitives, and repeatable releases.'
 		},
-		practiceLabel: 'In practice'
+		practiceLabel: 'In practice',
+		toolsLabel: 'Tools & stack'
 	},
 	education: {
 		title: 'Education',
 		kicker: 'Academic',
-		intro: 'Formal credentials alongside continuous, project-driven learning.',
 		current: 'Current',
-		completed: 'Completed'
+		completed: 'Completed',
+		tablistLabel: 'Education sections',
+		tabDegrees: 'Degrees',
+		tabDiplomas: 'Diplomas & certificates',
+		diplomasEmpty:
+			'No diplomas listed yet—add entries to diplomasData in src/lib/data/education.ts (images live under static/).',
+		verifyCredential: 'View certificate'
 	},
 	projects: {
 		title: 'Projects',
 		kicker: 'Selected Work',
-		intro:
-			'Work is grouped by intent: products I ship, open-source tools, and representative client delivery. Each card links to a deeper write-up or gallery.',
-		groups: {
-			products: 'Shipped products',
-			oss: 'Open source & tools',
-			client: 'Client delivery'
-		},
+		flowReadStory: 'Read the story',
 		story: {
 			label: 'Project Story',
 			back: 'Back to home',
@@ -113,6 +113,13 @@ export const en = {
 			solution: 'How we solved it',
 			impact: 'Impact',
 			technologies: 'Technologies',
+			gallery: 'Product interface',
+			galleryLead: 'Screens from the shipped experience—mobile-first layout, sync, and detail.',
+			galleryHint: 'Tap or click an image to view full size',
+			galleryExpand: 'View full size',
+			carouselPrev: 'Previous screenshot',
+			carouselNext: 'Next screenshot',
+			carouselGoTo: 'Go to screenshot',
 			clientGallery: 'Client gallery',
 			viewerHint: 'Click to open viewer and zoom',
 			imageViewer: 'Image viewer',
@@ -124,7 +131,7 @@ export const en = {
 	contact: {
 		title: 'Contact',
 		kicker: 'Connect',
-		description: "Let's build something exceptional together.",
+		description: 'Open to new roles, collaborations, and interesting problems.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Email',
@@ -145,9 +152,10 @@ export const en = {
 			connect: 'Connect'
 		},
 		blurbs: {
-			about: 'Who I am—by sector: LLMs, full-stack, clients, CI/CD.',
+			about:
+				"Today's stack—Claude Code, Cursor, TypeScript, Python, PostgreSQL, Docker, AWS, CI/CD—for production builds.",
 			career: 'Timeline, roles, clients, and metrics.',
-			education: 'Degrees and formal training.',
+			education: 'Degrees, diplomas and formal training.',
 			projects: 'Shipped products, OSS, and client delivery.',
 			skills: 'Languages, AI/LLM stack, backend & data, cloud & delivery.',
 			contact: 'Email, socials, and location.'

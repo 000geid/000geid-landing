@@ -131,7 +131,16 @@ export const cvData: CVData = {
   ],
   skills: {
     programming: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell Script'],
-    technologies: ['LLMs', 'LangChain', 'RAG', 'Backend APIs', 'PostgreSQL', 'Docker', 'AWS', 'CI/CD'],
+    technologies: [
+      'Claude Code',
+      'Cursor',
+      'LangGraph',
+      'REST / GraphQL APIs',
+      'PostgreSQL',
+      'Docker',
+      'AWS',
+      'CI/CD'
+    ],
     languages: [
       { label: { en: 'Spanish', es: 'Español' }, level: { en: 'Native', es: 'Nativo' } },
       { label: { en: 'English', es: 'Inglés' }, level: { en: 'Proficient', es: 'Competente' } },

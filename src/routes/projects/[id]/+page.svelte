@@ -2,7 +2,6 @@
 	import { projectsData } from '$lib/data/projects';
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/stores/i18n';
-	import { Badge } from '$lib/components/ui/badge';
 	import { Button } from '$lib/components/ui/button';
 
 	let { params } = $props();
@@ -30,6 +29,32 @@
 	const viewerShot = $derived(currentScreenshots[viewerIndex] ?? null);
 	const hasMultipleShots = $derived(currentScreenshots.length > 1);
 
+	const storyScreenshots = $derived(project?.screenshots ?? []);
+	let isStoryGalleryOpen = $state(false);
+	let storyImageIndex = $state(0);
+	const storyGalleryShot = $derived(storyScreenshots[storyImageIndex] ?? null);
+
+	let storyPointerDownX = 0;
+	let storyPointerMoved = false;
+
+	$effect(() => {
+		if (typeof document === 'undefined') return;
+		const theme = projectsData.find((item) => item.id === params.id)?.detailTheme;
+		if (theme) {
+			document.documentElement.setAttribute('data-project-detail', theme);
+		} else {
+			document.documentElement.removeAttribute('data-project-detail');
+		}
+		return () => {
+			document.documentElement.removeAttribute('data-project-detail');
+		};
+	});
+
+	$effect(() => {
+		void params.id;
+		storyImageIndex = 0;
+	});
+
 	$effect(() => {
 		if (freelanceClients.length === 0) {
 			activeClientId = '';
@@ -51,7 +76,7 @@
 
 	$effect(() => {
 		if (typeof document === 'undefined') return;
-		document.body.style.overflow = isViewerOpen ? 'hidden' : '';
+		document.body.style.overflow = isViewerOpen || isStoryGalleryOpen ? 'hidden' : '';
 		return () => {
 			document.body.style.overflow = '';
 		};
@@ -111,6 +136,52 @@
 		resetZoom();
 	}
 
+	function setStoryImageIndex(index: number) {
+		if (!storyScreenshots.length) return;
+		storyImageIndex = (index + storyScreenshots.length) % storyScreenshots.length;
+	}
+
+	function openStoryGallery(index?: number) {
+		if (typeof index === 'number') setStoryImageIndex(index);
+		isStoryGalleryOpen = true;
+	}
+
+	function closeStoryGallery() {
+		isStoryGalleryOpen = false;
+	}
+
+	function storyGalleryPrev() {
+		if (!storyScreenshots.length) return;
+		storyImageIndex = (storyImageIndex - 1 + storyScreenshots.length) % storyScreenshots.length;
+	}
+
+	function storyGalleryNext() {
+		if (!storyScreenshots.length) return;
+		storyImageIndex = (storyImageIndex + 1) % storyScreenshots.length;
+	}
+
+	function handleStoryPointerDown(event: PointerEvent) {
+		storyPointerDownX = event.clientX;
+		storyPointerMoved = false;
+	}
+
+	function handleStoryPointerMove(event: PointerEvent) {
+		if (Math.abs(event.clientX - storyPointerDownX) > 14) storyPointerMoved = true;
+	}
+
+	function handleStoryPointerUp(event: PointerEvent) {
+		const dx = event.clientX - storyPointerDownX;
+		const swipeThreshold = 48;
+		if (storyPointerMoved && Math.abs(dx) > swipeThreshold) {
+			if (dx > 0) storyGalleryPrev();
+			else storyGalleryNext();
+			return;
+		}
+		const target = event.target as HTMLElement | null;
+		if (target?.closest('button')) return;
+		if (!storyPointerMoved) openStoryGallery();
+	}
+
 	function toggleZoom() {
 		if (zoomLevel === 1) {
 			zoomLevel = 2;
@@ -144,7 +215,24 @@
 		isPanning = false;
 	}
 
-	function handleViewerKeydown(event: KeyboardEvent) {
+	function handleGlobalKeydown(event: KeyboardEvent) {
+		if (isStoryGalleryOpen) {
+			if (event.key === 'Escape') {
+				closeStoryGallery();
+				return;
+			}
+			if (event.key === 'ArrowLeft') {
+				event.preventDefault();
+				storyGalleryPrev();
+				return;
+			}
+			if (event.key === 'ArrowRight') {
+				event.preventDefault();
+				storyGalleryNext();
+				return;
+			}
+			return;
+		}
 		if (!isViewerOpen) return;
 		if (event.key === 'Escape') {
 			closeViewer();
@@ -167,27 +255,29 @@
 	<meta name="description" content={story?.summary ?? $t('projects.story.notFoundBody')} />
 </svelte:head>
 
-<main id="main-content" class="border-t-2 border-black dark:border-white">
+<main id="main-content" class="border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)]">
 		{#if story}
 			<section class="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24">
 				<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-12 md:mb-16">
 					<div class="lg:col-span-8">
-						<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-primary)] mb-3">
+						<p class="font-body text-xs uppercase tracking-[0.3em] text-[var(--color-signal)] mb-3">
 							{$t('projects.story.label')}
 						</p>
-						<h1 class="font-display font-bold text-4xl md:text-6xl tracking-tight text-black dark:text-white leading-[0.92] mb-6">
+						<h1 class="font-display font-bold text-4xl md:text-6xl tracking-tight text-[var(--color-ink-strong)] leading-[0.92] mb-6">
 							{story.title}
 						</h1>
-						<p class="font-body text-base md:text-lg text-black/70 dark:text-white/70 leading-relaxed max-w-4xl">
-							{story.summary}
-						</p>
+						{#if isFreelanceGallery}
+							<p class="font-body text-base md:text-lg text-[var(--color-ink-muted)] leading-relaxed max-w-4xl">
+								{story.summary}
+							</p>
+						{/if}
 					</div>
 
 					<div class="lg:col-span-4 flex lg:justify-end items-start">
 						<Button
 							href="/projects"
 							variant="outline"
-							className="group no-rounded border-2 border-black dark:border-white px-5 py-3 uppercase tracking-wider font-body text-xs hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-200"
+							className="group rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_18%,transparent)] px-5 py-3 uppercase tracking-wider font-mono text-xs font-medium hover:bg-[var(--color-signal-soft)] hover:border-[color-mix(in_srgb,var(--color-signal)_45%,transparent)] transition-all duration-200 dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)]"
 						>
 							<span class="inline-flex items-center gap-2">
 								<svg class="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,83 +290,234 @@
 				</div>
 
 				{#if !isFreelanceGallery}
-					<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 mb-10 md:mb-12">
-						<div class="lg:col-span-8 border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8">
-							<div class="flex items-center justify-between mb-4">
-								<p class="font-body text-xs uppercase tracking-[0.24em] text-black/50 dark:text-white/50">
+					<div class="max-w-4xl pb-12 md:pb-16">
+						<p class="font-body text-base md:text-lg text-[var(--color-ink-muted)] leading-relaxed">
+							{story.summary}
+						</p>
+
+						{#if story.technologies?.length}
+							<div class="mt-8">
+								<p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink-faint)] mb-3">
 									{$t('projects.story.technologies')}
 								</p>
-								<div class="w-8 h-[2px] bg-[var(--color-primary)]"></div>
+								<div class="flex flex-wrap gap-x-2 gap-y-2">
+									{#each story.technologies as tech}
+										<span
+											class="px-2.5 py-1.5 rounded-md font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-[var(--color-ink-muted)] bg-[color-mix(in_srgb,var(--color-ink-strong)_5%,transparent)] ring-1 ring-[color-mix(in_srgb,var(--color-ink-strong)_8%,transparent)] dark:bg-[color-mix(in_srgb,var(--color-ink-strong)_6%,transparent)] dark:ring-[color-mix(in_srgb,var(--color-ink-strong)_10%,transparent)] dark:text-[var(--color-ink-muted)]"
+										>
+											{tech}
+										</span>
+									{/each}
+								</div>
 							</div>
-							<div class="flex flex-wrap gap-2.5">
-								{#each story.technologies as tech}
-									<Badge
-										variant="outline"
-										className="no-rounded border-black/20 dark:border-white/20 bg-[var(--color-surface-alt)] dark:bg-white/5 text-black/70 dark:text-white/70 px-3 py-1 uppercase tracking-wider text-xs"
-									>
-										{tech}
-									</Badge>
-								{/each}
-							</div>
-						</div>
+						{/if}
 
-						<div class="lg:col-span-4 border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8">
+						<div class="mt-10 flex flex-col gap-8 md:flex-row md:flex-wrap md:items-start md:gap-x-14 md:gap-y-8">
 							{#if story.role}
-								<div class="mb-6">
-									<p class="font-body text-xs uppercase tracking-[0.22em] text-black/50 dark:text-white/50 mb-2">
+								<div class="min-w-0 md:max-w-xs">
+									<p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink-faint)] mb-2">
 										{$t('projects.story.role')}
 									</p>
-									<p class="font-body text-base text-black dark:text-white leading-relaxed">
+									<p class="font-body text-base text-[var(--color-ink-strong)] leading-relaxed">
 										{story.role}
 									</p>
 								</div>
 							{/if}
 
 							{#if story.timeline}
-								<div>
-									<p class="font-body text-xs uppercase tracking-[0.22em] text-black/50 dark:text-white/50 mb-2">
+								<div class="min-w-0 md:flex-1">
+									<p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink-faint)] mb-2">
 										{$t('projects.story.timeline')}
 									</p>
-									<p class="font-body text-base text-black dark:text-white leading-relaxed">
+									<p class="font-body text-base text-[var(--color-ink-strong)] leading-relaxed tabular-nums">
 										{story.timeline}
 									</p>
 								</div>
 							{/if}
 
 							{#if story.link?.href}
-								<a
-									href={story.link.href}
-									target="_blank"
-									rel="noopener noreferrer"
-									class="mt-8 inline-flex items-center gap-2 px-4 py-3 bg-black dark:bg-white text-white dark:text-black font-body text-xs uppercase tracking-[0.22em] hover:bg-[var(--color-primary)] transition-colors duration-200"
-								>
-									<span>{story.link.label}</span>
-									<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7l-10 10m0-10h10v10" />
-									</svg>
-								</a>
+								<div class="md:ml-auto md:shrink-0 md:text-right md:pt-1">
+									<a
+										href={story.link.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="inline-flex items-center gap-2 font-body text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-signal)] underline decoration-[color-mix(in_srgb,var(--color-signal)_38%,transparent)] underline-offset-4 hover:decoration-[var(--color-signal)] hover:text-[var(--color-ink-strong)] transition-colors duration-200"
+									>
+										<span>{story.link.label}</span>
+										<svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7l-10 10m0-10h10v10" />
+										</svg>
+									</a>
+								</div>
 							{/if}
 						</div>
 					</div>
 				{/if}
 
-				{#if isFreelanceGallery}
-					<section class="border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8 mb-10 md:mb-12">
-						<div class="flex items-center justify-between mb-5">
-							<p class="font-body text-xs uppercase tracking-[0.24em] text-black/50 dark:text-white/50">
-								{$t('projects.story.clientGallery')}
-							</p>
-							<div class="w-8 h-[2px] bg-[var(--color-primary)]"></div>
+				{#if !isFreelanceGallery && storyScreenshots.length > 0}
+					<section class="relative mb-14 md:mb-20 max-w-4xl pt-12 md:pt-16 border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)]">
+						<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10 mb-8 md:mb-10">
+							<div class="max-w-2xl">
+								<p class="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-signal)] mb-2">
+									{$t('projects.story.gallery')}
+								</p>
+								<p class="font-display text-lg md:text-xl font-bold tracking-tight text-[var(--color-ink-strong)] leading-snug">
+									{$t('projects.story.galleryLead')}
+								</p>
+								<p class="mt-2 font-body text-sm text-[var(--color-ink-muted)]">
+									{$t('projects.story.galleryHint')}
+								</p>
+							</div>
+							<div
+								class="hidden md:block h-px flex-1 bg-gradient-to-r from-[var(--color-signal)]/50 to-transparent min-w-[3rem] max-w-xs shrink-0"
+								aria-hidden="true"
+							></div>
 						</div>
 
-						<div class="flex flex-wrap gap-2.5 mb-6">
+						<div
+							class="relative"
+							role="region"
+							aria-roledescription="carousel"
+							aria-label={$t('projects.story.gallery')}
+						>
+							<div class="relative">
+							{#if storyScreenshots.length > 1}
+								<button
+									type="button"
+									onclick={() => storyGalleryPrev()}
+									aria-label={$t('projects.story.carouselPrev')}
+									class="absolute left-0 top-1/2 z-20 -translate-y-1/2 -translate-x-1 md:-translate-x-2 w-11 h-11 md:w-12 md:h-12 rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] bg-[var(--color-elevated)]/95 backdrop-blur text-[var(--color-ink-strong)] hover:bg-[var(--color-signal-soft)] hover:border-[color-mix(in_srgb,var(--color-signal)_52%,transparent)] transition-all duration-200 flex items-center justify-center shadow-sm dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)] dark:bg-[var(--color-parchment-alt)]"
+								>
+									<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+									</svg>
+								</button>
+								<button
+									type="button"
+									onclick={() => storyGalleryNext()}
+									aria-label={$t('projects.story.carouselNext')}
+									class="absolute right-0 top-1/2 z-20 -translate-y-1/2 translate-x-1 md:translate-x-2 w-11 h-11 md:w-12 md:h-12 rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] bg-[var(--color-elevated)]/95 backdrop-blur text-[var(--color-ink-strong)] hover:bg-[var(--color-signal-soft)] hover:border-[color-mix(in_srgb,var(--color-signal)_52%,transparent)] transition-all duration-200 flex items-center justify-center shadow-sm dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)] dark:bg-[var(--color-parchment-alt)]"
+								>
+									<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+									</svg>
+								</button>
+							{/if}
+
+							<div
+								class="overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)] bg-[var(--color-elevated)]/80 select-none [touch-action:manipulation] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] dark:bg-[var(--color-parchment-alt)]/60"
+								onpointerdown={handleStoryPointerDown}
+								onpointermove={handleStoryPointerMove}
+								onpointerup={handleStoryPointerUp}
+								onpointercancel={handleStoryPointerUp}
+							>
+								<div
+									class="flex motion-reduce:transition-none transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform"
+									style="transform: translateX(-{storyImageIndex * 100}%);"
+								>
+									{#each storyScreenshots as shot, i}
+										<div class="min-w-full shrink-0 px-1 sm:px-4 md:px-10" aria-hidden={i !== storyImageIndex}>
+											<div class="group relative mx-auto max-w-[min(100%,320px)] md:max-w-[360px]">
+												<span
+													class="pointer-events-none absolute left-2 top-2 z-[1] font-body text-[10px] uppercase tracking-[0.35em] text-black/40 dark:text-white/45 tabular-nums"
+													aria-hidden="true"
+												>
+													{String(i + 1).padStart(2, '0')}
+												</span>
+												<div
+													class="aspect-[9/16] max-h-[min(56vh,560px)] w-full flex items-center justify-center bg-black/[0.03] dark:bg-white/[0.04] p-3 md:p-5"
+												>
+													<img
+														src={shot.src}
+														alt={$language === 'es' ? shot.alt.es : shot.alt.en}
+														class="h-full w-full object-contain object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+														loading={i === 0 ? 'eager' : 'lazy'}
+														draggable="false"
+													/>
+												</div>
+												<div class="border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] px-3 py-2.5 dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)] md:px-4 md:py-3">
+													<p
+														class="font-body text-[11px] leading-snug text-[var(--color-ink-muted)] line-clamp-3 md:text-xs"
+													>
+														{$language === 'es' ? shot.alt.es : shot.alt.en}
+													</p>
+													<button
+														type="button"
+														onclick={() => openStoryGallery(i)}
+														class="mt-3 w-full rounded-md border border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] px-3 py-2 font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-[var(--color-ink-strong)] transition-colors duration-200 hover:border-[color-mix(in_srgb,var(--color-signal)_45%,transparent)] hover:bg-[var(--color-signal-soft)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_18%,transparent)] dark:hover:bg-[color-mix(in_srgb,var(--color-ink-strong)_7%,transparent)]"
+													>
+														{$t('projects.story.galleryExpand')}
+													</button>
+												</div>
+											</div>
+										</div>
+									{/each}
+								</div>
+							</div>
+							</div>
+
+							{#if storyScreenshots.length > 1}
+								<div class="mt-6 flex flex-wrap items-center justify-center gap-2 md:gap-2.5" aria-label={$t('projects.story.carouselGoTo')}>
+									{#each storyScreenshots as _, i}
+										<button
+											type="button"
+											aria-current={storyImageIndex === i ? 'true' : undefined}
+											aria-label={`${$t('projects.story.carouselGoTo')} ${i + 1}`}
+											onclick={() => setStoryImageIndex(i)}
+											class={`h-2.5 w-2.5 md:h-2 md:w-8 rounded-full md:rounded-md border transition-all duration-200 motion-reduce:transition-none
+												${
+													storyImageIndex === i
+														? 'border-[var(--color-signal)] bg-[var(--color-signal)] md:w-10'
+														: 'border-[color-mix(in_srgb,var(--color-ink-strong)_20%,transparent)] bg-transparent hover:border-[var(--color-ink-muted)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_22%,transparent)]'
+												}`}
+										></button>
+									{/each}
+								</div>
+
+								<div class="mt-5 flex justify-center gap-2 overflow-x-auto no-scrollbar pb-1 px-1">
+									{#each storyScreenshots as shot, i}
+										<button
+											type="button"
+											onclick={() => setStoryImageIndex(i)}
+											aria-label={`${$t('projects.story.carouselGoTo')} ${i + 1}`}
+											class="shrink-0 overflow-hidden border-2 transition-all duration-200
+												{storyImageIndex === i
+													? 'border-[var(--color-primary)] shadow-[3px_3px_0_0_var(--color-primary)]'
+													: 'border-black/15 dark:border-white/15 opacity-70 hover:opacity-100 hover:border-black/40 dark:hover:border-white/40'}"
+										>
+											<img
+												src={shot.src}
+												alt=""
+												class="h-[88px] w-[50px] object-cover object-top sm:h-[102px] sm:w-[58px]"
+												loading="lazy"
+												draggable="false"
+											/>
+										</button>
+									{/each}
+								</div>
+							{/if}
+						</div>
+
+					</section>
+				{/if}
+
+				{#if isFreelanceGallery}
+					<section class="max-w-4xl border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] pt-12 pb-16 dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] md:pt-16 md:pb-20">
+						<div class="mb-8 flex flex-col gap-2 border-b border-[color-mix(in_srgb,var(--color-ink-strong)_9%,transparent)] pb-8 md:mb-10 md:flex-row md:items-end md:justify-between dark:border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)]">
+							<p class="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-signal)]">
+								{$t('projects.story.clientGallery')}
+							</p>
+							<div class="hidden h-px w-24 bg-gradient-to-r from-[var(--color-signal)]/50 to-transparent md:block md:translate-y-[-2px]" aria-hidden="true"></div>
+						</div>
+
+						<div class="mb-8 flex flex-wrap gap-2.5 md:mb-10">
 							{#each freelanceClients as client}
 								<button
 									onclick={() => (activeClientId = client.id)}
-									class="px-3 py-2 border text-xs uppercase tracking-[0.2em] font-body transition-all duration-200
+									class="rounded-lg px-3 py-2 font-body text-[11px] uppercase tracking-[0.18em] transition-all duration-200
 										{activeClientId === client.id
-											? 'border-black dark:border-white bg-black dark:bg-white text-white dark:text-black'
-											: 'border-black/20 dark:border-white/20 text-black/60 dark:text-white/60 hover:border-black dark:hover:border-white hover:text-black dark:hover:text-white'}"
+											? 'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] dark:bg-[var(--color-parchment)] dark:text-[var(--color-ink-strong)]'
+											: 'text-[var(--color-ink-muted)] ring-1 ring-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)] hover:text-[var(--color-ink-strong)] hover:ring-[color-mix(in_srgb,var(--color-ink-strong)_22%,transparent)] dark:ring-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] dark:hover:ring-[color-mix(in_srgb,var(--color-ink-strong)_28%,transparent)]'}"
 								>
 									{client.name}
 								</button>
@@ -284,29 +525,27 @@
 						</div>
 
 						{#if activeClient}
-							<div class="mb-6 border border-black/10 dark:border-white/10 bg-[var(--color-surface-alt)] dark:bg-white/5 p-4 md:p-6">
-								<div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-									<img src={activeClient.logo} alt={`${activeClient.name} logo`} class="h-16 md:h-20 w-auto object-contain shrink-0" loading="lazy" />
-									<div>
-										<p class="font-display text-3xl md:text-4xl font-bold tracking-tight text-black dark:text-white leading-none">
-											{activeClient.name}
-										</p>
-										<p class="mt-2 font-body text-base md:text-lg text-black/65 dark:text-white/65">
-											{$language === 'es' ? activeClient.summary.es : activeClient.summary.en}
-										</p>
-									</div>
+							<div class="mb-10 flex flex-col gap-6 border-b border-[color-mix(in_srgb,var(--color-ink-strong)_9%,transparent)] pb-10 md:mb-12 md:flex-row md:items-center md:gap-8 dark:border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)]">
+								<img src={activeClient.logo} alt={`${activeClient.name} logo`} class="h-14 w-auto shrink-0 object-contain md:h-20" loading="lazy" />
+								<div class="min-w-0">
+									<p class="font-display text-3xl font-bold leading-none tracking-tight text-[var(--color-ink-strong)] md:text-4xl">
+										{activeClient.name}
+									</p>
+									<p class="font-body mt-3 text-base leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
+										{$language === 'es' ? activeClient.summary.es : activeClient.summary.en}
+									</p>
 								</div>
 							</div>
 
-							<div class="border border-black/10 dark:border-white/10 bg-[var(--color-surface-alt)] dark:bg-white/5 p-3 md:p-4">
-								<div class="relative max-w-[430px] mx-auto">
+							<div>
+								<div class="relative mx-auto max-w-[430px]">
 									<button
 										type="button"
 										onclick={prevSlide}
 										aria-label={$language === 'es' ? 'Imagen anterior' : 'Previous image'}
-										class="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 border border-black/25 dark:border-white/25 bg-white/90 dark:bg-black/85 text-black dark:text-white hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
+										class="absolute left-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg border border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] bg-[var(--color-elevated)]/95 text-[var(--color-ink-strong)] shadow-sm backdrop-blur transition-all duration-200 hover:border-[color-mix(in_srgb,var(--color-signal)_45%,transparent)] hover:bg-[var(--color-signal-soft)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_18%,transparent)] dark:bg-[var(--color-parchment-alt)]/95"
 									>
-										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 										</svg>
 									</button>
@@ -315,9 +554,9 @@
 										type="button"
 										onclick={nextSlide}
 										aria-label={$language === 'es' ? 'Siguiente imagen' : 'Next image'}
-										class="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-9 h-9 border border-black/25 dark:border-white/25 bg-white/90 dark:bg-black/85 text-black dark:text-white hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
+										class="absolute right-2 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-lg border border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] bg-[var(--color-elevated)]/95 text-[var(--color-ink-strong)] shadow-sm backdrop-blur transition-all duration-200 hover:border-[color-mix(in_srgb,var(--color-signal)_45%,transparent)] hover:bg-[var(--color-signal-soft)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_18%,transparent)] dark:bg-[var(--color-parchment-alt)]/95"
 									>
-										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+										<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 										</svg>
 									</button>
@@ -325,15 +564,15 @@
 									<button
 										type="button"
 										onclick={() => openViewer(activeSlideIndex)}
-										class="block w-full overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-black"
+										class="block w-full overflow-hidden rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)] bg-[var(--color-elevated)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_15%,transparent)] dark:bg-[var(--color-parchment-alt)]"
 										aria-label={$language === 'es' ? 'Abrir imagen en visor' : 'Open image in viewer'}
 									>
 										{#if currentShot}
-											<div class="w-full aspect-[9/16] bg-black/5 dark:bg-white/5 flex items-center justify-center">
+											<div class="flex aspect-[9/16] w-full items-center justify-center bg-[color-mix(in_srgb,var(--color-ink-strong)_3%,transparent)] dark:bg-[color-mix(in_srgb,var(--color-ink-strong)_5%,transparent)]">
 												<img
 													src={currentShot.src}
 													alt={$language === 'es' ? currentShot.alt.es : currentShot.alt.en}
-													class="w-full h-full object-contain"
+													class="h-full w-full object-contain"
 													loading="eager"
 												/>
 											</div>
@@ -342,21 +581,21 @@
 								</div>
 
 								{#if hasMultipleShots}
-									<div class="mt-3 flex gap-2 overflow-x-auto no-scrollbar pb-1">
+									<div class="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1">
 										{#each currentScreenshots as shot, index}
 											<button
 												type="button"
 												onclick={() => setSlide(index)}
 												aria-label={`${$language === 'es' ? 'Ir a imagen' : 'Go to image'} ${index + 1}`}
-												class="shrink-0 border transition-all duration-200
+												class="shrink-0 rounded-md border transition-all duration-200
 													{activeSlideIndex === index
-														? 'border-[var(--color-primary)]'
-														: 'border-black/10 dark:border-white/10 hover:border-black/40 dark:hover:border-white/40'}"
+														? 'border-[var(--color-signal)] ring-2 ring-[var(--color-signal)]/25'
+														: 'border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)] hover:border-[color-mix(in_srgb,var(--color-ink-strong)_28%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)] dark:hover:border-[color-mix(in_srgb,var(--color-ink-strong)_36%,transparent)]'}"
 											>
 												<img
 													src={shot.src}
 													alt={$language === 'es' ? shot.alt.es : shot.alt.en}
-													class="w-[68px] h-[122px] object-cover"
+													class="h-[122px] w-[68px] object-cover"
 													loading="lazy"
 												/>
 											</button>
@@ -364,7 +603,7 @@
 									</div>
 								{/if}
 
-								<p class="mt-3 font-body text-[11px] uppercase tracking-[0.2em] text-black/50 dark:text-white/50">
+								<p class="font-mono mt-4 text-[11px] uppercase tracking-[0.2em] text-[var(--color-ink-faint)]">
 									{$t('projects.story.viewerHint')}
 								</p>
 							</div>
@@ -373,77 +612,159 @@
 				{/if}
 
 				{#if !isFreelanceGallery}
-					<div class="space-y-4 md:space-y-5">
-						<section class="border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8 hover:border-[var(--color-primary)] transition-colors duration-300">
-							<div class="flex items-center gap-3 mb-5">
-								<div class="w-2 h-2 bg-[var(--color-primary)]"></div>
-								<h2 class="font-display font-bold text-2xl md:text-3xl text-black dark:text-white tracking-tight">
+					<article class="max-w-4xl space-y-14 md:space-y-20 pt-12 md:pt-16 border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)]">
+						<section aria-labelledby="project-problem-heading">
+							<div class="flex items-baseline gap-3 mb-6 md:mb-8">
+								<span class="h-1.5 w-1.5 shrink-0 rounded-sm bg-[var(--color-signal)]" aria-hidden="true"></span>
+								<h2
+									id="project-problem-heading"
+									class="font-display font-bold text-2xl md:text-3xl tracking-tight text-[var(--color-ink-strong)]"
+								>
 									{$t('projects.story.problem')}
 								</h2>
 							</div>
-							<ul class="space-y-3.5">
+							<ul class="space-y-4 md:space-y-[1.125rem] pl-6 md:pl-7 border-l border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)]">
 								{#each story.problem as item}
-									<li class="flex items-start gap-3 font-body text-base text-black/75 dark:text-white/75">
-										<span class="mt-2 w-1.5 h-1.5 bg-black/35 dark:bg-white/40 shrink-0"></span>
-										<span>{item}</span>
+									<li class="font-body text-base leading-relaxed text-[var(--color-ink-muted)] pl-3 md:pl-4">
+										{item}
 									</li>
 								{/each}
 							</ul>
 						</section>
 
-						<section class="border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8 hover:border-[var(--color-primary)] transition-colors duration-300">
-							<div class="flex items-center gap-3 mb-5">
-								<div class="w-2 h-2 bg-[var(--color-primary)]"></div>
-								<h2 class="font-display font-bold text-2xl md:text-3xl text-black dark:text-white tracking-tight">
+						<section aria-labelledby="project-solution-heading">
+							<div class="flex items-baseline gap-3 mb-6 md:mb-8 pt-10 md:pt-12 border-t border-[color-mix(in_srgb,var(--color-ink-strong)_9%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)]">
+								<span class="h-1.5 w-1.5 shrink-0 rounded-sm bg-[var(--color-signal)]" aria-hidden="true"></span>
+								<h2
+									id="project-solution-heading"
+									class="font-display font-bold text-2xl md:text-3xl tracking-tight text-[var(--color-ink-strong)]"
+								>
 									{$t('projects.story.solution')}
 								</h2>
 							</div>
-							<ul class="space-y-3.5">
+							<ul class="space-y-4 md:space-y-[1.125rem] pl-6 md:pl-7 border-l border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)]">
 								{#each story.solution as item}
-									<li class="flex items-start gap-3 font-body text-base text-black/75 dark:text-white/75">
-										<span class="mt-2 w-1.5 h-1.5 bg-black/35 dark:bg-white/40 shrink-0"></span>
-										<span>{item}</span>
+									<li class="font-body text-base leading-relaxed text-[var(--color-ink-muted)] pl-3 md:pl-4">
+										{item}
 									</li>
 								{/each}
 							</ul>
 						</section>
 
 						{#if story.impact?.length}
-							<section class="border-2 border-black/10 dark:border-white/10 bg-white dark:bg-black p-6 md:p-8 hover:border-[var(--color-primary)] transition-colors duration-300">
-								<div class="flex items-center gap-3 mb-5">
-									<div class="w-2 h-2 bg-[var(--color-primary)]"></div>
-									<h2 class="font-display font-bold text-2xl md:text-3xl text-black dark:text-white tracking-tight">
+							<section aria-labelledby="project-impact-heading">
+								<div class="flex items-baseline gap-3 mb-6 md:mb-8 pt-10 md:pt-12 border-t border-[color-mix(in_srgb,var(--color-ink-strong)_9%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_12%,transparent)]">
+									<span class="h-1.5 w-1.5 shrink-0 rounded-sm bg-[var(--color-signal)]" aria-hidden="true"></span>
+									<h2
+										id="project-impact-heading"
+										class="font-display font-bold text-2xl md:text-3xl tracking-tight text-[var(--color-ink-strong)]"
+									>
 										{$t('projects.story.impact')}
 									</h2>
 								</div>
-								<ul class="space-y-3.5">
+								<ul class="space-y-4 md:space-y-[1.125rem] pl-6 md:pl-7 border-l border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)]">
 									{#each story.impact as item}
-										<li class="flex items-start gap-3 font-body text-base text-black/75 dark:text-white/75">
-											<span class="mt-2 w-1.5 h-1.5 bg-black/35 dark:bg-white/40 shrink-0"></span>
-											<span>{item}</span>
+										<li class="font-body text-base leading-relaxed text-[var(--color-ink-muted)] pl-3 md:pl-4">
+											{item}
 										</li>
 									{/each}
 								</ul>
 							</section>
 						{/if}
-					</div>
+					</article>
 				{/if}
 			</section>
 		{:else}
 			<section class="max-w-3xl mx-auto px-4 md:px-6 py-20 md:py-24 text-center">
-				<p class="font-body text-base text-black/70 dark:text-white/70 mb-8">
+				<p class="font-body text-base text-[var(--color-ink-muted)] mb-8">
 					{$t('projects.story.notFoundBody')}
 				</p>
 				<Button
 					href="/projects"
 					variant="outline"
-					className="no-rounded border-2 border-black dark:border-white uppercase tracking-wider font-body text-xs px-6 py-3"
+					className="rounded-xl border border-[color-mix(in_srgb,var(--color-ink-strong)_18%,transparent)] uppercase tracking-wider font-mono text-xs font-semibold px-6 py-3 dark:border-[color-mix(in_srgb,var(--color-ink-strong)_16%,transparent)]"
 				>
 					{$t('projects.story.back')}
 				</Button>
 			</section>
 		{/if}
 	</main>
+
+	{#if isStoryGalleryOpen && storyGalleryShot}
+		<div class="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-6" role="dialog" aria-modal="true">
+			<button
+				type="button"
+				onclick={closeStoryGallery}
+				class="absolute inset-0 bg-black/90"
+				aria-label={$language === 'es' ? 'Cerrar galería' : 'Close gallery'}
+			></button>
+
+			<div
+				class="relative z-10 w-full max-w-lg border-2 border-white/25 bg-black text-white no-rounded shadow-[8px_8px_0_0_var(--color-primary)]"
+			>
+				<div class="flex items-center justify-between px-4 py-3 border-b border-white/20">
+					<p class="font-body text-xs uppercase tracking-[0.22em] text-white/70">
+						{$t('projects.story.gallery')}
+					</p>
+					<div class="flex items-center gap-3">
+						<span class="font-body text-xs text-white/70 tabular-nums">
+							{storyImageIndex + 1} / {storyScreenshots.length}
+						</span>
+						<button
+							type="button"
+							onclick={closeStoryGallery}
+							aria-label={$language === 'es' ? 'Cerrar' : 'Close'}
+							class="w-8 h-8 border border-white/30 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
+						>
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+							</svg>
+						</button>
+					</div>
+				</div>
+
+				<div class="relative p-3 md:p-5">
+					{#if storyScreenshots.length > 1}
+						<button
+							type="button"
+							onclick={storyGalleryPrev}
+							aria-label={$language === 'es' ? 'Imagen anterior' : 'Previous image'}
+							class="absolute left-2 top-1/2 z-10 w-10 h-10 -translate-y-1/2 border border-white/35 bg-black/70 hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
+						>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+							</svg>
+						</button>
+						<button
+							type="button"
+							onclick={storyGalleryNext}
+							aria-label={$language === 'es' ? 'Siguiente imagen' : 'Next image'}
+							class="absolute right-2 top-1/2 z-10 w-10 h-10 -translate-y-1/2 border border-white/35 bg-black/70 hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all duration-200 flex items-center justify-center"
+						>
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+							</svg>
+						</button>
+					{/if}
+
+					<div class="flex max-h-[min(78vh,720px)] items-center justify-center bg-black px-2">
+						<img
+							src={storyGalleryShot.src}
+							alt={$language === 'es' ? storyGalleryShot.alt.es : storyGalleryShot.alt.en}
+							class="max-h-[min(78vh,720px)] max-w-full object-contain"
+							draggable="false"
+						/>
+					</div>
+				</div>
+
+				<div class="border-t border-white/15 px-4 pb-4">
+					<p class="pt-3 font-body text-sm text-white/85 leading-relaxed">
+						{$language === 'es' ? storyGalleryShot.alt.es : storyGalleryShot.alt.en}
+					</p>
+				</div>
+			</div>
+		</div>
+	{/if}
 
 	{#if isViewerOpen && viewerShot}
 		<div class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6" role="dialog" aria-modal="true">
@@ -541,4 +862,4 @@
 		</div>
 	{/if}
 
-<svelte:window onkeydown={handleViewerKeydown} />
+<svelte:window onkeydown={handleGlobalKeydown} />

@@ -2,29 +2,419 @@
 @import "tw-animate-css";
 
 @theme {
-	--font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-	--font-body: "IBM Plex Mono", ui-monospace, monospace;
-	--font-sans: var(--font-display);
+	/*
+	 * Cool stone palette · light
+	 * — blue-gray parchment (no yellow cast) · slate ink · sage accent
+	 * Display serif + grounded sans + mono tooling
+	 */
+	--font-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
+	--font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+	--font-family-mono: var(--font-mono);
+	--font-sans: var(--font-body);
 
-	/* Neo-brutalist color palette */
-	--color-primary: #FF3B00;
-	--color-secondary: #0066FF;
-	--color-accent: #FFD700;
-	--color-surface: #FAFAFA;
-	--color-surface-alt: #F0F0F0;
+	--color-ink-strong: #1f232a;
+	--color-ink: #3b424d;
+	--color-ink-muted: #5c6370;
+	--color-ink-faint: #7d8694;
+
+	--color-parchment: #e8eaee;
+	--color-parchment-alt: #dde0e6;
+	--color-elevated: #f3f4f7;
+
+	--color-signal: #355a4c;
+	--color-signal-soft: rgba(53, 90, 76, 0.14);
+
+	--color-secondary: #4f6355;
+	--color-accent: #56687a;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+/*
+ * Filo (/projects/filo) · warm parchment + coral accent, sans-forward type (matches live app screenshots).
+ * Applied when [id]/+page sets document.documentElement data-project-detail="filo".
+ */
+html[data-project-detail='filo'] {
+	--font-display:
+		var(--font-body),
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
+	--color-ink-strong: #2d2926;
+	--color-ink: #4d4642;
+	--color-ink-muted: #6e6661;
+	--color-ink-faint: #928a84;
+
+	--color-parchment: #f8f7f6;
+	--color-parchment-alt: #efeae6;
+	--color-elevated: #fffcfb;
+
+	--color-signal: #e0632b;
+	--color-signal-soft: rgba(224, 99, 43, 0.14);
+
+	--color-secondary: #c44916;
+	--color-accent: #887f78;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html.dark[data-project-detail='filo'] {
+	--color-ink-strong: #f7f5f3;
+	--color-ink: #e0dad5;
+	--color-ink-muted: #aea59c;
+	--color-ink-faint: #837a72;
+
+	--color-parchment: #131110;
+	--color-parchment-alt: #1b1917;
+	--color-elevated: #23201d;
+
+	--color-signal: #fb9f61;
+	--color-signal-soft: rgba(251, 159, 97, 0.16);
+
+	--color-secondary: #ff8533;
+	--color-accent: #b5aba2;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html[data-project-detail='filo'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 13%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 13%, transparent) 1px, transparent 1px);
+	background-size: 44px 44px;
+}
+
+html.dark[data-project-detail='filo'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 10%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 10%, transparent) 1px, transparent 1px);
+	background-size: 44px 44px;
+}
+
+html[data-project-detail='filo'] .noise-overlay::before {
+	opacity: 0.028;
+}
+
+/* Header / nav faint lines pick up themed ink + glass tint */
+html[data-project-detail='filo'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-elevated) 82%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 11%, transparent) !important;
+}
+
+html.dark[data-project-detail='filo'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-parchment-alt) 84%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 12%, transparent) !important;
+}
+
+html[data-project-detail='filo'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 8%, transparent) !important;
+}
+
+html.dark[data-project-detail='filo'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 10%, transparent) !important;
+}
+
+/*
+ * Plandeck (/projects/plandeck) · slate + indigo Kanban tooling (cold neutral base, violet accent).
+ */
+html[data-project-detail='plandeck'] {
+	--font-display:
+		var(--font-body),
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
+	--color-ink-strong: #0f172a;
+	--color-ink: #334155;
+	--color-ink-muted: #64748b;
+	--color-ink-faint: #7f8daa;
+
+	--color-parchment: #ebeef6;
+	--color-parchment-alt: #dde4f2;
+	--color-elevated: #f8fafc;
+
+	--color-signal: #4338ca;
+	--color-signal-soft: rgba(67, 56, 202, 0.12);
+
+	--color-secondary: #6366f1;
+	--color-accent: #475569;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html.dark[data-project-detail='plandeck'] {
+	--color-ink-strong: #f1f5f9;
+	--color-ink: #bcc8dc;
+	--color-ink-muted: #8490a9;
+	--color-ink-faint: #6b7690;
+
+	--color-parchment: #0b0d11;
+	--color-parchment-alt: #121621;
+	--color-elevated: #171c29;
+
+	--color-signal: #818cf8;
+	--color-signal-soft: rgba(129, 140, 248, 0.14);
+
+	--color-secondary: #a5b4fc;
+	--color-accent: #929db8;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html[data-project-detail='plandeck'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+html.dark[data-project-detail='plandeck'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 9%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 9%, transparent) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+html[data-project-detail='plandeck'] .noise-overlay::before {
+	opacity: 0.025;
+}
+
+html[data-project-detail='plandeck'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-elevated) 82%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 11%, transparent) !important;
+}
+
+html.dark[data-project-detail='plandeck'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-parchment-alt) 84%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 11%, transparent) !important;
+}
+
+html[data-project-detail='plandeck'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 7%, transparent) !important;
+}
+
+html.dark[data-project-detail='plandeck'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 9%, transparent) !important;
+}
+
+/*
+ * Cuecast (/projects/cuecast) · desktop studio UI from github.com/000geid/cuecast (renderer styles.css).
+ * Neon mint #00ff88 on graphite panels #1a1a1a / #2d2d2d; light mode translates to readable mint-on-paper for the case study.
+ */
+html[data-project-detail='cuecast'] {
+	--font-display:
+		var(--font-body),
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
+	--color-ink-strong: #141816;
+	--color-ink: #2f3532;
+	--color-ink-muted: #59635e;
+	--color-ink-faint: #748079;
+
+	--color-parchment: #f1f8f5;
+	--color-parchment-alt: #e2ebe6;
+	--color-elevated: #fafcfb;
+
+	--color-signal: #0f9d71;
+	--color-signal-soft: rgba(15, 157, 113, 0.14);
+
+	--color-secondary: #12b385;
+	--color-accent: #4a7163;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html.dark[data-project-detail='cuecast'] {
+	--color-ink-strong: #f3faf6;
+	--color-ink: #c8dbd1;
+	--color-ink-muted: #8fa69a;
+	--color-ink-faint: #6d8578;
+
+	--color-parchment: #161616;
+	--color-parchment-alt: #242424;
+	--color-elevated: #2d2d2d;
+
+	--color-signal: #39fda5;
+	--color-signal-soft: rgba(57, 253, 165, 0.14);
+
+	--color-secondary: #00ffa3;
+	--color-accent: #889b92;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html[data-project-detail='cuecast'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 9%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 9%, transparent) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+html.dark[data-project-detail='cuecast'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 14%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 14%, transparent) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+html[data-project-detail='cuecast'] .noise-overlay::before {
+	opacity: 0.022;
+}
+
+html[data-project-detail='cuecast'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-elevated) 82%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 10%, transparent) !important;
+}
+
+html.dark[data-project-detail='cuecast'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-parchment-alt) 88%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-signal) 28%, transparent) !important;
+}
+
+html[data-project-detail='cuecast'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 8%, transparent) !important;
+}
+
+html.dark[data-project-detail='cuecast'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-signal) 22%, transparent) !important;
+}
+
+/*
+ * Openfeed (/projects/openfeed) · slate ink + sky signal (“broadcast”) tone, distinct from mint/coral themes.
+ */
+html[data-project-detail='openfeed'] {
+	--font-display:
+		var(--font-body),
+		ui-sans-serif,
+		system-ui,
+		sans-serif;
+	--color-ink-strong: #0f172a;
+	--color-ink: #1e3a5f;
+	--color-ink-muted: #49658c;
+	--color-ink-faint: #6b839f;
+
+	--color-parchment: #eef4fb;
+	--color-parchment-alt: #dfe8f6;
+	--color-elevated: #f6faff;
+
+	--color-signal: #0369a1;
+	--color-signal-soft: rgba(3, 105, 161, 0.14);
+
+	--color-secondary: #075985;
+	--color-accent: #526d8f;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html.dark[data-project-detail='openfeed'] {
+	--color-ink-strong: #f0f6fc;
+	--color-ink: #c9d9ec;
+	--color-ink-muted: #8aa3bf;
+	--color-ink-faint: #6a819c;
+
+	--color-parchment: #0b1220;
+	--color-parchment-alt: #121b2e;
+	--color-elevated: #182236;
+
+	--color-signal: #47b5ff;
+	--color-signal-soft: rgba(71, 181, 255, 0.16);
+
+	--color-secondary: #7dcbfa;
+	--color-accent: #8899ae;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
+}
+
+html[data-project-detail='openfeed'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px);
+	background-size: 46px 46px;
+}
+
+html.dark[data-project-detail='openfeed'] .grid-pattern {
+	background-image:
+		linear-gradient(color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px);
+	background-size: 46px 46px;
+}
+
+html[data-project-detail='openfeed'] .noise-overlay::before {
+	opacity: 0.024;
+}
+
+html[data-project-detail='openfeed'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-elevated) 82%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-ink-strong) 10%, transparent) !important;
+}
+
+html.dark[data-project-detail='openfeed'] header.sticky {
+	background-color: color-mix(in srgb, var(--color-parchment-alt) 86%, transparent) !important;
+	border-bottom-color: color-mix(in srgb, var(--color-signal) 26%, transparent) !important;
+}
+
+html[data-project-detail='openfeed'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-ink-strong) 8%, transparent) !important;
+}
+
+html.dark[data-project-detail='openfeed'] header nav {
+	border-top-color: color-mix(in srgb, var(--color-signal) 20%, transparent) !important;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Dark mode overrides */
+/* Dark · cool charcoal, neutral type, sage accents */
 .dark {
-	--color-surface: #0A0A0A;
-	--color-surface-alt: #141414;
+	--color-ink-strong: #eceef3;
+	--color-ink: #cfd5de;
+	--color-ink-muted: #959eac;
+	--color-ink-faint: #6d7685;
+
+	--color-parchment: #121519;
+	--color-parchment-alt: #181c22;
+	--color-elevated: #1e232b;
+
+	--color-signal: #9bcbb1;
+	--color-signal-soft: rgba(155, 203, 177, 0.18);
+
+	--color-secondary: #6d9087;
+	--color-accent: #8799ab;
+
+	--color-primary: var(--color-signal);
+	--color-surface: var(--color-parchment);
+	--color-surface-alt: var(--color-parchment-alt);
 }
 
 html {
 	scroll-behavior: smooth;
 	font-family: var(--font-sans);
+}
+
+.font-display {
+	font-family: var(--font-display);
+}
+
+.font-body {
+	font-family: var(--font-body);
 }
 
 .no-scrollbar {
@@ -36,24 +426,30 @@ html {
 	display: none;
 }
 
-/* Neo-brutalist base styles */
-* {
-	font-feature-settings: "ss01" on;
-}
-
 body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-feature-settings: "liga" 1, "calt" 1;
+	color: var(--color-ink);
+	background-color: var(--color-parchment);
 }
 
-/* Selection styling */
+.dark body {
+	color: var(--color-ink);
+	background-color: var(--color-parchment);
+}
+
+/* Selection uses single intentional accent */
 ::selection {
-	background-color: var(--color-primary);
-	color: white;
+	background-color: var(--color-signal-soft);
+	color: var(--color-ink-strong);
 }
 
-/* Sophisticated animations */
+.dark ::selection {
+	background-color: var(--color-signal-soft);
+	color: var(--color-ink-strong);
+}
+
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -120,7 +516,6 @@ body {
 	}
 }
 
-/* Staggered animation delays */
 @keyframes staggerReveal {
 	0% {
 		opacity: 0;
@@ -178,7 +573,6 @@ body {
 	animation: routeEnter 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Delay utilities */
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
@@ -188,7 +582,6 @@ body {
 .delay-700 { animation-delay: 700ms; }
 .delay-800 { animation-delay: 800ms; }
 
-/* Scroll-triggered reveal classes */
 .reveal {
 	opacity: 0;
 	transform: translateY(30px);
@@ -201,34 +594,87 @@ body {
 	transform: translateY(0);
 }
 
-/* Neo-brutalist utility classes */
+/* Depth: subtle shadows only (committed strategy per design system) */
+.surface-lift {
+	box-shadow:
+		0 1px 0 rgba(31, 35, 42, 0.06),
+		0 12px 42px -26px rgba(31, 35, 42, 0.42);
+}
+
+.dark .surface-lift {
+	box-shadow:
+		0 1px 0 rgba(236, 238, 243, 0.05),
+		0 16px 50px -30px rgba(0, 0, 0, 0.78);
+}
+
+.surface-lift-hover {
+	transition:
+		box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+		border-color 0.2s ease;
+}
+
+.surface-lift-hover:hover {
+	box-shadow:
+		0 1px 0 rgba(31, 35, 42, 0.07),
+		0 20px 50px -28px rgba(31, 35, 42, 0.48);
+	transform: translateY(-2px);
+}
+
+.dark .surface-lift-hover:hover {
+	box-shadow:
+		0 1px 0 rgba(236, 238, 243, 0.06),
+		0 22px 55px -32px rgba(0, 0, 0, 0.86);
+}
+
 .brutalist-shadow {
-	box-shadow: 4px 4px 0px 0px var(--color-primary);
+	box-shadow:
+		0 1px 0 rgba(31, 35, 42, 0.06),
+		0 12px 40px -26px rgba(31, 35, 42, 0.42);
+}
+
+.dark .brutalist-shadow {
+	box-shadow:
+		0 1px 0 rgba(236, 238, 243, 0.05),
+		0 16px 50px -30px rgba(0, 0, 0, 0.78);
 }
 
 .brutalist-shadow-hover {
-	transition: box-shadow 0.2s ease, transform 0.2s ease;
+	transition:
+		box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+		transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .brutalist-shadow-hover:hover {
-	box-shadow: 6px 6px 0px 0px var(--color-primary);
-	transform: translate(-2px, -2px);
+	box-shadow:
+		0 1px 0 rgba(31, 35, 42, 0.07),
+		0 20px 50px -28px rgba(31, 35, 42, 0.48);
+	transform: translateY(-2px);
 }
 
-/* Sharp corners override */
+.dark .brutalist-shadow-hover:hover {
+	box-shadow:
+		0 1px 0 rgba(236, 238, 243, 0.06),
+		0 22px 55px -32px rgba(0, 0, 0, 0.86);
+}
+
 .no-rounded {
 	border-radius: 0 !important;
 }
 
-/* Grid pattern background */
 .grid-pattern {
 	background-image:
-		linear-gradient(var(--color-surface-alt) 1px, transparent 1px),
-		linear-gradient(90deg, var(--color-surface-alt) 1px, transparent 1px);
-	background-size: 50px 50px;
+		linear-gradient(rgba(31, 35, 42, 0.055) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(31, 35, 42, 0.055) 1px, transparent 1px);
+	background-size: 48px 48px;
 }
 
-/* Noise texture overlay */
+.dark .grid-pattern {
+	background-image:
+		linear-gradient(rgba(210, 217, 226, 0.048) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(210, 217, 226, 0.048) 1px, transparent 1px);
+}
+
 .noise-overlay::before {
 	content: '';
 	position: absolute;
@@ -237,12 +683,16 @@ body {
 	width: 100%;
 	height: 100%;
 	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-	opacity: 0.03;
+	opacity: 0.035;
 	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.route-enter {
 		animation: none;
+	}
+	.surface-lift-hover:hover,
+	.brutalist-shadow-hover:hover {
+		transform: none;
 	}
 }

@@ -8,55 +8,58 @@ export const es = {
 	},
 	meta: {
 		about:
-			'Perfil: liderazgo AI-first—LLMs, full-stack, clientes y CI/CD—y trabajo en proyectos.',
+			'Perfil: Claude Code, Cursor, TypeScript, Python, PostgreSQL, Docker, AWS y CI/CD.',
 		projects:
 			'Trabajo seleccionado: productos publicados, herramientas open source y entregas frontend para clientes—agrupadas por tipo.',
 		skills:
 			'Stack agrupado por rol: lenguajes, IA/LLM, backend y datos, y cloud/entrega.',
 		career: 'Línea de tiempo laboral y freelance: roles, alcance, clientes e IA aplicada a salud, con métricas.',
-		education: 'Formación académica y credenciales.',
+		education: 'Títulos, diplomas y certificaciones.',
 		contact: 'Formas de contacto para roles u oportunidades.'
 	},
 	about: {
 		title: 'Sobre mí',
 		kicker: 'Perfil',
-		coreExpertise: 'Especialidad central',
-		headline: 'Lead AI Product Engineer',
+		coreExpertise: 'Stack actual',
+		headline: 'AI Product Engineer',
 		valueProp:
-			'Trabajo en sistemas de IA, entrega full-stack, producto con clientes y operación en producción. Abajo, el desglose por área.',
+			'Diseño la arquitectura, integro los modelos y llevo el producto a producción. Así se distribuye:',
 		sectorsIntro: 'Por área de foco',
 		sectors: {
 			llm: {
-				title: 'LLMs y machine learning',
+				title: 'IA e inteligencia aplicada',
 				points: [
-					'Pipelines de IA en producción: integración de LLMs, RAG, flujos tipo LangChain y orquestación para tráfico real, no demos aisladas.',
-					'ML aplicado previo en salud (imágenes médicas); métricas y evaluación son parte del trabajo, no un apéndice.'
+					'Pipelines de IA en producción: integración de LLMs, RAG, flujos agénticos y orquestación para tráfico real, no demos aisladas.',
+					'IA aplicada en salud antes del boom LLM (imágenes médicas, flujos clínicos); evaluación y restricciones de producción son parte del trabajo.'
 				]
 			},
 			fullstack: {
-				title: 'Full-stack y despliegue',
+				title: 'Full-stack y entrega',
 				points: [
-					'Responsabilidad de punta a punta: arquitectura, APIs, datos y publicación de productos web, edge y escritorio en producción.',
-					'Entornos productivos, infraestructura cloud, enrutamiento y carga—con el mismo rigor que APIs y producto.'
+					'Responsabilidad de punta a punta: arquitectura, APIs, datos y publicación de productos web y escritorio en producción.',
+					'CI/CD, disciplina de releases y prácticas de despliegue para publicar seguido sin romper producción.'
 				]
 			},
 			clients: {
-				title: 'Clientes y usuarios',
+				title: 'Trabajo con clientes y producto',
 				points: [
-					'Freelance y producto con varias cuentas cliente en distintas industrias: requisitos, UX y entregas que usan usuarios finales.',
-					'Hay piezas públicas en el portafolio; el alcance y la duración cambian según cuenta y tipo de encargo.'
-				]
-			},
-			cicd: {
-				title: 'CI/CD y confiabilidad',
-				points: [
-					'CI/CD, disciplina de releases y prácticas de despliegue para publicar seguido sin romper producción.',
-					'Observabilidad, rollouts seguros y hábitos que mantienen producción predecible.'
+					'Freelance y producto en distintas industrias: requisitos, UX y entregas que usan usuarios finales.',
+					'Proyectos en fintech, healthtech y SaaS; el trabajo representativo está en Proyectos.'
 				]
 			}
 		},
-		highlights: ['LLM y RAG', 'Full-stack', 'Entrega a clientes', 'CI/CD'],
-		ctaEmail: 'Email para Roles'
+		highlights: [
+			'Claude Code',
+			'Cursor',
+			'TypeScript',
+			'Python',
+			'PostgreSQL',
+			'Docker',
+			'AWS',
+			'CI/CD'
+		],
+		ctaEmail: 'Hablemos por email',
+		ctaProjects: 'Ver proyectos'
 	},
 	careerPath: {
 		title: 'Trayectoria',
@@ -72,37 +75,34 @@ export const es = {
 		title: 'Habilidades',
 		kicker: 'Especialidades',
 		intro:
-			'Cómo suelo encajar en equipos: desarrollo políglota, sistemas con LLMs aplicados, servicios y persistencia, y entrega segura a producción.',
-		languages: 'Lenguajes',
-		technologies: 'Tecnologías',
-		aiLlm: 'IA y LLMs',
-		backendData: 'Backend y datos',
-		cloudDevOps: 'Cloud y entrega',
+			'Lo que aporto en un equipo: sistemas de IA en producción, desarrollo full-stack de punta a punta y entrega continua sin fricciones.',
+		aiLlm: 'IA y sistemas agénticos',
+		fullStack: 'Desarrollo full-stack',
+		cloudDevOps: 'Cloud y entrega continua',
 		blurbs: {
-			languages: 'Lenguajes centrales para servicios, tooling y código de producto.',
-			aiLlm: 'Patrones de producción alrededor de modelos, orquestación y recuperación.',
-			backendData: 'APIs, datos relacionales y modelado de información.',
-			cloudDevOps: 'Contenedores, cloud y releases repetibles.'
+			aiLlm: 'Integración de modelos, orquestación y flujos de IA listos para producción.',
+			fullStack: 'Lenguajes, APIs y datos—código de producto de punta a punta.',
+			cloudDevOps: 'Contenedores, servicios cloud y releases predecibles.'
 		},
-		practiceLabel: 'En la práctica'
+		practiceLabel: 'En la práctica',
+		toolsLabel: 'Herramientas y stack'
 	},
 	education: {
 		title: 'Educación',
 		kicker: 'Académico',
-		intro: 'Credenciales formales junto con aprendizaje continuo guiado por proyectos.',
 		current: 'En curso',
-		completed: 'Completado'
+		completed: 'Completado',
+		tablistLabel: 'Secciones de formación',
+		tabDegrees: 'Títulos',
+		tabDiplomas: 'Diplomas y certificaciones',
+		diplomasEmpty:
+			'Aún no hay diplomas cargados: añadí entradas en diplomasData (src/lib/data/education.ts) y las imágenes en static/.',
+		verifyCredential: 'Ver certificado'
 	},
 	projects: {
 		title: 'Proyectos',
 		kicker: 'Trabajo seleccionado',
-		intro:
-			'El trabajo está agrupado por intención: productos que publico, herramientas open source y entregas representativas para clientes. Cada tarjeta enlaza a la historia o galería.',
-		groups: {
-			products: 'Productos publicados',
-			oss: 'Open source y herramientas',
-			client: 'Entregas para clientes'
-		},
+		flowReadStory: 'Ver la historia',
 		story: {
 			label: 'Historia del proyecto',
 			back: 'Volver al inicio',
@@ -111,19 +111,27 @@ export const es = {
 			problem: 'El problema',
 			solution: 'Cómo lo resolví',
 			impact: 'Impacto',
-			technologies: 'Tecnologias',
+			technologies: 'Tecnologías',
+			gallery: 'Interfaz del producto',
+			galleryLead:
+				'Capturas de la experiencia publicada: layout mobile-first, sincronización y detalle.',
+			galleryHint: 'Toca o haz clic en una imagen para verla a tamaño completo',
+			galleryExpand: 'Ver a tamaño completo',
+			carouselPrev: 'Captura anterior',
+			carouselNext: 'Captura siguiente',
+			carouselGoTo: 'Ir a captura',
 			clientGallery: 'Galería de clientes',
 			viewerHint: 'Click para abrir visor y zoom',
 			imageViewer: 'Visor de imágenes',
 			resetZoom: 'Restablecer zoom',
 			notFoundTitle: 'Proyecto no encontrado',
-			notFoundBody: 'Esta historia aun no esta disponible.'
+			notFoundBody: 'Esta historia aún no está disponible.'
 		}
 	},
 	contact: {
 		title: 'Contacto',
-		kicker: 'Conecta',
-		description: 'Construyamos algo excepcional juntos.',
+		kicker: 'Conéctate',
+		description: 'Abierto a nuevos roles, colaboraciones y problemas interesantes.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Correo',
@@ -144,9 +152,10 @@ export const es = {
 			connect: 'Contacto'
 		},
 		blurbs: {
-			about: 'Quién soy—por área: LLMs, full-stack, clientes, CI/CD.',
+			about:
+				'Stack de hoy: Claude Code, Cursor, TypeScript y Python; PostgreSQL, Docker, AWS y CI/CD pensados para producción.',
 			career: 'Línea de tiempo, roles, clientes y métricas.',
-			education: 'Títulos y formación formal.',
+			education: 'Títulos, diplomas y formación formal.',
 			projects: 'Productos, open source y entregas para clientes.',
 			skills: 'Lenguajes, stack IA/LLM, backend y datos, cloud y entrega.',
 			contact: 'Email, redes y ubicación.'
@@ -162,8 +171,8 @@ export const es = {
 		technologies: 'Tecnologías',
 		languages: 'Idiomas',
 		education: 'Educación',
-		downloadEn: 'Descargar CV (EN)',
-		downloadEs: 'Descargar CV (ES)'
+		downloadEn: 'Mi CV en inglés',
+		downloadEs: 'Mi CV en español'
 	},
 	toggler: {
 		toggleLanguage: 'Cambiar idioma',

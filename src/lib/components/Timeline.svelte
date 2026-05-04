@@ -48,7 +48,7 @@
 	<SectionPageHeader kicker={$t('careerPath.kicker')} title={$t('careerPath.title')}>
 		<svelte:fragment slot="aside">
 			<p
-				class="font-body text-sm md:text-base text-black/70 dark:text-white/70 leading-relaxed pl-4 border-l-2 border-[var(--color-primary)]"
+				class="font-body text-sm md:text-base text-[var(--color-ink-muted)] leading-relaxed pl-4 border-l-2 border-[var(--color-signal)] rounded-sm"
 			>
 				{$t('careerPath.intro')}
 			</p>
@@ -58,43 +58,44 @@
 	<div class="space-y-6 mt-2 md:mt-4">
 		{#each timelineData as item, index}
 			<div
-				class="reveal group relative border-l-2 border-black/10 dark:border-white/10 pl-6 md:pl-8
+				class="reveal group relative border-l-2 border-[rgba(31,35,42,0.1)] dark:border-[rgba(210,217,226,0.1)] pl-6 md:pl-8
 					{index === timelineData.length - 1 ? '' : 'pb-8'}"
 				use:reveal
 			>
 				<!-- Timeline marker -->
-				<div class="absolute left-0 top-2 w-4 h-4 -translate-x-1/2 border-2 border-[var(--color-primary)] bg-white dark:bg-black group-hover:bg-[var(--color-primary)] transition-colors duration-300"></div>
+				<div class="absolute left-0 top-2 w-4 h-4 -translate-x-1/2 rounded-sm border border-[var(--color-signal)] bg-[var(--color-elevated)] group-hover:bg-[var(--color-signal-soft)] transition-colors duration-300 dark:bg-[var(--color-parchment-alt)]"></div>
 
 				<!-- Main content -->
 				<div
-					class="border-2 border-black/5 dark:border-white/5 bg-white dark:bg-black p-6 md:p-8
-						hover:border-black/10 dark:hover:border-white/10 transition-all duration-300"
+					class="rounded-2xl border border-[rgba(31,35,42,0.1)] bg-[var(--color-elevated)] p-6 md:p-8 brutalist-shadow
+						hover:border-[rgba(53,90,76,0.25)] transition-all duration-300 dark:border-[rgba(210,217,226,0.08)] dark:bg-[var(--color-parchment-alt)]"
 				>
 					<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
 						<div class="flex-1">
 							<div class="flex items-center gap-3 mb-2">
-								<span class="font-body text-xs uppercase tracking-wider text-[var(--color-primary)]">
+								<span class="font-mono text-xs font-medium uppercase tracking-[0.16em] text-[var(--color-signal)]">
 									{formatDate(item.startDate)} — {formatDate(item.endDate)}
 								</span>
-								<span class="w-px h-3 bg-black/20 dark:bg-white/20"></span>
-								<span class="font-body text-xs uppercase tracking-wider text-black/50 dark:text-white/50">
+								<span class="w-px h-3 bg-[rgba(31,35,42,0.15)] dark:bg-[rgba(210,217,226,0.12)]"></span>
+								<span class="font-body text-xs uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
 									{getDuration(item.startDate, item.endDate)}
 								</span>
 							</div>
 
-							<h3 class="font-display font-bold text-2xl md:text-3xl text-black dark:text-white mb-1">
+							<h3 class="font-display font-semibold text-2xl md:text-3xl text-[var(--color-ink-strong)] mb-1">
 								{$language === 'es' ? item.title_es : item.title_en}
 							</h3>
-							<p class="font-body text-base text-black/70 dark:text-white/70">
+							<p class="font-body text-base text-[var(--color-ink-muted)]">
 								{item.company}
 							</p>
 						</div>
 
 						<button
 							onclick={() => toggleExpand(item.id)}
-							class="group/btn shrink-0 px-4 py-2 font-body text-xs uppercase tracking-wider
-								border border-black/20 dark:border-white/20 text-black/70 dark:text-white/70
-								hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black
+							class="group/btn shrink-0 px-4 py-2 rounded-lg font-body text-xs uppercase tracking-[0.14em] font-semibold
+								border border-[rgba(31,35,42,0.14)] text-[var(--color-ink-muted)]
+								hover:bg-[var(--color-signal-soft)] hover:border-[rgba(53,90,76,0.35)]
+								dark:border-[rgba(210,217,226,0.14)]
 								transition-all duration-200"
 							aria-expanded={expandedId === item.id}
 						>
@@ -114,19 +115,19 @@
 						</button>
 					</div>
 
-					<p class="font-body text-base text-black/70 dark:text-white/70 leading-relaxed mb-4">
+					<p class="font-body text-base text-[var(--color-ink-muted)] leading-relaxed mb-4">
 						{$language === 'es' ? item.description_es : item.description_en}
 					</p>
 
 					{#if expandedId === item.id}
-						<div class="pt-4 border-t border-black/10 dark:border-white/10">
-							<p class="font-body text-xs uppercase tracking-wider text-black/50 dark:text-white/50 mb-3">
+						<div class="pt-4 border-t border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)]">
+							<p class="font-body text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-ink-faint)] mb-3">
 								{$t('careerPath.responsibilitiesHeading')}
 							</p>
 							<ul class="space-y-2">
 								{#each $language === 'es' ? item.responsibilities_es : item.responsibilities_en as resp}
-									<li class="flex items-start gap-3 font-body text-sm text-black/70 dark:text-white/70">
-										<span class="mt-1.5 w-1 h-1 bg-[var(--color-primary)] shrink-0"></span>
+									<li class="flex items-start gap-3 font-body text-sm text-[var(--color-ink-muted)]">
+										<span class="mt-1.5 w-1 h-1 rounded-full bg-[var(--color-signal)] shrink-0"></span>
 										<span>{resp}</span>
 									</li>
 								{/each}

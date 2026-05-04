@@ -11,53 +11,40 @@ export interface SkillCategory {
 
 export const skillsData: SkillCategory[] = [
 	{
-		name: 'languages',
-		accent: 'primary',
-		skills: ['TypeScript', 'Python', 'Rust', 'Go', 'C#', 'Java', 'Shell'],
-		bullets: {
-			en: [
-				'Build and maintain production services, CLIs, and internal tooling—mostly TypeScript and Python, with Rust or Go when performance or systems work calls for it.',
-				'Own features end to end: from typed contracts and APIs to scripts, migrations, and small automation.',
-				'Comfortable context-switching across stacks for web backends, data-heavy jobs, and glue code around infra.'
-			],
-			es: [
-				'Construyo y mantengo servicios en producción, CLIs y tooling interno—sobre todo TypeScript y Python, con Rust o Go cuando el rendimiento o el trabajo de sistemas lo piden.',
-				'Me hago cargo de features de punta a punta: contratos tipados, APIs, scripts, migraciones y automatización ligera.',
-				'Me muevo entre stacks para backends web, jobs con datos y código de integración alrededor de infraestructura.'
-			]
-		}
-	},
-	{
 		name: 'aiLlm',
 		accent: 'secondary',
-		skills: ['LLMs', 'LangChain', 'RAG'],
+		skills: ['Claude Code', 'Cursor', 'LangGraph'],
 		bullets: {
 			en: [
-				'Ship retrieval-augmented flows and grounded answers over your own data—not demo prompts, but production constraints (latency, failures, evals).',
-				'Orchestrate chains and tools with LangChain-style patterns where they earn their complexity; keep prompts and retrieval observable.',
-				'Iterate with product on guardrails, quality checks, and when *not* to call a model.'
+				'Deliver with Claude Code and Cursor—repeatable automations, reviewable workflows, observable runs.',
+				'Ground model output in real data with retrieval, evals, and production constraints—not one-off demos.',
+				'Orchestrate agents and tools (LangGraph) where complexity pays off; prompts and retrieval stay measurable.',
+				'Work with product on guardrails, quality gates, and when not to call a model.'
 			],
 			es: [
-				'Publico flujos RAG y respuestas fundamentadas sobre vuestros datos—no demos: latencia, fallos y evaluación en producción.',
-				'Orquesto cadenas y herramientas con patrones tipo LangChain cuando aportan; mantengo prompts y recuperación observables.',
-				'Itero con producto sobre guardrails, calidad y cuándo *no* conviene llamar al modelo.'
+				'Desarrollo con Claude Code y Cursor: automatizaciones repetibles, flujos auditables y ejecuciones observables.',
+				'Integro los modelos con los datos reales del negocio—RAG, evaluaciones y restricciones de producción incluidas, no demos aisladas.',
+				'Orquesto agentes y herramientas (LangGraph) cuando la complejidad lo justifica; prompts y recuperación siempre medibles.',
+				'Trabajo con el equipo de producto para decidir qué automatizar con IA, con qué criterios de calidad y cuándo no usar el modelo.'
 			]
 		}
 	},
 	{
-		name: 'backendData',
+		name: 'fullStack',
 		accent: 'primary',
-		skills: ['REST / GraphQL APIs', 'PostgreSQL', 'Data modeling'],
+		skills: ['TypeScript', 'Python', 'Rust', 'Go', 'REST / GraphQL APIs', 'PostgreSQL', 'Data modeling'],
 		bullets: {
 			en: [
-				'Design HTTP and GraphQL surfaces that match how clients evolve—versioning, errors, and clear boundaries between domains.',
-				'Model relational schemas, migrations, and queries with PostgreSQL as the source of truth for transactional data.',
-				'Keep APIs aligned with consistency needs, observability, and how data is actually queried in production.'
+				'Build and maintain production services, CLIs, and internal tooling—TypeScript and Python day-to-day, Rust or Go when performance demands it.',
+				'Own features end to end: typed contracts, APIs, scripts, migrations, and automation that holds up in production.',
+				'Design REST and GraphQL surfaces with versioning, clear error contracts, and domain boundaries that hold up as clients evolve.',
+				'Model relational schemas and queries with PostgreSQL as the source of truth; keep data consistent and queryable as the product grows.'
 			],
 			es: [
-				'Diseño superficies REST y GraphQL acordes a cómo evolucionan los clientes: versionado, errores y límites claros entre dominios.',
-				'Modelo esquemas relacionales, migraciones y consultas con PostgreSQL como fuente de verdad para datos transaccionales.',
-				'Alineo APIs con consistencia, observabilidad y con cómo se consultan los datos en producción.'
+				'Construyo y mantengo servicios en producción, CLIs y herramientas internas—principalmente TypeScript y Python, con Rust o Go cuando el rendimiento lo exige.',
+				'Me hago cargo de funcionalidades de punta a punta: APIs, contratos tipados, migraciones y automatizaciones que funcionan en producción.',
+				'Diseño APIs REST y GraphQL con versionado, manejo de errores y límites de dominio claros que se sostienen a medida que el producto crece.',
+				'Modelo esquemas y consultas relacionales con PostgreSQL como fuente de verdad; los datos se mantienen consistentes y consultables.'
 			]
 		}
 	},
@@ -72,9 +59,9 @@ export const skillsData: SkillCategory[] = [
 				'Wire CI/CD so every merge is deployable: tests, artifacts, and predictable rollouts.'
 			],
 			es: [
-				'Empaqueto y publico servicios en contenedores; busco builds y entornos reproducibles de CI a producción.',
-				'Uso primitivas de AWS donde encajan—cómputo, red, secretos—sin sobre-diseñar el primer release.',
-				'Conecto CI/CD para que cada merge sea desplegable: tests, artefactos y releases predecibles.'
+				'Empaqueto servicios en contenedores con builds reproducibles que se comportan igual en local, CI y producción.',
+				'Uso los servicios de AWS necesarios—cómputo, red, secretos—sin complejidad innecesaria en el primer lanzamiento.',
+				'Configuro pipelines de CI/CD para que cada cambio sea desplegable: tests automáticos, artefactos y releases predecibles.'
 			]
 		}
 	}

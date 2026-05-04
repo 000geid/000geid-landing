@@ -5,27 +5,29 @@
 	const email = 'dmalvaradog26@gmail.com';
 </script>
 
-<footer id="contact" class="scroll-mt-32 border-t-2 border-black dark:border-white">
+<footer id="contact" class="scroll-mt-32 border-t border-[rgba(31,35,42,0.1)] dark:border-[rgba(210,217,226,0.1)] bg-[rgba(243,244,247,0.5)] dark:bg-[rgba(18,21,25,0.35)]">
 	<div class="max-w-7xl mx-auto px-4 md:px-6 py-14 md:py-20">
 		<SectionPageHeader kicker={$t('contact.kicker')} title={$t('contact.title')}>
 			<svelte:fragment slot="aside">
-				<p class="font-body text-sm md:text-base text-black/70 dark:text-white/70 leading-relaxed max-w-xl">
+				<p class="font-body text-sm md:text-base text-[var(--color-ink-muted)] leading-relaxed max-w-xl">
 					{$t('contact.description')}
 				</p>
 			</svelte:fragment>
 		</SectionPageHeader>
 
 		<div
-			class="border-2 border-black dark:border-white bg-[var(--color-surface)] dark:bg-[var(--color-surface)] brutalist-shadow divide-y divide-black/15 dark:divide-white/15"
+			class="rounded-2xl border border-[rgba(31,35,42,0.14)] dark:border-[rgba(210,217,226,0.12)] bg-[var(--color-elevated)] dark:bg-[var(--color-parchment-alt)] brutalist-shadow divide-y divide-[rgba(31,35,42,0.08)] dark:divide-[rgba(210,217,226,0.08)] overflow-hidden"
 		>
 			<a
 				href="https://github.com/000geid"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="group flex items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5
-					hover:bg-[var(--color-primary)] hover:text-white transition-colors duration-200"
+					hover:bg-[var(--color-signal-soft)] transition-colors duration-200"
 			>
-				<span class="font-display font-bold text-lg md:text-xl tracking-tight">{$t('contact.github')}</span>
+				<span class="font-display font-semibold text-lg md:text-xl tracking-tight text-[var(--color-ink-strong)]"
+					>{$t('contact.github')}</span
+				>
 				<svg class="w-5 h-5 shrink-0 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 				</svg>
@@ -35,9 +37,11 @@
 				target="_blank"
 				rel="noopener noreferrer"
 				class="group flex items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5
-					hover:bg-[var(--color-primary)] hover:text-white transition-colors duration-200"
+					hover:bg-[var(--color-signal-soft)] transition-colors duration-200"
 			>
-				<span class="font-display font-bold text-lg md:text-xl tracking-tight">{$t('contact.linkedin')}</span>
+				<span class="font-display font-semibold text-lg md:text-xl tracking-tight text-[var(--color-ink-strong)]"
+					>{$t('contact.linkedin')}</span
+				>
 				<svg class="w-5 h-5 shrink-0 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
 				</svg>
@@ -45,24 +49,26 @@
 			<a
 				href={`mailto:${email}`}
 				class="group flex items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5
-					hover:bg-[var(--color-primary)] hover:text-white transition-colors duration-200"
+					hover:bg-[var(--color-signal-soft)] transition-colors duration-200"
 			>
-				<span class="font-display font-bold text-lg md:text-xl tracking-tight">{$t('contact.email')}</span>
+				<span class="font-display font-semibold text-lg md:text-xl tracking-tight text-[var(--color-ink-strong)]"
+					>{$t('contact.email')}</span
+				>
 				<svg class="w-5 h-5 shrink-0 opacity-70 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 				</svg>
 			</a>
 		</div>
 
-		<p class="font-body text-sm text-black/55 dark:text-white/55 mt-6 md:mt-8 font-mono">
+		<p class="font-mono text-sm text-[var(--color-ink-muted)] mt-6 md:mt-8 tracking-tight">
 			{email}
 		</p>
 
-		<div class="pt-10 md:pt-12 mt-10 md:mt-12 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-			<p class="font-body text-xs uppercase tracking-wider text-black/50 dark:text-white/50">
+		<div class="pt-10 md:pt-12 mt-10 md:mt-12 border-t border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)] flex flex-col sm:flex-row items-center justify-between gap-4">
+			<p class="font-body text-xs uppercase tracking-wider text-[var(--color-ink-muted)]">
 				© {new Date().getFullYear()} Diego Alvarado
 			</p>
-			<p class="font-body text-xs uppercase tracking-wider text-black/50 dark:text-white/50">
+			<p class="font-body text-xs uppercase tracking-wider text-[var(--color-ink-muted)]">
 				Buenos Aires, Argentina
 			</p>
 		</div>

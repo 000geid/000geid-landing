@@ -1,4 +1,4 @@
-/** Display grouping on /projects — keeps products, OSS, and client work visually distinct. */
+/** Display grouping on /projects — products vs OSS. */
 export type PortfolioGroup = 'products' | 'oss' | 'client'
 
 export interface ProjectStory {
@@ -16,12 +16,17 @@ export interface ProjectStory {
   }
 }
 
+/** Branded chrome on /projects/[id] via html[data-project-detail] (tokens in app.css). */
+export type ProjectDetailTheme = 'filo' | 'plandeck' | 'cuecast' | 'openfeed'
+
 export interface ProjectEntry {
   id: string
   title: string
-  /** Section heading on the projects page (products vs OSS vs client delivery). */
+  icon?: string
+  /** Products vs OSS (extend with `client` if a freelance gallery returns). */
   portfolioGroup: PortfolioGroup
   mode?: 'case-study' | 'freelance-gallery'
+  detailTheme?: ProjectDetailTheme
   description: {
     en: string
     es: string
@@ -66,12 +71,45 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'filo',
     title: 'Filo',
+    icon: '🍽',
     portfolioGroup: 'products',
+    detailTheme: 'filo',
     description: {
       en: 'Digitalizing neighborhood gastronomy: interactive QR menus, analytics, and customer reviews.',
       es: 'Digitalizando la gastronomía de barrio: cartas QR interactivas, analíticas y reseñas de clientes.'
     },
     tags: ['SvelteKit', 'Cloudflare', 'D1', 'Hono'],
+    /** Gallery images: regenerate with `npm run capture:filo` (see scripts/capture-filo.mjs). */
+    screenshots: [
+      {
+        src: '/images/filo/filo-1.png',
+        alt: {
+          en: 'Filo — landing hero focused on diner discovery (Spanish)',
+          es: 'Filo — hero de la landing y propuesta para comensales'
+        }
+      },
+      {
+        src: '/images/filo/filo-2.png',
+        alt: {
+          en: 'Marketing — diner and restaurant sections, feature bullets',
+          es: 'Sitio público — secciones para comensales y restaurantes'
+        }
+      },
+      {
+        src: '/images/filo/filo-3.png',
+        alt: {
+          en: 'Restaurant list — mobile search, filters, and venues on /restaurants',
+          es: 'Listado en /restaurants — búsqueda, filtros y tarjetas de locales'
+        }
+      },
+      {
+        src: '/images/filo/filo-4.png',
+        alt: {
+          en: 'Digital Carta tab — categories and dishes from a venue menu page',
+          es: 'Pestaña Carta — categorías y platos del menú digital del local'
+        }
+      }
+    ],
     story: {
       en: {
         title: 'Filo',
@@ -132,12 +170,45 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'plandeck',
     title: 'Plandeck',
+    icon: '🗂',
     portfolioGroup: 'products',
+    detailTheme: 'plandeck',
     description: {
       en: 'Mobile-first kanban board with real-time sync, built for touch-friendly planning on any device.',
       es: 'Tablero kanban mobile-first con sincronización en tiempo real, diseñado para planificación táctil en cualquier dispositivo.'
     },
     tags: ['React', 'Vite', 'Convex', 'Cloudflare Workers'],
+    /** Gallery images: regenerate with `npm run capture:plandeck` (see scripts/capture-plandeck.mjs). */
+    screenshots: [
+      {
+        src: '/images/plandeck/plandeck-1.png',
+        alt: {
+          en: 'Live site — landing hero with product positioning (Spanish)',
+          es: 'Sitio público — hero de la landing con el mensaje de producto'
+        }
+      },
+      {
+        src: '/images/plandeck/plandeck-2.png',
+        alt: {
+          en: 'Feature highlight — Kanban boards and onboarding copy on mobile',
+          es: 'Bloque de funciones — tableros Kanban y texto de valor en mobile'
+        }
+      },
+      {
+        src: '/images/plandeck/plandeck-3.png',
+        alt: {
+          en: 'Create-account flow — form layout, SSO entry point, branded shell',
+          es: 'Alta de cuenta — layout del formulario, Google y marca'
+        }
+      },
+      {
+        src: '/images/plandeck/plandeck-4.png',
+        alt: {
+          en: 'Sign-in screen — same design system before entering the workspace',
+          es: 'Pantalla de inicio de sesión — mismo diseño antes del tablero'
+        }
+      }
+    ],
     story: {
       en: {
         title: 'Plandeck',
@@ -198,7 +269,9 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'cuecast',
     title: 'Cuecast',
+    icon: '🎚',
     portfolioGroup: 'oss',
+    detailTheme: 'cuecast',
     description: {
       en: 'A virtual desktop soundboard for streamers, enabling audio triggering and routing to virtual devices.',
       es: 'Soundboard virtual de escritorio para streamers, permitiendo disparar audio y rutearlo a dispositivos virtuales.'
@@ -262,129 +335,70 @@ export const projectsData: ProjectEntry[] = [
     }
   },
   {
-    id: 'client-work-2024',
-    title: 'Client Work 2024',
-    portfolioGroup: 'client',
-    mode: 'freelance-gallery',
+    id: 'openfeed',
+    title: 'Openfeed',
+    icon: '📡',
+    portfolioGroup: 'oss',
+    detailTheme: 'openfeed',
     description: {
-      en: 'Freelance frontend delivery for two client accounts in 2024, presented as a visual gallery.',
-      es: 'Entrega frontend freelance para dos cuentas cliente en 2024, presentada como galería visual.'
+      en: 'Live feed tooling from Triple0 Labs—my studio—with an open playbook and a sandbox you can use today.',
+      es: 'Herramienta feed en producción desde Triple0 Labs, mi empresa, con enfoque open-source y sandbox usable hoy.'
     },
-    tags: ['Freelance', 'Frontend', 'Client Delivery', 'Gallery'],
-    freelanceClients: [
-      {
-        id: 'laroche-possay',
-        name: 'La Roche-Posay',
-        logo: '/images/laroche-possay/logo.png',
-        summary: {
-          en: 'Frontend implementation across branded campaign and commerce touchpoints.',
-          es: 'Implementación frontend en touchpoints de campaña y comercio.'
-        },
-        screenshots: [
-          {
-            src: '/images/laroche-possay/screen-01.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 1',
-              es: 'Captura del proyecto La Roche-Posay 1'
-            }
-          },
-          {
-            src: '/images/laroche-possay/screen-02.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 2',
-              es: 'Captura del proyecto La Roche-Posay 2'
-            }
-          },
-          {
-            src: '/images/laroche-possay/screen-03.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 3',
-              es: 'Captura del proyecto La Roche-Posay 3'
-            }
-          },
-          {
-            src: '/images/laroche-possay/screen-04.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 4',
-              es: 'Captura del proyecto La Roche-Posay 4'
-            }
-          },
-          {
-            src: '/images/laroche-possay/screen-05.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 5',
-              es: 'Captura del proyecto La Roche-Posay 5'
-            }
-          },
-          {
-            src: '/images/laroche-possay/screen-06.webp',
-            alt: {
-              en: 'La Roche-Posay project screenshot 6',
-              es: 'Captura del proyecto La Roche-Posay 6'
-            }
-          }
-        ]
-      },
-      {
-        id: 'ricadonna',
-        name: 'Ricadonna',
-        logo: '/images/ricadonna/logo.png',
-        summary: {
-          en: 'Frontend execution for visual-heavy customer pages with mobile-first priorities.',
-          es: 'Ejecución frontend para páginas de alto peso visual con prioridad mobile-first.'
-        },
-        screenshots: [
-          {
-            src: '/images/ricadonna/screen-01.webp',
-            alt: {
-              en: 'Ricadonna project screenshot 1',
-              es: 'Captura del proyecto Ricadonna 1'
-            }
-          },
-          {
-            src: '/images/ricadonna/screen-02.webp',
-            alt: {
-              en: 'Ricadonna project screenshot 2',
-              es: 'Captura del proyecto Ricadonna 2'
-            }
-          },
-          {
-            src: '/images/ricadonna/screen-03.webp',
-            alt: {
-              en: 'Ricadonna project screenshot 3',
-              es: 'Captura del proyecto Ricadonna 3'
-            }
-          },
-          {
-            src: '/images/ricadonna/screen-04.webp',
-            alt: {
-              en: 'Ricadonna project screenshot 4',
-              es: 'Captura del proyecto Ricadonna 4'
-            }
-          }
-        ]
-      }
-    ],
+    tags: ['TypeScript', 'Open Source', 'Feeds'],
     story: {
       en: {
-        title: 'Client Work 2024',
-        summary: 'A visual gallery of freelance frontend work delivered for client accounts during 2024.',
-        role: 'Freelance Frontend Developer',
-        timeline: '2024',
-        problem: [],
-        solution: [],
-        impact: [],
-        technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive Design']
+        title: 'Openfeed',
+        summary:
+          'Openfeed is the feed stack I build through Triple0 Labs: open-source foundations with the live product at openfeed.ogeid.xyz—the fastest way to see how authoring, ingestion, and delivery fit together.',
+        role: 'Founder • Triple0 Labs (product, platform & engineering)',
+        timeline: '2025 - Present',
+        problem: [
+          'Teams still rebuild the same scaffolding whenever they need feed-like authoring, previews, or clean hand-offs to downstream consumers.',
+          'Docs alone rarely answer integration questions; you need something runnable before committing calendar time.',
+          'Iteration stays painful unless the shell (product chrome) stays separate from ingestion and delivery internals.'
+        ],
+        solution: [
+          'Keeps the public sandbox wired to how we ship so design and product reviews line up with what users actually touch.',
+          'Structures the codebase in TypeScript-first modules—from stream plumbing to UX polish—for steady, incremental releases.',
+          'Treats cadence explicitly so production fixes and learnings fold back instead of dying in a fork.'
+        ],
+        impact: [
+          'A hosted surface shrinks the gap between curiosity and real debugging—you try the loops, not only the readme.',
+          'Offers a credible baseline studios can bend to their pipelines instead of writing bespoke feed glue every launch.',
+          'Surfacing authoring and telemetry in one place mirrors what downstream teams scrutinize during integration reviews.'
+        ],
+        technologies: ['TypeScript'],
+        link: {
+          label: 'Visit Openfeed',
+          href: 'https://openfeed.ogeid.xyz'
+        }
       },
       es: {
-        title: 'Trabajo con Clientes 2024',
-        summary: 'Galería visual de trabajo frontend freelance entregado para cuentas cliente durante 2024.',
-        role: 'Desarrollador Frontend Freelance',
-        timeline: '2024',
-        problem: [],
-        solution: [],
-        impact: [],
-        technologies: ['HTML', 'CSS', 'JavaScript', 'Diseño Responsive']
+        title: 'Openfeed',
+        summary:
+          'Openfeed es el stack feed que desarrollo desde Triple0 Labs: base open-source y producto vivo en openfeed.ogeid.xyz—la forma más directa de ver cómo encajan autoría, ingesta y entrega.',
+        role: 'Fundador • Triple0 Labs (producto, plataforma e ingeniería)',
+        timeline: '2025 - Actualidad',
+        problem: [
+          'Siguen reapareciendo los mismos cimientos cada vez que hace falta algo parecido a feeds: vista previa, edición y entrega a sistemas aguas abajo.',
+          'La documentación sola pocas veces cierra dudas de integración; hace falta algo ejecutable antes de comprometer tiempo.',
+          'Sin separar cascarón de producto y capas de ingesta/entrega, cada iteración pesa más de la cuenta.'
+        ],
+        solution: [
+          'Mantenemos el sandbox alineado con lo que entregamos para que diseño y producto revisen lo mismo que toca la gente.',
+          'Organizamos el código en módulos TypeScript—de tuberías de datos a pulido UX—pensados en releases frecuentes.',
+          'Hacemos explícito el ritmo release para que arreglos y aprendizajes de prod vuelvan al flujo principal, no queden aislados.'
+        ],
+        impact: [
+          'Tener algo alojado acorta la distancia entre curiosidad y debugging real: pruebas el circuito completo.',
+          'Da una base creíble antes de reinventar pegamento de feeds en cada lanzamiento.',
+          'Mostrar autoría y telemetría en conjunto coincide con lo que equipos revisan al evaluar integraciones.'
+        ],
+        technologies: ['TypeScript'],
+        link: {
+          label: 'Visitar Openfeed',
+          href: 'https://openfeed.ogeid.xyz'
+        }
       }
     }
   }

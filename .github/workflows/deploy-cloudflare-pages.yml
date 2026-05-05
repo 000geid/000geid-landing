@@ -1,0 +1,40 @@
+# Build with the Cloudflare adapter and publish to Cloudflare Pages.
+# Repo secrets (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN — Create with "Edit Cloudflare Workers" template + Account → Workers Pages → Read if needed
+#   CLOUDFLARE_ACCOUNT_ID — Dashboard URL or Workers overview
+# Optional variable (repo variable recommended):
+#   CLOUDFLARE_PAGES_PROJECT_NAME — defaults to 000geid-landing
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # Set repo variable CLOUDFLARE_PAGES_PROJECT_NAME if your Pages project name differs from the default.
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .svelte-kit/cloudflare --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT_NAME || '000geid-landing' }}

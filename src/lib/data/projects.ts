@@ -1,3 +1,5 @@
+import type { ProjectLucideGlyph } from '$lib/project-lucide';
+
 /** Display grouping on /projects — products vs OSS. */
 export type PortfolioGroup = 'products' | 'oss' | 'client'
 
@@ -10,6 +12,8 @@ export interface ProjectStory {
   solution: string[]
   impact?: string[]
   technologies: string[]
+  /** Architecture / design patterns — rendered separately from the tech stack. */
+  patterns?: string[]
   link?: {
     label: string
     href: string
@@ -22,7 +26,8 @@ export type ProjectDetailTheme = 'filo' | 'plandeck' | 'cuecast' | 'openfeed'
 export interface ProjectEntry {
   id: string
   title: string
-  icon?: string
+  /** Lucide glyph for `/projects` list tiles (see `project-lucide.ts`). */
+  lucideGlyph: ProjectLucideGlyph
   /** Products vs OSS (extend with `client` if a freelance gallery returns). */
   portfolioGroup: PortfolioGroup
   mode?: 'case-study' | 'freelance-gallery'
@@ -71,7 +76,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'filo',
     title: 'Filo',
-    icon: '🍽',
+    lucideGlyph: 'utensils',
     portfolioGroup: 'products',
     detailTheme: 'filo',
     description: {
@@ -114,23 +119,23 @@ export const projectsData: ProjectEntry[] = [
       en: {
         title: 'Filo',
         summary:
-          'At lunchtime in Lima, every minute counts. The spark was simple: my father kept buying the same daily menu out of proximity, not preference. Filo exists so the menu of the day is discovered in seconds, not by walking block after block.',
+          'At lunchtime in Lima, every minute counts. My father would eat at the same place every day — not because it was his favorite, but because he had no time to find anything better. Filo exists to turn that missed choice into a decision you can make in seconds.',
         role: 'Founder • Full-stack end-to-end (UI/UX, backend, deployment)',
         timeline: '2023 - Present',
         problem: [
-          'Lunch is a rushed decision: without clear information, people default to the familiar and waste time hunting for alternatives.',
-          'Neighborhood menus live on a chalkboard and habit: they change daily, but rarely get published somewhere reliable.',
-          'For many small restaurants, “being online” means WhatsApp or nothing: no catalog, no comparability, no discovery.'
+          'Lunch decisions happen under pressure — and when you\'re short on time, you stick to whatever\'s nearby, not whatever\'s best.',
+          'Neighborhood menus change daily but live on chalkboards. Owners who want to be online end up on WhatsApp — no catalog, no visibility, no way to be discovered.',
+          'For small restaurants, not being findable online means competing only on foot traffic. The best food on the block can still be the least chosen.'
         ],
         solution: [
-          'A marketplace built specifically for daily menus: simple listings, visible prices/hours, and fast comparison on mobile.',
-          'Publish in minutes for owners: upload today’s menu with minimal friction, keeping information fresh by design.',
-          'Built end-to-end with performance and shipping speed in mind: mobile-first UX, edge backend, and streamlined deployment.'
+          'A marketplace built for daily menus: fast listings, visible prices and hours, and easy comparison on mobile — designed for the five-minute lunch window.',
+          'Restaurant owners can publish today\'s menu in minutes. No technical know-how required, no ongoing setup.',
+          'Built for performance from the start: fast loading on any connection, works on any mobile device, and deploys in a single step.'
         ],
         impact: [
-          'Turns an everyday decision into a guided experience: less guesswork, more informed choice.',
-          'Gives visibility to small eateries that previously depended on foot traffic and word of mouth.',
-          'A clear north star: make the neighborhood menu visible in two taps, every day.'
+          'Turns a rushed habit into a real choice — people can find and compare options without leaving their desk.',
+          'Gives small eateries a real online presence, so they compete on quality, not just location.',
+          'A clear north star: the neighborhood menu, visible in two taps, every day.'
         ],
         technologies: ['SvelteKit', 'Cloudflare Workers', 'D1', 'R2', 'Hono'],
         link: {
@@ -141,23 +146,23 @@ export const projectsData: ProjectEntry[] = [
       es: {
         title: 'Filo',
         summary:
-          'En la caótica hora del almuerzo en Lima, cada minuto es valioso. La idea de Filo surgió de una observación personal: ver a mi padre almorzando siempre en el mismo lugar, no por preferencia, sino por la imposibilidad de explorar otras opciones sin perder su hora de descanso. Esa limitación fue el catalizador para crear una solución que digitalizara los menús del barrio, permitiendo que la elección de qué comer pase de ser una apuesta ciega a una decisión informada en segundos.',
+          'A la hora del almuerzo en Lima, cada minuto cuenta. Mi padre volvía al mismo lugar todos los días — no porque fuera su favorito, sino porque no tenía tiempo de buscar otra opción. Filo existe para convertir esa elección perdida en una decisión que se toma en segundos.',
         role: 'Founder • Full-stack integral (UI/UX, backend, despliegue)',
         timeline: '2023 - Actualidad',
         problem: [
-          'La decisión del almuerzo suele ser frustrante: con poco tiempo y hambre, terminamos eligiendo lo mismo de siempre por falta de información.',
-          'Mientras tanto, los restaurantes locales tienen una oferta increíble que cambia todos los días, pero que muere escrita en una pizarra invisible para el mundo digital.',
-          'Existe una brecha enorme: negocios con gran comida pero sin alcance, y comensales buscando variedad sin saber dónde encontrarla.'
+          'El almuerzo se decide bajo presión: con poco tiempo, terminamos eligiendo lo de siempre, aunque no sea lo mejor.',
+          'Los menús de barrio cambian a diario pero viven en una pizarra. Los dueños que quieren estar online terminan en WhatsApp — sin catálogo, sin visibilidad, sin forma de ser descubiertos.',
+          'Para los restaurantes pequeños, no ser encontrable online significa competir solo por ubicación. La mejor comida de la cuadra puede ser la menos elegida.'
         ],
         solution: [
-          'Filo nace para conectar estos dos mundos: concibí una plataforma donde el menú del día se publica y descubre al instante.',
-          'Simplifiqué la digitalización al extremo: permitiendo que los dueños publiquen su oferta diaria en segundos, manteniendo la información siempre fresca.',
-          'Entregué a los usuarios el poder de elegir: comparar precios, platos y cercanía desde el celular, rompiendo la inercia de "ir al sitio de siempre".'
+          'Un marketplace pensado para el menú del día: listados rápidos, precios y horarios visibles, y comparación fácil desde el celular — diseñado para la ventana de cinco minutos del almuerzo.',
+          'Los dueños pueden publicar el menú del día en minutos. Sin conocimientos técnicos, sin configuración complicada.',
+          'Construido para funcionar rápido desde el primer día: carga en cualquier conexión, anda en cualquier celular, y se despliega en un paso.'
         ],
         impact: [
-          'Transformé la búsqueda del almuerzo en una experiencia de descubrimiento, ahorrando tiempo y mejorando la satisfacción diaria.',
-          'Empoderé a los pequeños restaurantes con visibilidad digital real, permitiéndoles competir por calidad y no solo por ubicación.',
-          'Redefiní la gastronomía de barrio, ayudando a crear un ecosistema local más dinámico, transparente y conectado.'
+          'Convierte un hábito apresurado en una elección real — la gente puede comparar opciones sin moverse de su silla.',
+          'Da a los pequeños restoranes una presencia online real, para que compitan por calidad y no solo por cercanía.',
+          'Una dirección clara: el menú del barrio, visible en dos toques, todos los días.'
         ],
         technologies: ['SvelteKit', 'Cloudflare Workers', 'D1', 'R2', 'Hono'],
         link: {
@@ -170,7 +175,7 @@ export const projectsData: ProjectEntry[] = [
   {
     id: 'plandeck',
     title: 'Plandeck',
-    icon: '🗂',
+    lucideGlyph: 'kanban',
     portfolioGroup: 'products',
     detailTheme: 'plandeck',
     description: {
@@ -267,9 +272,110 @@ export const projectsData: ProjectEntry[] = [
     }
   },
   {
+    id: 'openfeed',
+    title: 'Openfeed',
+    lucideGlyph: 'rss',
+    portfolioGroup: 'oss',
+    detailTheme: 'openfeed',
+    description: {
+      en: 'A real-time content feed platform — live, open-source, and built with clean domain architecture you can explore without signing up.',
+      es: 'Plataforma de feed en tiempo real—en producción, open-source y con arquitectura por dominios que podés explorar sin registrarte.'
+    },
+    tags: ['TypeScript', 'DDD', 'Open Source', 'Feed Platform'],
+    /** Gallery images: regenerate with `npm run capture:openfeed` (see scripts/capture-openfeed.mjs). */
+    screenshots: [
+      {
+        src: '/images/openfeed/openfeed-1.png',
+        alt: {
+          en: 'Openfeed — top of the live feed (Spanish UI)',
+          es: 'Openfeed — parte superior del feed en producción'
+        }
+      },
+      {
+        src: '/images/openfeed/openfeed-2.png',
+        alt: {
+          en: 'Openfeed — scrolled feed with headlines and cards',
+          es: 'Openfeed — scroll del listado de noticias y tarjetas'
+        }
+      },
+      {
+        src: '/images/openfeed/openfeed-3.png',
+        alt: {
+          en: 'Openfeed — article/detail or deeper feed view',
+          es: 'Openfeed — detalle de artículo o vista más profunda del feed'
+        }
+      },
+      {
+        src: '/images/openfeed/openfeed-4.png',
+        alt: {
+          en: 'Openfeed — reading chrome or returned top of feed',
+          es: 'Openfeed — lectura o vuelta al inicio del feed'
+        }
+      }
+    ],
+    story: {
+      en: {
+        title: 'Openfeed',
+        summary:
+          'Openfeed is a content feed platform I build through Triple0 Labs, my studio. It\'s live at openfeed.ogeid.xyz — no account required to try it. The codebase is open-source, designed with Domain-Driven Design, and structured so authoring, ingestion, and delivery are independent layers anyone can understand and extend.',
+        role: 'Founder • Triple0 Labs (product, platform & engineering)',
+        timeline: '2025 - Present',
+        problem: [
+          'Every team building a feed product starts from scratch on the same core infrastructure: how content gets created, validated, stored, and delivered. That\'s weeks of foundational work before any real product decisions can happen.',
+          'Most existing feed platforms are closed systems — you can\'t meaningfully evaluate integration until you\'re already committed to a paid plan or a long onboarding process.',
+          'Without clean architectural boundaries, feed systems become fragile over time: adding a new content type or delivery channel ends up touching unrelated code, and each change gets harder.'
+        ],
+        solution: [
+          'A fully deployed sandbox at openfeed.ogeid.xyz — the same codebase that runs in production, open to explore without any setup. What you test is what ships.',
+          'Designed with Domain-Driven Design from the start: Authoring, Ingestion, and Delivery are isolated domains with clear contracts between them. Each evolves independently without breaking the others.',
+          'Explicit release cadence and open development keep the live product and the public codebase in sync — real production feedback goes back into the architecture, not a private fork.'
+        ],
+        impact: [
+          'Anyone evaluating content feed infrastructure can go from first look to real, hands-on testing in under five minutes — no sales call, no setup.',
+          'The DDD structure makes the codebase readable at a glance — contributors can navigate the domain model without a guide, and integrators know exactly where to look.',
+          'A credible open baseline that studios and teams can extend to their specific pipeline, rather than building the same foundation from scratch every time.'
+        ],
+        technologies: ['TypeScript', 'Open Source'],
+        patterns: ['Domain-Driven Design (DDD)'],
+        link: {
+          label: 'Visit Openfeed',
+          href: 'https://openfeed.ogeid.xyz'
+        }
+      },
+      es: {
+        title: 'Openfeed',
+        summary:
+          'Openfeed es una plataforma de feeds de contenido que construyo desde Triple0 Labs, mi estudio. Está en producción en openfeed.ogeid.xyz — podés probarla sin crear una cuenta. El código es open-source, diseñado con Domain-Driven Design, y estructurado de modo que autoría, ingesta y entrega son capas independientes que cualquiera puede entender y extender.',
+        role: 'Fundador • Triple0 Labs (producto, plataforma e ingeniería)',
+        timeline: '2025 - Actualidad',
+        problem: [
+          'Cada equipo que construye un producto de feed empieza desde cero con la misma infraestructura base: cómo se crea, valida, almacena y entrega el contenido. Son semanas de trabajo antes de poder tomar las decisiones reales del producto.',
+          'La mayoría de las plataformas de feeds son sistemas cerrados — no podés evaluar la integración de forma real hasta haber aceptado un plan de pago o completado un onboarding largo.',
+          'Sin límites arquitectónicos claros, los sistemas de feed se vuelven frágiles: agregar un tipo de contenido o canal de entrega termina tocando código no relacionado, y cada cambio se vuelve más difícil.'
+        ],
+        solution: [
+          'Un sandbox completamente desplegado en openfeed.ogeid.xyz — el mismo código que corre en producción, disponible para explorar sin ninguna configuración previa. Lo que probás es lo que se publica.',
+          'Diseñado con Domain-Driven Design desde el inicio: Autoría, Ingesta y Entrega son dominios aislados con contratos claros entre ellos. Cada uno evoluciona de forma independiente sin romper los demás.',
+          'Una cadencia de releases explícita y el desarrollo abierto mantienen el producto en producción y el código público sincronizados — el feedback real alimenta la arquitectura, no un fork privado.'
+        ],
+        impact: [
+          'Cualquier persona evaluando infraestructura de feeds puede pasar de la primera mirada a pruebas reales en menos de cinco minutos — sin llamada de ventas, sin configuración.',
+          'La estructura DDD hace que el código sea legible de un vistazo — los colaboradores pueden navegar el modelo de dominio sin una guía, y los integradores saben exactamente dónde buscar.',
+          'Una base open-source creíble que estudios y equipos pueden extender a su pipeline específico, en lugar de construir la misma fundación desde cero cada vez.'
+        ],
+        technologies: ['TypeScript', 'Open Source'],
+        patterns: ['Domain-Driven Design (DDD)'],
+        link: {
+          label: 'Visitar Openfeed',
+          href: 'https://openfeed.ogeid.xyz'
+        }
+      }
+    }
+  },
+  {
     id: 'cuecast',
     title: 'Cuecast',
-    icon: '🎚',
+    lucideGlyph: 'headphones',
     portfolioGroup: 'oss',
     detailTheme: 'cuecast',
     description: {
@@ -330,74 +436,6 @@ export const projectsData: ProjectEntry[] = [
         link: {
           label: 'Ver en GitHub',
           href: 'https://github.com/000geid/cuecast'
-        }
-      }
-    }
-  },
-  {
-    id: 'openfeed',
-    title: 'Openfeed',
-    icon: '📡',
-    portfolioGroup: 'oss',
-    detailTheme: 'openfeed',
-    description: {
-      en: 'Live feed tooling from Triple0 Labs—my studio—with an open playbook and a sandbox you can use today.',
-      es: 'Herramienta feed en producción desde Triple0 Labs, mi empresa, con enfoque open-source y sandbox usable hoy.'
-    },
-    tags: ['TypeScript', 'Open Source', 'Feeds'],
-    story: {
-      en: {
-        title: 'Openfeed',
-        summary:
-          'Openfeed is the feed stack I build through Triple0 Labs: open-source foundations with the live product at openfeed.ogeid.xyz—the fastest way to see how authoring, ingestion, and delivery fit together.',
-        role: 'Founder • Triple0 Labs (product, platform & engineering)',
-        timeline: '2025 - Present',
-        problem: [
-          'Teams still rebuild the same scaffolding whenever they need feed-like authoring, previews, or clean hand-offs to downstream consumers.',
-          'Docs alone rarely answer integration questions; you need something runnable before committing calendar time.',
-          'Iteration stays painful unless the shell (product chrome) stays separate from ingestion and delivery internals.'
-        ],
-        solution: [
-          'Keeps the public sandbox wired to how we ship so design and product reviews line up with what users actually touch.',
-          'Structures the codebase in TypeScript-first modules—from stream plumbing to UX polish—for steady, incremental releases.',
-          'Treats cadence explicitly so production fixes and learnings fold back instead of dying in a fork.'
-        ],
-        impact: [
-          'A hosted surface shrinks the gap between curiosity and real debugging—you try the loops, not only the readme.',
-          'Offers a credible baseline studios can bend to their pipelines instead of writing bespoke feed glue every launch.',
-          'Surfacing authoring and telemetry in one place mirrors what downstream teams scrutinize during integration reviews.'
-        ],
-        technologies: ['TypeScript'],
-        link: {
-          label: 'Visit Openfeed',
-          href: 'https://openfeed.ogeid.xyz'
-        }
-      },
-      es: {
-        title: 'Openfeed',
-        summary:
-          'Openfeed es el stack feed que desarrollo desde Triple0 Labs: base open-source y producto vivo en openfeed.ogeid.xyz—la forma más directa de ver cómo encajan autoría, ingesta y entrega.',
-        role: 'Fundador • Triple0 Labs (producto, plataforma e ingeniería)',
-        timeline: '2025 - Actualidad',
-        problem: [
-          'Siguen reapareciendo los mismos cimientos cada vez que hace falta algo parecido a feeds: vista previa, edición y entrega a sistemas aguas abajo.',
-          'La documentación sola pocas veces cierra dudas de integración; hace falta algo ejecutable antes de comprometer tiempo.',
-          'Sin separar cascarón de producto y capas de ingesta/entrega, cada iteración pesa más de la cuenta.'
-        ],
-        solution: [
-          'Mantenemos el sandbox alineado con lo que entregamos para que diseño y producto revisen lo mismo que toca la gente.',
-          'Organizamos el código en módulos TypeScript—de tuberías de datos a pulido UX—pensados en releases frecuentes.',
-          'Hacemos explícito el ritmo release para que arreglos y aprendizajes de prod vuelvan al flujo principal, no queden aislados.'
-        ],
-        impact: [
-          'Tener algo alojado acorta la distancia entre curiosidad y debugging real: pruebas el circuito completo.',
-          'Da una base creíble antes de reinventar pegamento de feeds en cada lanzamiento.',
-          'Mostrar autoría y telemetría en conjunto coincide con lo que equipos revisan al evaluar integraciones.'
-        ],
-        technologies: ['TypeScript'],
-        link: {
-          label: 'Visitar Openfeed',
-          href: 'https://openfeed.ogeid.xyz'
         }
       }
     }

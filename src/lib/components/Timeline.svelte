@@ -68,7 +68,7 @@
 				<!-- Main content -->
 				<div
 					class="rounded-2xl border border-[rgba(31,35,42,0.1)] bg-[var(--color-elevated)] p-6 md:p-8 brutalist-shadow
-						hover:border-[rgba(53,90,76,0.25)] transition-all duration-300 dark:border-[rgba(210,217,226,0.08)] dark:bg-[var(--color-parchment-alt)]"
+						hover:border-[color-mix(in_srgb,var(--color-signal)_28%,transparent)] transition-all duration-300 dark:border-[rgba(210,217,226,0.08)] dark:bg-[var(--color-parchment-alt)]"
 				>
 					<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
 						<div class="flex-1">
@@ -94,7 +94,7 @@
 							onclick={() => toggleExpand(item.id)}
 							class="group/btn shrink-0 px-4 py-2 rounded-lg font-body text-xs uppercase tracking-[0.14em] font-semibold
 								border border-[rgba(31,35,42,0.14)] text-[var(--color-ink-muted)]
-								hover:bg-[var(--color-signal-soft)] hover:border-[rgba(53,90,76,0.35)]
+								hover:bg-[var(--color-signal-soft)] hover:border-[color-mix(in_srgb,var(--color-signal)_40%,transparent)]
 								dark:border-[rgba(210,217,226,0.14)]
 								transition-all duration-200"
 							aria-expanded={expandedId === item.id}

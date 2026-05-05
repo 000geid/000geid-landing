@@ -42,7 +42,7 @@
 				<LanguageToggler />
 				<button
 					onclick={() => darkMode.toggle()}
-					class="w-10 h-10 rounded-lg border border-[rgba(31,35,42,0.14)] dark:border-[rgba(210,217,226,0.14)] bg-[var(--color-elevated)] dark:bg-[var(--color-parchment-alt)] text-[var(--color-ink-strong)] hover:bg-[var(--color-signal-soft)] hover:border-[rgba(53,90,76,0.35)] dark:hover:border-[rgba(155,203,177,0.35)] transition-all duration-200 flex items-center justify-center"
+					class="w-10 h-10 rounded-lg border border-[rgba(31,35,42,0.14)] dark:border-[rgba(210,217,226,0.14)] bg-[var(--color-elevated)] dark:bg-[var(--color-parchment-alt)] text-[var(--color-ink-strong)] hover:bg-[var(--color-signal-soft)] hover:border-[color-mix(in_srgb,var(--color-signal)_40%,transparent)] dark:hover:border-[color-mix(in_srgb,var(--color-signal)_42%,transparent)] transition-all duration-200 flex items-center justify-center"
 					aria-label={$t('hero.toggleDarkMode')}
 				>
 					<svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">

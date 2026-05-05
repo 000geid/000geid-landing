@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { t } from '$lib/stores/i18n';
 	import { Button } from '$lib/components/ui/button';
+	import MapPin from 'lucide-svelte/icons/map-pin';
 </script>
 
 <section id="home" class="scroll-mt-24 px-6 pt-10 pb-16">
@@ -12,7 +13,8 @@
 			<h1 class="mt-4 text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-neutral-950 dark:text-neutral-50">
 				{$t('hero.name')}
 			</h1>
-			<p class="mt-6 text-lg md:text-xl text-neutral-600 dark:text-neutral-400">
+			<p class="mt-6 flex items-center gap-2 text-lg md:text-xl text-neutral-600 dark:text-neutral-400">
+				<MapPin class="shrink-0 opacity-90" size={20} strokeWidth={2} aria-hidden="true" />
 				Buenos Aires, Argentina
 			</p>
 			<p class="mt-6 text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">

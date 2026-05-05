@@ -312,6 +312,26 @@
 							</div>
 						{/if}
 
+						{#if story.patterns?.length}
+							<div class="mt-5">
+								<p class="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink-faint)] mb-3 flex items-center gap-1.5">
+									<svg class="w-3 h-3 shrink-0 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1v-4zm10 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+									</svg>
+									{$t('projects.story.patterns')}
+								</p>
+								<div class="flex flex-wrap gap-x-2 gap-y-2">
+									{#each story.patterns as pattern}
+										<span
+											class="px-2.5 py-1.5 rounded-md font-mono text-[10px] font-medium tracking-[0.08em] text-[var(--color-signal)] bg-[color-mix(in_srgb,var(--color-signal)_8%,transparent)] ring-1 ring-[color-mix(in_srgb,var(--color-signal)_20%,transparent)]"
+										>
+											{pattern}
+										</span>
+									{/each}
+								</div>
+							</div>
+						{/if}
+
 						<div class="mt-10 flex flex-col gap-8 md:flex-row md:flex-wrap md:items-start md:gap-x-14 md:gap-y-8">
 							{#if story.role}
 								<div class="min-w-0 md:max-w-xs">

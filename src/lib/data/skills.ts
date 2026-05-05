@@ -17,13 +17,13 @@ export const skillsData: SkillCategory[] = [
 		bullets: {
 			en: [
 				'Deliver with Claude Code and Cursor—repeatable automations, reviewable workflows, observable runs.',
-				'Ground model output in real data with retrieval, evals, and production constraints—not one-off demos.',
+				'Ground model output in real data: retrieval pipelines, evals, and production constraints baked in from day one.',
 				'Orchestrate agents and tools (LangGraph) where complexity pays off; prompts and retrieval stay measurable.',
 				'Work with product on guardrails, quality gates, and when not to call a model.'
 			],
 			es: [
 				'Desarrollo con Claude Code y Cursor: automatizaciones repetibles, flujos auditables y ejecuciones observables.',
-				'Integro los modelos con los datos reales del negocio—RAG, evaluaciones y restricciones de producción incluidas, no demos aisladas.',
+				'Integro los modelos con los datos reales del negocio: pipelines RAG, evaluaciones y restricciones de producción desde el día uno.',
 				'Orquesto agentes y herramientas (LangGraph) cuando la complejidad lo justifica; prompts y recuperación siempre medibles.',
 				'Trabajo con el equipo de producto para decidir qué automatizar con IA, con qué criterios de calidad y cuándo no usar el modelo.'
 			]

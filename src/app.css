@@ -3,9 +3,8 @@
 
 @theme {
 	/*
-	 * Cool stone palette · light
-	 * — blue-gray parchment (no yellow cast) · slate ink · sage accent
-	 * Display serif + grounded sans + mono tooling
+	 * Portfolio default · cool stone parchment + muted sage accent
+	 * (Openfeed live UI colors override only via html[data-project-detail='openfeed'].)
 	 */
 	--font-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
 	--font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -295,7 +294,8 @@ html.dark[data-project-detail='cuecast'] header nav {
 }
 
 /*
- * Openfeed (/projects/openfeed) · slate ink + sky signal (“broadcast”) tone, distinct from mint/coral themes.
+ * Openfeed (/projects/openfeed) ONLY
+ * Sampling static captures: warm parchment ~#f8f3ee cluster, emerald CTAs ~#54b460–#60c06c, chrome ink ~#0c1824/#182430.
  */
 html[data-project-detail='openfeed'] {
 	--font-display:
@@ -303,20 +303,20 @@ html[data-project-detail='openfeed'] {
 		ui-sans-serif,
 		system-ui,
 		sans-serif;
-	--color-ink-strong: #0f172a;
-	--color-ink: #1e3a5f;
-	--color-ink-muted: #49658c;
-	--color-ink-faint: #6b839f;
+	--color-ink-strong: #0c1824;
+	--color-ink: #182430;
+	--color-ink-muted: #455a63;
+	--color-ink-faint: #5f716d;
 
-	--color-parchment: #eef4fb;
-	--color-parchment-alt: #dfe8f6;
-	--color-elevated: #f6faff;
+	--color-parchment: #f8f6f1;
+	--color-parchment-alt: #ebe6dc;
+	--color-elevated: #fcfbf7;
 
-	--color-signal: #0369a1;
-	--color-signal-soft: rgba(3, 105, 161, 0.14);
+	--color-signal: #54b460;
+	--color-signal-soft: rgba(84, 180, 96, 0.16);
 
-	--color-secondary: #075985;
-	--color-accent: #526d8f;
+	--color-secondary: #489c54;
+	--color-accent: #5a7382;
 
 	--color-primary: var(--color-signal);
 	--color-surface: var(--color-parchment);
@@ -324,20 +324,20 @@ html[data-project-detail='openfeed'] {
 }
 
 html.dark[data-project-detail='openfeed'] {
-	--color-ink-strong: #f0f6fc;
-	--color-ink: #c9d9ec;
-	--color-ink-muted: #8aa3bf;
-	--color-ink-faint: #6a819c;
+	--color-ink-strong: #f3faf6;
+	--color-ink: #c8dfd0;
+	--color-ink-muted: #8fb8a6;
+	--color-ink-faint: #6b9082;
 
-	--color-parchment: #0b1220;
-	--color-parchment-alt: #121b2e;
-	--color-elevated: #182236;
+	--color-parchment: #081018;
+	--color-parchment-alt: #0f1720;
+	--color-elevated: #18252e;
 
-	--color-signal: #47b5ff;
-	--color-signal-soft: rgba(71, 181, 255, 0.16);
+	--color-signal: #6fdc88;
+	--color-signal-soft: rgba(111, 220, 136, 0.16);
 
-	--color-secondary: #7dcbfa;
-	--color-accent: #8899ae;
+	--color-secondary: #52c068;
+	--color-accent: #8799a0;
 
 	--color-primary: var(--color-signal);
 	--color-surface: var(--color-parchment);
@@ -346,16 +346,16 @@ html.dark[data-project-detail='openfeed'] {
 
 html[data-project-detail='openfeed'] .grid-pattern {
 	background-image:
-		linear-gradient(color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px),
-		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px);
-	background-size: 46px 46px;
+		linear-gradient(color-mix(in srgb, var(--color-signal) 13%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 13%, transparent) 1px, transparent 1px);
+	background-size: 40px 40px;
 }
 
 html.dark[data-project-detail='openfeed'] .grid-pattern {
 	background-image:
-		linear-gradient(color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px),
-		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px);
-	background-size: 46px 46px;
+		linear-gradient(color-mix(in srgb, var(--color-signal) 14%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 14%, transparent) 1px, transparent 1px);
+	background-size: 40px 40px;
 }
 
 html[data-project-detail='openfeed'] .noise-overlay::before {
@@ -382,7 +382,7 @@ html.dark[data-project-detail='openfeed'] header nav {
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Dark · cool charcoal, neutral type, sage accents */
+/* Dark · portfolio default (cool charcoal, sage accent) — not Openfeed emerald */
 .dark {
 	--color-ink-strong: #eceef3;
 	--color-ink: #cfd5de;
@@ -437,6 +437,23 @@ body {
 .dark body {
 	color: var(--color-ink);
 	background-color: var(--color-parchment);
+}
+
+html[data-project-detail='openfeed'] body {
+	background-color: var(--color-parchment);
+	background-image:
+		radial-gradient(ellipse 115% 78% at 50% -20%, color-mix(in srgb, var(--color-signal) 42%, transparent), transparent 54%),
+		radial-gradient(ellipse 58% 45% at 98% 2%, rgba(72, 156, 84, 0.1), transparent 50%),
+		radial-gradient(ellipse 52% 40% at 2% 80%, rgba(96, 192, 108, 0.08), transparent 50%);
+	background-attachment: fixed;
+}
+
+html.dark[data-project-detail='openfeed'] body {
+	background-image:
+		radial-gradient(ellipse 105% 64% at 50% -16%, color-mix(in srgb, var(--color-signal) 32%, transparent), transparent 52%),
+		radial-gradient(ellipse 52% 36% at 96% 8%, rgba(82, 192, 104, 0.12), transparent 46%),
+		radial-gradient(ellipse 44% 32% at 4% 84%, rgba(63, 160, 90, 0.08), transparent 50%);
+	background-attachment: fixed;
 }
 
 /* Selection uses single intentional accent */
@@ -664,15 +681,16 @@ body {
 
 .grid-pattern {
 	background-image:
-		linear-gradient(rgba(31, 35, 42, 0.055) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(31, 35, 42, 0.055) 1px, transparent 1px);
+		linear-gradient(color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 11%, transparent) 1px, transparent 1px);
 	background-size: 48px 48px;
 }
 
 .dark .grid-pattern {
 	background-image:
-		linear-gradient(rgba(210, 217, 226, 0.048) 1px, transparent 1px),
-		linear-gradient(90deg, rgba(210, 217, 226, 0.048) 1px, transparent 1px);
+		linear-gradient(color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px),
+		linear-gradient(90deg, color-mix(in srgb, var(--color-signal) 12%, transparent) 1px, transparent 1px);
+	background-size: 48px 48px;
 }
 
 .noise-overlay::before {

@@ -6,11 +6,11 @@ export const buttonVariants = tv({
 	variants: {
 		variant: {
 			default:
-				'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] shadow-sm hover:bg-[var(--color-ink)] dark:bg-[var(--color-elevated)] dark:text-[var(--color-ink-strong)] dark:border dark:border-[rgba(210,217,226,0.12)] dark:hover:bg-[rgba(210,217,226,0.08)] dark:hover:border-[rgba(210,217,226,0.18)]',
+				'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] shadow-sm hover:bg-[var(--color-ink)] dark:bg-[var(--color-elevated)] dark:text-[var(--color-ink-strong)] dark:border dark:border-[rgba(210,217,226,0.18)] dark:hover:bg-[rgba(210,217,226,0.08)] dark:hover:border-[rgba(210,217,226,0.26)]',
 			outline:
-				'border border-[rgba(31,35,42,0.18)] bg-transparent text-[var(--color-ink-strong)] hover:bg-[rgba(31,35,42,0.04)] hover:border-[rgba(31,35,42,0.26)] dark:border-[rgba(210,217,226,0.15)] dark:text-[var(--color-ink-strong)] dark:hover:bg-[rgba(210,217,226,0.06)]',
+				'border border-[rgba(31,35,42,0.16)] bg-transparent text-[var(--color-ink-strong)] hover:bg-[rgba(31,35,42,0.04)] hover:border-[rgba(31,35,42,0.24)] dark:border-[rgba(210,217,226,0.2)] dark:text-[var(--color-ink-strong)] dark:hover:bg-[rgba(210,217,226,0.06)]',
 			ghost:
-				'text-[var(--color-ink)] hover:bg-[rgba(31,35,42,0.05)] dark:hover:bg-[rgba(210,217,226,0.06)]',
+				'text-[var(--color-ink)] hover:bg-[rgba(31,35,42,0.05)] dark:hover:bg-[rgba(210,217,226,0.07)]',
 			link: 'rounded-none px-0 h-auto font-medium text-[var(--color-signal)] hover:underline focus-visible:ring-0 underline-offset-4'
 		},
 		size: {

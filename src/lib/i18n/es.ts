@@ -3,12 +3,12 @@ export const es = {
 		name: 'Diego Alvarado',
 		subtitle: 'Ingeniero de Software • Productos AI-First',
 		description:
-			'Lidero productos AI-first en producción y construyo software full-stack: desde LLMs y diseño de sistemas hasta productos publicados y entregas para clientes.',
+			'Lead de ingeniería en Alt 94, donde construyo productos de IA usados en producción por usuarios reales. Cinco años entregando software—desde sistemas de diagnóstico médico hasta aplicaciones de IA modernas.',
 		toggleDarkMode: 'Cambiar modo oscuro'
 	},
 	meta: {
 		about:
-			'Perfil: Claude Code, Cursor, TypeScript, Python, PostgreSQL, Docker, AWS y CI/CD.',
+			'Lead AI Product Engineer con base en Buenos Aires—pipelines LLM, productos full-stack y sistemas en producción con tráfico real.',
 		projects:
 			'Trabajo seleccionado: productos publicados, herramientas open source y entregas frontend para clientes—agrupadas por tipo.',
 		skills:
@@ -19,32 +19,32 @@ export const es = {
 	},
 	about: {
 		title: 'Sobre mí',
-		kicker: 'Perfil',
+		kicker: 'Hola! Soy',
 		coreExpertise: 'Stack actual',
-		headline: 'AI Product Engineer',
+		headline: 'Lead AI Product Engineer',
 		valueProp:
-			'Diseño la arquitectura, integro los modelos y llevo el producto a producción. Así se distribuye:',
-		sectorsIntro: 'Por área de foco',
+			'Llevo proyectos de la primera conversación al lanzamiento—construyo la IA, el software que la rodea y los procesos que mantienen todo funcionando. Tres cosas que hago:',
+		sectorsIntro: 'Qué hago',
 		sectors: {
 			llm: {
-				title: 'IA e inteligencia aplicada',
+				title: 'IA que llega a producción',
 				points: [
-					'Pipelines de IA en producción: integración de LLMs, RAG, flujos agénticos y orquestación para tráfico real, no demos aisladas.',
-					'IA aplicada en salud antes del boom LLM (imágenes médicas, flujos clínicos); evaluación y restricciones de producción son parte del trabajo.'
+					'Construyo funcionalidades de IA que atienden usuarios reales todos los días—búsqueda inteligente, comprensión de lenguaje y flujos automatizados integrados en productos de los que la gente depende.',
+					'Antes del boom actual de IA, trabajé con inteligencia artificial para diagnóstico médico por imágenes. Eso moldeó cómo trabajo: la confiabilidad y las pruebas no son un extra—son la base.'
 				]
 			},
 			fullstack: {
-				title: 'Full-stack y entrega',
+				title: 'Ingeniería de producto de principio a fin',
 				points: [
-					'Responsabilidad de punta a punta: arquitectura, APIs, datos y publicación de productos web y escritorio en producción.',
-					'CI/CD, disciplina de releases y prácticas de despliegue para publicar seguido sin romper producción.'
+					'Me hago cargo de un producto desde la primera línea de código hasta que los usuarios lo tienen en sus manos—sistemas backend, APIs, bases de datos y las apps web o desktop con las que interactúan.',
+					'También instalo los procesos que permiten al equipo lanzar actualizaciones con frecuencia y confianza—sin deploys riesgosos, sin sorpresas cuando algo sale a producción.'
 				]
 			},
 			clients: {
-				title: 'Trabajo con clientes y producto',
+				title: 'Entrega para clientes',
 				points: [
-					'Freelance y producto en distintas industrias: requisitos, UX y entregas que usan usuarios finales.',
-					'Proyectos en fintech, healthtech y SaaS; el trabajo representativo está en Proyectos.'
+					'Trabajé con clientes de fintech, salud y SaaS—convirtiendo objetivos de negocio en software que sus usuarios terminan adoptando y siguiendo usando.',
+					'Me ocupo del proyecto completo: entender el problema, tomar las decisiones técnicas correctas y entregar algo que funciona. El trabajo representativo está en Proyectos.'
 				]
 			}
 		},
@@ -65,7 +65,7 @@ export const es = {
 		title: 'Trayectoria',
 		kicker: 'Cronología',
 		intro:
-			'Experiencia en roles permanentes y freelance: responsabilidades, alcance e impacto en producto, IA aplicada y entrega a clientes.',
+			'Cinco años de experiencia en roles de staff y como independiente—liderando equipos, lanzando productos y resolviendo problemas reales en IA, ingeniería de producto y entrega a clientes.',
 		expandButton: 'Leer más',
 		collapseButton: 'Leer menos',
 		present: 'Actualidad',
@@ -75,7 +75,7 @@ export const es = {
 		title: 'Habilidades',
 		kicker: 'Especialidades',
 		intro:
-			'Lo que aporto en un equipo: sistemas de IA en producción, desarrollo full-stack de punta a punta y entrega continua sin fricciones.',
+			'Lo que aporto a un equipo: la capacidad de construir productos de IA que funcionan, llevarlos a producción de principio a fin y mantenerlos estables mientras el negocio crece.',
 		aiLlm: 'IA y sistemas agénticos',
 		fullStack: 'Desarrollo full-stack',
 		cloudDevOps: 'Cloud y entrega continua',
@@ -103,6 +103,11 @@ export const es = {
 		title: 'Proyectos',
 		kicker: 'Trabajo seleccionado',
 		flowReadStory: 'Ver la historia',
+		groups: {
+			products: 'Productos',
+			oss: 'Código abierto',
+			client: 'Trabajo con clientes'
+		},
 		story: {
 			label: 'Historia del proyecto',
 			back: 'Volver al inicio',
@@ -112,6 +117,7 @@ export const es = {
 			solution: 'Cómo lo resolví',
 			impact: 'Impacto',
 			technologies: 'Tecnologías',
+			patterns: 'Arquitectura',
 			gallery: 'Interfaz del producto',
 			galleryLead:
 				'Capturas de la experiencia publicada: layout mobile-first, sincronización y detalle.',
@@ -131,7 +137,7 @@ export const es = {
 	contact: {
 		title: 'Contacto',
 		kicker: 'Conéctate',
-		description: 'Abierto a nuevos roles, colaboraciones y problemas interesantes.',
+		description: 'Disponible para roles senior y lead en ingeniería de producto AI. Trabajo remoto desde Buenos Aires.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Correo',
@@ -145,7 +151,7 @@ export const es = {
 	home: {
 		indexLabel: 'Empezá acá',
 		flowHint:
-			'Flujo sugerido: primero perfil y antecedentes, después trabajo y habilidades, y al final contacto. Usá la lista o el menú superior—mismos destinos.',
+			'Cinco años entregando productos AI y full-stack en producción—imágenes médicas, pipelines LLM y apps SaaS funcionando en producción.',
 		groups: {
 			profile: 'Perfil, carrera y formación',
 			work: 'Trabajo y habilidades',
@@ -153,7 +159,7 @@ export const es = {
 		},
 		blurbs: {
 			about:
-				'Stack de hoy: Claude Code, Cursor, TypeScript y Python; PostgreSQL, Docker, AWS y CI/CD pensados para producción.',
+				'Lead de ingeniería en Alt 94, construyendo productos AI-first de la arquitectura al deploy.',
 			career: 'Línea de tiempo, roles, clientes y métricas.',
 			education: 'Títulos, diplomas y formación formal.',
 			projects: 'Productos, open source y entregas para clientes.',

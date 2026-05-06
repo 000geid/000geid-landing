@@ -4,7 +4,6 @@
 	import SiteShell from "$lib/components/SiteShell.svelte";
 	import { language } from "$lib/stores/language";
 	import { darkMode } from "$lib/stores/darkMode";
-	import { t } from "$lib/stores/i18n";
 	import { onMount } from "svelte";
 
 	let { children } = $props();
@@ -12,34 +11,16 @@
 	onMount(() => {
 		language.init();
 		darkMode.init();
+
+		const unsub = language.subscribe((lang) => {
+			document.documentElement.lang = lang;
+		});
+
+		return unsub;
 	});
 </script>
 
 <svelte:head>
-	<title>{$t("hero.name")} | {$t("hero.subtitle")}</title>
-	<meta name="description" content={$t("hero.description")} />
-	<meta name="author" content="Diego Alvarado" />
-	<meta
-		name="keywords"
-		content="Software Engineer, AI, Fullstack, Machine Learning, Web Development, Argentina"
-	/>
-
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website" />
-	<meta
-		property="og:title"
-		content="{$t('hero.name')} | {$t('hero.subtitle')}"
-	/>
-	<meta property="og:description" content={$t("hero.description")} />
-
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta
-		property="twitter:title"
-		content="{$t('hero.name')} | {$t('hero.subtitle')}"
-	/>
-	<meta property="twitter:description" content={$t("hero.description")} />
-
 	<link rel="icon" href={favicon} type="image/svg+xml" />
 	<link rel="apple-touch-icon" href={favicon} />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />

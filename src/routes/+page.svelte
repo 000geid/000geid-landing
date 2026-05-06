@@ -1,9 +1,31 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import SeoMeta from '$lib/components/SeoMeta.svelte';
 	import { legacyHashRedirects, getSectionBySlug, type SectionDefinition, type SectionSlug } from '$lib/data/sections';
 	import { homeFlowGroups } from '$lib/data/homeFlow';
+	import { absoluteUrl, resolveSiteOrigin } from '$lib/seo/site';
 	import { t } from '$lib/stores/i18n';
+
+	const personJsonLd = $derived.by(() => {
+		const origin = resolveSiteOrigin($page.url.origin);
+		const siteUrl = absoluteUrl(origin, '/');
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			name: 'Diego Alvarado',
+			url: siteUrl,
+			jobTitle: 'Lead AI Product Engineer',
+			email: 'mailto:dmalvaradog26@gmail.com',
+			sameAs: ['https://github.com/000geid', 'https://www.linkedin.com/in/ogeid/'],
+			address: {
+				'@type': 'PostalAddress',
+				addressLocality: 'Buenos Aires',
+				addressCountry: 'AR'
+			}
+		};
+	});
 
 	onMount(() => {
 		const hash = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : '';
@@ -34,10 +56,11 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{$t('hero.name')} | {$t('hero.subtitle')}</title>
-	<meta name="description" content={$t('hero.description')} />
-</svelte:head>
+<SeoMeta
+	title="{$t('hero.name')} | {$t('hero.subtitle')}"
+	description={$t('hero.description')}
+	jsonLd={personJsonLd}
+/>
 
 <main id="main-content" class="border-t border-[rgba(31,35,42,0.1)] dark:border-[rgba(210,217,226,0.1)]">
 		<section class="max-w-7xl mx-auto px-4 md:px-6 py-14 md:py-20 lg:py-24">

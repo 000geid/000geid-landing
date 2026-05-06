@@ -1,5 +1,7 @@
 <script lang="ts">
+	import SeoMeta from '$lib/components/SeoMeta.svelte';
 	import { projectsData } from '$lib/data/projects';
+	import { getProjectOgImagePath } from '$lib/seo/site';
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/stores/i18n';
 	import { Button } from '$lib/components/ui/button';
@@ -20,6 +22,7 @@
 	let viewerContainer = $state<HTMLElement | null>(null);
 
 	const project = $derived(projectsData.find((item) => item.id === params.id));
+	const ogImagePath = $derived(getProjectOgImagePath(project));
 	const story = $derived(project ? ($language === 'en' ? project.story.en : project.story.es) : null);
 	const isFreelanceGallery = $derived(project?.mode === 'freelance-gallery');
 	const freelanceClients = $derived(project?.freelanceClients ?? []);
@@ -250,10 +253,12 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{story?.title ?? $t('projects.story.notFoundTitle')} | {$t('hero.name')}</title>
-	<meta name="description" content={story?.summary ?? $t('projects.story.notFoundBody')} />
-</svelte:head>
+<SeoMeta
+	title="{story?.title ?? $t('projects.story.notFoundTitle')} | {$t('hero.name')}"
+	description={story?.summary ?? $t('projects.story.notFoundBody')}
+	imagePath={ogImagePath}
+	ogType="article"
+/>
 
 <main id="main-content" class="border-t border-[color-mix(in_srgb,var(--color-ink-strong)_11%,transparent)] dark:border-[color-mix(in_srgb,var(--color-ink-strong)_14%,transparent)]">
 		{#if story}

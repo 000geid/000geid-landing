@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { language } from '$lib/stores/language';
 	import { t } from '$lib/stores/i18n';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		language.init();
-	});
 </script>
 
 <button

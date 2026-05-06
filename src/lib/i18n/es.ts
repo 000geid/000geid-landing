@@ -97,7 +97,8 @@ export const es = {
 		tabDiplomas: 'Diplomas y certificaciones',
 		diplomasEmpty:
 			'Aún no hay diplomas cargados: añadí entradas en diplomasData (src/lib/data/education.ts) y las imágenes en static/.',
-		verifyCredential: 'Ver certificado'
+		verifyCredential: 'Credencial verificada',
+		credentialExternalHint: '(se abre en una pestaña nueva)'
 	},
 	projects: {
 		title: 'Proyectos',

@@ -1,63 +1,81 @@
 export const es = {
 	hero: {
 		name: 'Diego Alvarado',
-		subtitle: 'Ingeniero de Software • Productos AI-First',
+		subtitle: 'Product Engineer · Desarrollador Full-Stack',
 		description:
-			'Lead de ingeniería en Alt 94, donde construyo productos de IA usados en producción por usuarios reales. Cinco años entregando software—desde sistemas de diagnóstico médico hasta aplicaciones de IA modernas.',
+			'Construyo productos de principio a fin—frontend, backend, APIs e infraestructura. Integro IA donde realmente suma valor: búsqueda inteligente, automatización y features de lenguaje que llegan a producción.',
 		toggleDarkMode: 'Cambiar modo oscuro'
 	},
 	meta: {
 		about:
-			'Lead AI Product Engineer con base en Buenos Aires—pipelines LLM, productos full-stack y sistemas en producción con tráfico real.',
+			'Product Engineer y Desarrollador Full-Stack con base en Buenos Aires—UI, APIs, bases de datos y sistemas en producción. Disponible para roles y proyectos freelance.',
 		projects:
-			'Trabajo seleccionado: productos publicados, herramientas open source y entregas frontend para clientes—agrupadas por tipo.',
+			'Trabajo seleccionado: productos publicados, herramientas open source y entregas para clientes—agrupadas por tipo, con resultados.',
 		skills:
-			'Stack agrupado por rol: lenguajes, IA/LLM, backend y datos, y cloud/entrega.',
+			'Stack agrupado por área: desarrollo full-stack, integración de IA/LLM, cloud y entrega continua.',
 		career: 'Línea de tiempo laboral y freelance: roles, alcance, clientes e IA aplicada a salud, con métricas.',
 		education: 'Títulos, diplomas y certificaciones.',
-		contact: 'Formas de contacto para roles u oportunidades.'
+		contact: 'Formas de contacto para roles o proyectos freelance.'
 	},
 	about: {
 		title: 'Sobre mí',
 		kicker: 'Hola! Soy',
 		coreExpertise: 'Stack actual',
-		headline: 'Lead AI Product Engineer',
+		headline: 'Product Engineer · Desarrollador Full-Stack',
 		valueProp:
-			'Llevo proyectos de la primera conversación al lanzamiento—construyo la IA, el software que la rodea y los procesos que mantienen todo funcionando. Tres cosas que hago:',
-		sectorsIntro: 'Qué hago',
+			'Llevo proyectos del primer boceto a producción, con ownership completo del stack—frontend, APIs, bases de datos y despliegue. Cuando la IA mejora genuinamente el producto, también la construyo. Tres cosas que aporto a cada proyecto:',
+		sectorsIntro: 'Qué aporto',
 		sectors: {
 			llm: {
-				title: 'IA que llega a producción',
+				title: 'IA como herramienta concreta',
 				points: [
-					'Construyo funcionalidades de IA que atienden usuarios reales todos los días—búsqueda inteligente, comprensión de lenguaje y flujos automatizados integrados en productos de los que la gente depende.',
-					'Antes del boom actual de IA, trabajé con inteligencia artificial para diagnóstico médico por imágenes. Eso moldeó cómo trabajo: la confiabilidad y las pruebas no son un extra—son la base.'
+					'Lancé features de IA en sistemas de producción reales—búsqueda semántica, pipelines RAG y flujos automatizados. El objetivo es siempre el mismo: algo que funcione de forma confiable para usuarios reales, no una demo. Antes del boom actual, trabajé con IA para diagnóstico médico por imágenes en un entorno clínico. La confiabilidad y los tests no son opcionales—son la base.'
 				]
 			},
 			fullstack: {
-				title: 'Ingeniería de producto de principio a fin',
+				title: 'Ownership full-stack de principio a fin',
 				points: [
-					'Me hago cargo de un producto desde la primera línea de código hasta que los usuarios lo tienen en sus manos—sistemas backend, APIs, bases de datos y las apps web o desktop con las que interactúan.',
-					'También instalo los procesos que permiten al equipo lanzar actualizaciones con frecuencia y confianza—sin deploys riesgosos, sin sorpresas cuando algo sale a producción.'
+					'Construyo el producto completo: la UI con la que interactúan los usuarios, las APIs que la potencian, la base de datos detrás y la infraestructura que la mantiene corriendo. También instalo las prácticas—CI/CD, testing, deployments claros—que permiten al equipo lanzar con confianza y frecuencia.'
 				]
 			},
 			clients: {
-				title: 'Entrega para clientes',
+				title: 'Trabajo con clientes',
 				points: [
-					'Trabajé con clientes de fintech, salud y SaaS—convirtiendo objetivos de negocio en software que sus usuarios terminan adoptando y siguiendo usando.',
-					'Me ocupo del proyecto completo: entender el problema, tomar las decisiones técnicas correctas y entregar algo que funciona. El trabajo representativo está en Proyectos.'
+					'Entreggué proyectos para clientes en salud, SaaS y consumo—encargándome de todo, desde la definición del problema hasta el despliegue. Me comunico con claridad, cumplo plazos y dejo el código en un estado en que el próximo developer puede seguir trabajando. El trabajo representativo está en Proyectos.'
 				]
 			}
 		},
 		highlights: [
-			'Claude Code',
-			'Cursor',
 			'TypeScript',
 			'Python',
+			'React',
+			'SvelteKit',
 			'PostgreSQL',
 			'Docker',
 			'AWS',
 			'CI/CD'
 		],
+		profileCard: {
+			label: 'Perfil rápido',
+			items: [
+				'5 años lanzando productos',
+				'Remoto · Buenos Aires (GMT-3)',
+				'Disponible para roles y freelance'
+			]
+		},
+		freelance: {
+			label: 'Freelance',
+			heading: '¿Tenés un proyecto?',
+			body: 'Acepto proyectos freelance puntuales con startups y equipos pequeños que necesitan un engineer full-stack que pueda dueñarse del trabajo de punta a punta.',
+			items: [
+				'Productos y MVPs',
+				'Features adicionales e integraciones de API',
+				'Features de IA: búsqueda, automatización, lenguaje',
+				'Proyectos de 2 a 6 semanas, scope claro desde el inicio'
+			],
+			cta: 'Hablemos de tu proyecto',
+			emailSubject: 'Proyecto freelance — [nombre de tu proyecto]'
+		},
 		ctaEmail: 'Hablemos por email',
 		ctaProjects: 'Ver proyectos'
 	},
@@ -75,7 +93,8 @@ export const es = {
 		title: 'Habilidades',
 		kicker: 'Especialidades',
 		intro:
-			'Lo que aporto a un equipo: la capacidad de construir productos de IA que funcionan, llevarlos a producción de principio a fin y mantenerlos estables mientras el negocio crece.',
+			'Lo que aporto a un equipo: ownership completo de un producto—desde la UI pasando por las APIs hasta la infraestructura. Uso IA donde marca una diferencia real, y entrego cosas que se sostienen en producción.',
+		atGlanceLabel: 'De un vistazo',
 		aiLlm: 'IA y sistemas agénticos',
 		fullStack: 'Desarrollo full-stack',
 		cloudDevOps: 'Cloud y entrega continua',
@@ -138,7 +157,7 @@ export const es = {
 	contact: {
 		title: 'Contacto',
 		kicker: 'Conéctate',
-		description: 'Disponible para roles senior y lead en ingeniería de producto AI. Trabajo remoto desde Buenos Aires.',
+		description: 'Busco un rol de product engineer o desarrollador full-stack—remote-first, desde Buenos Aires (GMT-3). También acepto proyectos freelance: productos, integraciones de API y features de IA.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Correo',
@@ -150,9 +169,41 @@ export const es = {
 		sections: 'Secciones'
 	},
 	home: {
+		meta: {
+			title: 'Product Engineer · Desarrollador Full-Stack',
+			description:
+				'Product Engineer con base en Buenos Aires—productos full-stack y features de IA en producción. Disponible para roles y proyectos freelance.'
+		},
 		indexLabel: 'Empezá acá',
 		flowHint:
-			'Cinco años entregando productos AI y full-stack en producción—imágenes médicas, pipelines LLM y apps SaaS funcionando en producción.',
+			'De IA para diagnóstico médico a SaaS full-stack—productos construidos de punta a punta y corriendo en producción.',
+		availability: {
+			openToRoles: 'Disponible para roles',
+			takingFreelance: 'Acepto freelance',
+			remote: 'Remoto · GMT-3'
+		},
+		featured: {
+			kicker: 'Trabajo publicado',
+			title: 'Proyectos destacados',
+			viewAll: 'Ver todos los proyectos'
+		},
+		audience: {
+			hiring: {
+				title: '¿Estás contratando?',
+				highlight:
+					'Lead Software Developer en Alt 94—migré la orquestación a LangGraph, mejorando el throughput del pipeline RAG un 30%.',
+				ctaCv: 'Descargar CV',
+				ctaCareer: 'Ver trayectoria'
+			},
+			freelance: {
+				title: '¿Necesitás un freelancer?',
+				items: ['Productos y MVPs', 'Features de IA: búsqueda, automatización, lenguaje']
+			}
+		},
+		explore: {
+			kicker: 'Profundizar',
+			title: 'Explorar más'
+		},
 		groups: {
 			profile: 'Perfil, carrera y formación',
 			work: 'Trabajo y habilidades',
@@ -160,7 +211,7 @@ export const es = {
 		},
 		blurbs: {
 			about:
-				'Lead de ingeniería en Alt 94, construyendo productos AI-first de la arquitectura al deploy.',
+				'Product Engineer · Desarrollador Full-Stack — llevando productos del boceto a producción.',
 			career: 'Línea de tiempo, roles, clientes y métricas.',
 			education: 'Títulos, diplomas y formación formal.',
 			projects: 'Productos, open source y entregas para clientes.',

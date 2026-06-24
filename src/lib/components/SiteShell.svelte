@@ -10,9 +10,14 @@
 		if (sectionPath === '/projects') {
 			return pathname === '/projects' || pathname.startsWith('/projects/');
 		}
-
 		return pathname === sectionPath;
 	}
+
+	function isHomeActive(pathname: string) {
+		return pathname === '/';
+	}
+
+	$: homeActive = isHomeActive($page.url.pathname);
 </script>
 
 <div
@@ -29,14 +34,36 @@
 		class="sticky top-0 z-30 border-b border-[rgba(31,35,42,0.12)] dark:border-[rgba(210,217,226,0.12)] bg-[rgba(243,244,247,0.82)] backdrop-blur-md dark:bg-[rgba(18,21,25,0.82)] supports-[backdrop-filter]:bg-[rgba(243,244,247,0.72)] dark:supports-[backdrop-filter]:bg-[rgba(18,21,25,0.72)]"
 	>
 		<div class="h-0.5 bg-[var(--color-signal)] transition-transform duration-300 origin-left {$navigating ? 'scale-x-100' : 'scale-x-0'}"></div>
-		<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 px-4 md:px-6 py-4">
-			<a
-				href="/"
-				class="font-display font-bold text-lg md:text-xl tracking-tight text-[var(--color-ink-strong)] truncate transition-transform duration-200 hover:-translate-y-px"
-				aria-label={$t('hero.name')}
-			>
-				DA
-			</a>
+		<div class="max-w-7xl mx-auto flex items-center justify-between gap-3 px-4 md:px-6 py-2.5">
+			<nav aria-label={$t('nav.sections')} class="no-scrollbar overflow-x-auto">
+				<div class="flex items-center gap-1 w-max">
+					<a
+						href="/"
+						class="group relative px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] rounded-lg transition-all duration-200
+							{homeActive
+								? 'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] dark:bg-[var(--color-elevated)] dark:text-[var(--color-ink-strong)]'
+								: 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink-strong)] hover:bg-[rgba(31,35,42,0.05)] dark:hover:bg-[rgba(210,217,226,0.06)]'}"
+					>
+						<span class="relative z-10">{$t('nav.home')}</span>
+						<span class="pointer-events-none absolute left-2 right-2 -bottom-0.5 h-0.5 bg-[var(--color-signal)] rounded-full transition-transform duration-300 origin-left opacity-90
+							{homeActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}"></span>
+					</a>
+					{#each sectionDefinitions as section (section.slug)}
+						{@const isActive = isSectionActive($page.url.pathname, section.path)}
+						<a
+							href={section.path}
+							class="group relative px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] rounded-lg transition-all duration-200
+								{isActive
+									? 'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] dark:bg-[var(--color-elevated)] dark:text-[var(--color-ink-strong)]'
+									: 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink-strong)] hover:bg-[rgba(31,35,42,0.05)] dark:hover:bg-[rgba(210,217,226,0.06)]'}"
+						>
+							<span class="relative z-10">{$t(section.labelKey)}</span>
+							<span class="pointer-events-none absolute left-2 right-2 -bottom-0.5 h-0.5 bg-[var(--color-signal)] rounded-full transition-transform duration-300 origin-left opacity-90
+								{isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}"></span>
+						</a>
+					{/each}
+				</div>
+			</nav>
 
 			<div class="flex items-center gap-2 shrink-0">
 				<LanguageToggler />
@@ -64,27 +91,6 @@
 				</button>
 			</div>
 		</div>
-
-		<nav aria-label={$t('nav.sections')} class="no-scrollbar overflow-x-auto border-t border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)]">
-			<div class="max-w-7xl mx-auto px-4 md:px-6 py-2.5">
-				<div class="flex items-center gap-1 w-max">
-					{#each sectionDefinitions as section (section.slug)}
-						{@const isActive = isSectionActive($page.url.pathname, section.path)}
-						<a
-							href={section.path}
-							class="group relative px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] rounded-lg transition-all duration-200
-								{isActive
-									? 'bg-[var(--color-ink-strong)] text-[var(--color-parchment)] dark:bg-[var(--color-elevated)] dark:text-[var(--color-ink-strong)]'
-									: 'text-[var(--color-ink-muted)] hover:text-[var(--color-ink-strong)] hover:bg-[rgba(31,35,42,0.05)] dark:hover:bg-[rgba(210,217,226,0.06)]'}"
-						>
-							<span class="relative z-10">{$t(section.labelKey)}</span>
-							<span class="pointer-events-none absolute left-2 right-2 -bottom-0.5 h-0.5 bg-[var(--color-signal)] rounded-full transition-transform duration-300 origin-left opacity-90
-								{isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}"></span>
-						</a>
-					{/each}
-				</div>
-			</div>
-		</nav>
 	</header>
 
 	<div class="route-enter">

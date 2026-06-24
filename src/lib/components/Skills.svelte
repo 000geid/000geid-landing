@@ -29,6 +29,20 @@
 			>
 				{$t('skills.intro')}
 			</p>
+
+			<!-- At-a-glance tech strip -->
+			<div class="mt-8">
+				<p class="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-ink-faint)] mb-4">
+					{$t('skills.atGlanceLabel')}
+				</p>
+				<div class="flex flex-wrap gap-2" aria-label={$t('skills.atGlanceLabel')}>
+					{#each skillsData.flatMap(c => c.skills) as skill}
+						<span class="px-3 py-1.5 rounded-full font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--color-ink-strong)] bg-[rgba(31,35,42,0.05)] dark:bg-[rgba(210,217,226,0.06)] ring-1 ring-[rgba(31,35,42,0.1)] dark:ring-[rgba(210,217,226,0.12)]">
+							{skill}
+						</span>
+					{/each}
+				</div>
+			</div>
 		</header>
 
 		<div class="flow-root border-t border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)]">

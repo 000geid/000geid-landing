@@ -76,9 +76,15 @@
 											{$language === 'es' ? project.story.es.title : project.story.en.title}
 										</h4>
 
-										<p class="font-body text-[0.9rem] md:text-base text-[var(--color-ink-muted)] group-hover:text-[var(--color-ink)] leading-relaxed mb-4">
+										<p class="font-body text-[0.9rem] md:text-base text-[var(--color-ink-muted)] group-hover:text-[var(--color-ink)] leading-relaxed mb-3">
 											{project.description[$language]}
 										</p>
+
+										{#if project.metric}
+											<p class="font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--color-signal)] mb-4">
+												{project.metric[$language]}
+											</p>
+										{/if}
 
 										<div class="flex flex-wrap gap-x-2 gap-y-1.5 items-center mb-4">
 											{#each project.tags.slice(0, 4) as tag}

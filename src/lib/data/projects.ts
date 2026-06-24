@@ -32,6 +32,8 @@ export interface ProjectEntry {
   portfolioGroup: PortfolioGroup
   mode?: 'case-study' | 'freelance-gallery'
   detailTheme?: ProjectDetailTheme
+  /** Short outcome metric shown on the project card (e.g. "300+ concurrent users"). */
+  metric?: { en: string; es: string }
   description: {
     en: string
     es: string
@@ -84,6 +86,7 @@ export const projectsData: ProjectEntry[] = [
       es: 'Digitalizando la gastronomía de barrio: cartas QR interactivas, analíticas y reseñas de clientes.'
     },
     tags: ['SvelteKit', 'Cloudflare', 'D1', 'Hono'],
+    metric: { en: 'Full-stack MVP · live in production', es: 'MVP full-stack · en producción' },
     /** Gallery images: regenerate with `npm run capture:filo` (see scripts/capture-filo.mjs). */
     screenshots: [
       {
@@ -183,6 +186,7 @@ export const projectsData: ProjectEntry[] = [
       es: 'Tablero kanban mobile-first con sincronización en tiempo real, diseñado para planificación táctil en cualquier dispositivo.'
     },
     tags: ['React', 'Vite', 'Convex', 'Cloudflare Workers'],
+    metric: { en: 'Real-time sync · mobile-first kanban', es: 'Sincronización en tiempo real · kanban mobile-first' },
     /** Gallery images: regenerate with `npm run capture:plandeck` (see scripts/capture-plandeck.mjs). */
     screenshots: [
       {
@@ -282,6 +286,7 @@ export const projectsData: ProjectEntry[] = [
       es: 'Plataforma de feed en tiempo real—en producción, open-source y con arquitectura por dominios que podés explorar sin registrarte.'
     },
     tags: ['TypeScript', 'DDD', 'Open Source', 'Feed Platform'],
+    metric: { en: 'Open-source · DDD architecture · live', es: 'Open-source · arquitectura DDD · en producción' },
     /** Gallery images: regenerate with `npm run capture:openfeed` (see scripts/capture-openfeed.mjs). */
     screenshots: [
       {
@@ -383,6 +388,7 @@ export const projectsData: ProjectEntry[] = [
       es: 'Soundboard virtual de escritorio para streamers, permitiendo disparar audio y rutearlo a dispositivos virtuales.'
     },
     tags: ['Electron', 'React', 'TypeScript', 'Vite'],
+    metric: { en: 'Cross-platform desktop app · open-source', es: 'App de escritorio multiplataforma · open-source' },
     story: {
       en: {
         title: 'Cuecast',
@@ -441,3 +447,14 @@ export const projectsData: ProjectEntry[] = [
     }
   }
 ]
+
+export const featuredProjectIds = ['filo', 'plandeck', 'cuecast'] as const
+
+export type FeaturedProjectId = (typeof featuredProjectIds)[number]
+
+export function getFeaturedProjects(): ProjectEntry[] {
+  const byId = new Map(projectsData.map((p) => [p.id, p]))
+  return featuredProjectIds
+    .map((id) => byId.get(id))
+    .filter((p): p is ProjectEntry => p !== undefined)
+}

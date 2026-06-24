@@ -1,63 +1,81 @@
 export const en = {
 	hero: {
 		name: 'Diego Alvarado',
-		subtitle: 'Software Engineer • AI-First Products',
+		subtitle: 'Product Engineer · Full-Stack Developer',
 		description:
-			'Currently leading engineering at Alt 94, building AI products used in production by real users. Five years shipping software—from medical imaging systems to modern AI apps.',
+			'I build products from first line to production—owning frontend, backend, APIs, and the infrastructure that holds it all. I bring AI into products where it genuinely adds value: smarter search, automation, and language features that ship reliably.',
 		toggleDarkMode: 'Toggle dark mode'
 	},
 	meta: {
 		about:
-			'Lead AI Product Engineer based in Buenos Aires—LLM pipelines, full-stack products, and production systems with real traffic.',
+			'Product Engineer and Full-Stack Developer based in Buenos Aires—UI, APIs, databases, and production systems. Available for roles and freelance projects.',
 		projects:
-			'Selected work: shipped products, open-source tools, and client frontend delivery—grouped by type.',
+			'Selected work: shipped products, open-source tools, and client delivery—grouped by type, with outcomes.',
 		skills:
-			'Stack grouped by role: languages, AI/LLM work, backend and data, then cloud and delivery.',
+			'Stack grouped by area: full-stack engineering, AI/LLM integration, cloud and delivery.',
 		career: 'Employment and freelance timeline: roles, scope, clients, and applied ML in healthcare—with metrics.',
 		education: 'Formal degrees, diplomas and certificates.',
-		contact: 'Ways to reach me for roles or opportunities.'
+		contact: 'Ways to reach me for roles or freelance projects.'
 	},
 	about: {
 		title: 'About',
 		kicker: "Hi! I'm",
 		coreExpertise: 'Current stack',
-		headline: 'Lead AI Product Engineer',
+		headline: 'Product Engineer · Full-Stack Developer',
 		valueProp:
-			'I take products from the first conversation to launch—building the AI, the software around it, and the practices that keep everything running. Three things I do:',
-		sectorsIntro: 'What I do',
+			'I take products from the first sketch to production, owning the full stack along the way—frontend, APIs, databases, and deployment. When AI makes a product meaningfully better, I build that too. Three things I bring to every engagement:',
+		sectorsIntro: 'What I bring',
 		sectors: {
 			llm: {
-				title: 'AI that ships to production',
+				title: 'AI as a practical tool',
 				points: [
-					'I build AI features that handle real users daily—smart search, language understanding, and automated workflows integrated into products people depend on.',
-					'Before the current AI wave, I built AI for medical imaging in a clinical setting. That experience shaped how I work: reliability and testing aren\'t extras—they\'re the foundation.'
+					"I've shipped AI features in real production systems—semantic search, RAG pipelines, and automated workflows. The goal is always the same: a feature that works reliably for actual users, not a demo. Before the current AI wave, I built diagnostic AI for medical imaging in a clinical setting. Reliability and testing aren't optional—they're the foundation."
 				]
 			},
 			fullstack: {
-				title: 'Product engineering, start to finish',
+				title: 'Full-stack ownership, end to end',
 				points: [
-					'I take a product from the first line of code to the moment users have it in their hands—backend systems, APIs, databases, and the web or desktop apps they interact with.',
-					'I put in place the practices that let teams release updates confidently and often—no risky big-bang deployments, no surprises when something goes live.'
+					"I build the whole product: the UI users interact with, the APIs that power it, the database behind it, and the infrastructure that keeps it running. I set up the practices—CI/CD, testing, clear deployments—that let teams ship updates confidently and often."
 				]
 			},
 			clients: {
-				title: 'Client delivery',
+				title: 'Working with clients',
 				points: [
-					'I\'ve worked with clients in fintech, healthcare, and SaaS—turning business goals into software their users actually adopt and keep using.',
-					'I handle the full engagement: understanding the problem, making the right technical calls, and delivering something that works. Representative work is in Projects.'
+					"I've delivered projects for clients in healthcare, SaaS, and consumer brands—handling everything from problem definition to deployment. I communicate clearly, hit timelines, and leave codebases in a state the next developer can work in. Representative work is in Projects."
 				]
 			}
 		},
 		highlights: [
-			'Claude Code',
-			'Cursor',
 			'TypeScript',
 			'Python',
+			'React',
+			'SvelteKit',
 			'PostgreSQL',
 			'Docker',
 			'AWS',
 			'CI/CD'
 		],
+		profileCard: {
+			label: 'Quick profile',
+			items: [
+				'5 years shipping products',
+				'Remote · Buenos Aires (GMT-3)',
+				'Open to full-time roles & freelance'
+			]
+		},
+		freelance: {
+			label: 'Freelance',
+			heading: 'Have a project?',
+			body: 'I take focused freelance engagements with startups and small teams that need a full-stack engineer who can own the work end-to-end.',
+			items: [
+				'Product builds & MVPs',
+				'Feature additions & API integrations',
+				'AI features: search, automation, language',
+				'2–6 week engagements, clear scope upfront'
+			],
+			cta: "Let's talk about your project",
+			emailSubject: 'Freelance project — [your project name]'
+		},
 		ctaEmail: 'Email me',
 		ctaProjects: 'View projects'
 	},
@@ -76,7 +94,8 @@ export const en = {
 		title: 'Skills',
 		kicker: 'Expertise',
 		intro:
-			'What I bring to a team: the ability to build AI products that work, take them from idea to production, and keep them stable as the business grows.',
+			'What I bring to a team: end-to-end ownership of a product—from the UI through the APIs to the infrastructure. I use AI where it makes a measurable difference, and I ship things that hold up in production.',
+		atGlanceLabel: 'At a glance',
 		aiLlm: 'AI & LLMs',
 		fullStack: 'Full-stack engineering',
 		cloudDevOps: 'Cloud & delivery',
@@ -138,7 +157,7 @@ export const en = {
 	contact: {
 		title: 'Contact',
 		kicker: 'Connect',
-		description: 'Available for senior engineering and lead AI product roles. Remote-friendly from Buenos Aires.',
+		description: 'Looking for a product engineering or full-stack role—remote-first, based in Buenos Aires (GMT-3). Also taking freelance projects: product builds, API integrations, and AI features.',
 		github: 'GitHub',
 		linkedin: 'LinkedIn',
 		email: 'Email',
@@ -150,9 +169,41 @@ export const en = {
 		sections: 'Sections'
 	},
 	home: {
+		meta: {
+			title: 'Product Engineer · Full-Stack Developer',
+			description:
+				'Product Engineer based in Buenos Aires—shipping full-stack products and AI features to production. Open to roles and freelance projects.'
+		},
 		indexLabel: 'Start here',
 		flowHint:
-			'Five years delivering AI and full-stack products in production—healthcare imaging, LLM pipelines, and SaaS apps shipped and running.',
+			'From medical imaging AI to full-stack SaaS—products built end to end, in production.',
+		availability: {
+			openToRoles: 'Open to roles',
+			takingFreelance: 'Taking freelance',
+			remote: 'Remote · GMT-3'
+		},
+		featured: {
+			kicker: 'Proof of work',
+			title: 'Featured projects',
+			viewAll: 'View all projects'
+		},
+		audience: {
+			hiring: {
+				title: 'Hiring?',
+				highlight:
+					'Lead Software Developer at Alt 94—migrated orchestration to LangGraph, improving RAG pipeline throughput by 30%.',
+				ctaCv: 'Download CV',
+				ctaCareer: 'View career path'
+			},
+			freelance: {
+				title: 'Need a freelancer?',
+				items: ['Product builds & MVPs', 'AI features: search, automation, language']
+			}
+		},
+		explore: {
+			kicker: 'Go deeper',
+			title: 'Explore more'
+		},
 		groups: {
 			profile: 'Profile, career & education',
 			work: 'Work & skills',
@@ -160,7 +211,7 @@ export const en = {
 		},
 		blurbs: {
 			about:
-				'Currently leading AI product engineering at Alt 94, building full-stack systems from model to UI.',
+				'Product Engineer · Full-Stack Developer — shipping products from first sketch to production.',
 			career: 'Timeline, roles, clients, and metrics.',
 			education: 'Degrees, diplomas and formal training.',
 			projects: 'Shipped products, OSS, and client delivery.',

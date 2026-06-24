@@ -11,11 +11,6 @@
 	$: cvLabel = $language === 'es' ? $t('cv.downloadEs') : $t('cv.downloadEn');
 	$: recruiterHref = `mailto:${recruiterEmail}`;
 
-	$: stats = [
-		{ value: '5', unit: $language === 'es' ? 'años' : 'years', label: $language === 'es' ? 'de experiencia' : 'of experience' },
-		{ value: '10+', unit: $language === 'es' ? 'clientes' : 'clients', label: $language === 'es' ? 'atendidos' : 'delivered for' },
-		{ value: '3', unit: $language === 'es' ? 'productos' : 'products', label: $language === 'es' ? 'en producción' : 'in production' },
-	];
 </script>
 
 <section id="about" class="scroll-mt-32 py-14 md:py-20 px-4 md:px-6 max-w-7xl mx-auto">
@@ -46,16 +41,6 @@
 						aria-hidden="true"
 					/>
 					<p class="font-body text-sm text-[var(--color-ink-muted)]">Buenos Aires, Argentina</p>
-				</div>
-
-				<!-- Stats bar -->
-				<div class="flex items-start gap-0 mb-10 border-y border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)] py-5 divide-x divide-[rgba(31,35,42,0.08)] dark:divide-[rgba(210,217,226,0.08)]">
-					{#each stats as stat}
-						<div class="flex flex-col pr-6 pl-6 first:pl-0 last:pr-0 gap-0.5">
-							<span class="font-mono text-2xl md:text-3xl font-bold text-[var(--color-ink-strong)] leading-none tracking-tight tabular-nums">{stat.value}</span>
-							<span class="font-body text-[11px] text-[var(--color-ink-muted)] leading-snug mt-1">{stat.unit}<br/><span class="text-[var(--color-ink-faint)]">{stat.label}</span></span>
-						</div>
-					{/each}
 				</div>
 
 				<!-- Headline + intro -->
@@ -89,6 +74,36 @@
 					{/each}
 				</div>
 
+				<!-- Freelance pitch -->
+				<div class="mt-12 rounded-xl border border-[rgba(31,35,42,0.1)] dark:border-[rgba(210,217,226,0.1)] bg-[rgba(31,35,42,0.02)] dark:bg-[rgba(210,217,226,0.02)] p-6 md:p-7 max-w-2xl">
+					<p class="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-ink-faint)] mb-3">
+						{$t('about.freelance.label')}
+					</p>
+					<h3 class="font-display font-semibold text-xl tracking-tight text-[var(--color-ink-strong)] mb-2">
+						{$t('about.freelance.heading')}
+					</h3>
+					<p class="font-body text-sm text-[var(--color-ink-muted)] leading-relaxed mb-5">
+						{$t('about.freelance.body')}
+					</p>
+					<ul class="space-y-2 mb-6">
+						{#each $t('about.freelance.items') as item}
+							<li class="flex items-start gap-2 font-body text-sm text-[var(--color-ink-muted)]">
+								<span class="mt-[0.4rem] w-1 h-1 rounded-full bg-[var(--color-signal)] shrink-0" aria-hidden="true"></span>
+								{item}
+							</li>
+						{/each}
+					</ul>
+					<a
+						href={`mailto:${recruiterEmail}?subject=${encodeURIComponent($t('about.freelance.emailSubject'))}`}
+						class="inline-flex items-center gap-2 font-display font-semibold text-sm tracking-tight text-[var(--color-signal)] hover:underline"
+					>
+						{$t('about.freelance.cta')}
+						<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+						</svg>
+					</a>
+				</div>
+
 			</div>
 		</div>
 
@@ -98,6 +113,21 @@
 				<div class="rounded-2xl border border-[rgba(31,35,42,0.14)] dark:border-[rgba(210,217,226,0.12)] bg-[var(--color-elevated)] dark:bg-[var(--color-parchment-alt)] overflow-hidden brutalist-shadow">
 
 					<!-- Stack section -->
+					<div class="p-6 md:p-7 border-b border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)]">
+						<p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-ink-faint)] mb-4">
+							{$t('about.profileCard.label')}
+						</p>
+						<ul class="space-y-2">
+							{#each $t('about.profileCard.items') as item}
+								<li class="flex items-center gap-2.5 font-body text-sm text-[var(--color-ink-muted)]">
+									<span class="w-1 h-1 rounded-full bg-[var(--color-signal)] shrink-0" aria-hidden="true"></span>
+									{item}
+								</li>
+							{/each}
+						</ul>
+					</div>
+
+					<!-- Stack chips -->
 					<div class="p-6 md:p-7 border-b border-[rgba(31,35,42,0.08)] dark:border-[rgba(210,217,226,0.08)]">
 						<p class="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-ink-faint)] mb-4">
 							{$t('about.coreExpertise')}
